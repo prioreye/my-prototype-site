@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロトタイプ - 投稿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>投稿</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">ホーム</a></li>
+                <li><a href="post.html">投稿</a></li>
+                <li><a href="ranking.html">ランキング</a></li>
+                <li><a href="mypage.html">マイページ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="postForm">
+            <h2>新しい投稿</h2>
+            <form id="reviewForm">
+                <label for="storeName">店舗名:</label>
+                <input type="text" id="storeName" placeholder="店舗名を入力"><br><br>
+                <label for="reviewContent">レビュー:</label>
+                <textarea id="reviewContent" placeholder="レビューを入力"></textarea><br><br>
+                <button type="button" id="submitReviewButton">投稿する</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
+    </footer>
+    <script src="post.js"></script>
+</body>
+</html>

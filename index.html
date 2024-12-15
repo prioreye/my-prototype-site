@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロトタイプ - ホーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>サイトタイトル</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">ホーム</a></li>
+                <li><a href="post.html">投稿</a></li>
+                <li><a href="ranking.html">ランキング</a></li>
+                <li><a href="mypage.html">マイページ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- ランキングセクション -->
+        <section id="ranking">
+            <h2>月間ランキング</h2>
+            <div id="rankingData">
+                <p>1位: ユーザーA</p>
+                <p>2位: ユーザーB</p>
+                <p>3位: ユーザーC</p>
+            </div>
+            <button id="updateRankingButton">更新する</button>
+        </section>
+
+        <!-- 投稿フォームセクション -->
+        <section id="postForm">
+            <h2>新しい投稿</h2>
+            <form id="reviewForm">
+                <label for="storeName">店舗名:</label>
+                <input type="text" id="storeName" placeholder="店舗名を入力"><br><br>
+                <label for="reviewContent">レビュー:</label>
+                <textarea id="reviewContent" placeholder="レビューを入力"></textarea><br><br>
+                <button type="button" id="submitReviewButton">投稿する</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
