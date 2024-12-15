@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロトタイプ - ホーム</title>
+    <title>ホーム - エリア選択機能</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>ホーム</h1>
+        <h1>サイトタイトル</h1>
         <nav>
             <ul>
                 <li><a href="home.html">ホーム</a></li>
@@ -18,12 +18,26 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        <h2>ようこそ！</h2>
-        <p>ここはホームページです。</p>
+        <h2>エリアを選んで探そう！</h2>
+        <div id="area-selection">
+            <label for="area">エリアを選択：</label>
+            <select id="area" name="area">
+                <option value="">選択してください</option>
+                <option value="tokyo">東京</option>
+                <option value="osaka">大阪</option>
+                <option value="kyoto">京都</option>
+                <option value="hokkaido">北海道</option>
+                <option value="fukuoka">福岡</option>
+            </select>
+            <button id="goToArea">決定</button>
+        </div>
     </main>
+
     <footer>
         <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
     </footer>
+    <script src="home.js"></script>
 </body>
 </html>
