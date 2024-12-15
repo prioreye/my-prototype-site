@@ -52,7 +52,9 @@ footer {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#newPostsContainer, #rankingContainer {
+#newPostsContainer,
+#rankingContainer,
+#areaPostsContainer {
   display: flex;
   flex-direction: column;
   gap: 8px;
