@@ -1,22 +1,58 @@
-console.log("エリア選択機能準備完了");
+console.log("エリア選択機能とホーム画面の追加機能準備完了");
 
-document.getElementById("goToArea").addEventListener("click", function () {
-    const selectedArea = document.getElementById("area").value;
+// 仮の投稿データ
+const postData = [
+    { user: "ユーザー1", store: "店舗A", review: "素晴らしい体験でした！" },
+    { user: "ユーザー2", store: "店舗B", review: "料理がとても美味しかったです。" },
+    { user: "ユーザー3", store: "店舗C", review: "店員さんの対応が丁寧でした。" },
+    { user: "ユーザー4", store: "店舗D", review: "景色が最高でした！" },
+];
 
-    if (!selectedArea) {
-        alert("エリアを選択してください。");
-        return;
-    }
+// 仮のランキングデータ
+const rankingData = [
+    { rank: 1, user: "ユーザーA", points: 150 },
+    { rank: 2, user: "ユーザーB", points: 120 },
+    { rank: 3, user: "ユーザーC", points: 100 },
+];
 
-    // 仮の遷移先URL（今後、実際のエリアページに置き換えます）
-    const areaPages = {
-        tokyo: "tokyo.html",
-        osaka: "osaka.html",
-        kyoto: "kyoto.html",
-        hokkaido: "hokkaido.html",
-        fukuoka: "fukuoka.html"
-    };
+// 新着投稿を表示
+function displayNewPosts() {
+    const container = document.getElementById("newPostsContainer");
+    const latestPosts = postData.slice(0, 3); // 最新3件
 
-    // 選択されたエリアのページへ遷移
-    window.location.href = areaPages[selectedArea];
+    const postsHTML = latestPosts
+        .map(
+            (post) =>
+                `<div class="card">
+                    <h3>${post.store}</h3>
+                    <p>${post.review}</p>
+                    <p><strong>${post.user}</strong></p>
+                </div>`
+        )
+        .join("");
+
+    container.innerHTML = postsHTML;
+}
+
+// ランキングプレビューを表示
+function displayRankingPreview() {
+    const container = document.getElementById("rankingContainer");
+
+    const rankingsHTML = rankingData
+        .map(
+            (entry) =>
+                `<div class="card">
+                    <p>${entry.rank}位: ${entry.user}</p>
+                    <p>ポイント: ${entry.points}</p>
+                </div>`
+        )
+        .join("");
+
+    container.innerHTML = rankingsHTML;
+}
+
+// ページが読み込まれたら実行
+document.addEventListener("DOMContentLoaded", function () {
+    displayNewPosts();
+    displayRankingPreview();
 });
