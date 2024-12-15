@@ -9,7 +9,7 @@ const postData = [
 ];
 
 // 仮のランキングデータ
-const rankingData = [
+let rankingData = [
     { rank: 1, user: "ユーザーA", points: 150 },
     { rank: 2, user: "ユーザーB", points: 120 },
     { rank: 3, user: "ユーザーC", points: 100 },
@@ -51,8 +51,21 @@ function displayRankingPreview() {
     container.innerHTML = rankingsHTML;
 }
 
+// ランキングを更新
+function updateRanking() {
+    rankingData = [
+        { rank: 1, user: "新ユーザーX", points: 200 },
+        { rank: 2, user: "新ユーザーY", points: 180 },
+        { rank: 3, user: "新ユーザーZ", points: 160 },
+    ];
+    displayRankingPreview();
+}
+
 // ページが読み込まれたら実行
 document.addEventListener("DOMContentLoaded", function () {
     displayNewPosts();
     displayRankingPreview();
+
+    // ランキング更新ボタンにイベントを追加
+    document.getElementById("updateRankingButton").addEventListener("click", updateRanking);
 });
