@@ -1,5 +1,8 @@
 console.log("ホーム画面の機能準備完了");
 
+// Vercelの環境変数を直接注入（静的に埋め込む）
+const apiKey = "NEXT_PUBLIC_OPENAI_API_KEY_PLACEHOLDER"; // Vercelがビルド時に置き換えます
+
 // 翻訳APIを利用した動的翻訳
 async function translateContent(targetLanguage) {
     const elementsToTranslate = document.querySelectorAll("h1, h2, p, label, a, button");
@@ -19,14 +22,13 @@ async function translateContent(targetLanguage) {
 }
 
 async function fetchTranslation(text, targetLanguage) {
-    const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY; // 環境変数からAPIキーを取得
     const url = "https://api.openai.com/v1/chat/completions";
 
     const response = await fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
+            Authorization: `Bearer ${apiKey}`, // 環境変数を使用
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
