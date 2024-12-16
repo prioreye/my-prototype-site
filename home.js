@@ -19,9 +19,7 @@ async function translateContent(targetLanguage) {
 }
 
 async function fetchTranslation(text, targetLanguage) {
-  　const apiKey = process.env.OPENAI_API_KEY; // 環境変数からAPIキーを取得
-
-
+    const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY; // 環境変数からAPIキーを取得
     const url = "https://api.openai.com/v1/chat/completions";
 
     const response = await fetch(url, {
@@ -33,12 +31,16 @@ async function fetchTranslation(text, targetLanguage) {
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
             messages: [
-                { role: "system", content: `You are a helpful translator.` },
+                { role: "system", content: "You are a helpful translator." },
                 { role: "user", content: `Translate the following text to ${targetLanguage}: "${text}"` },
             ],
             max_tokens: 100,
         }),
     });
+
+    if (!response.ok) {
+        throw new Error(`API request failed with status: ${response.status}`);
+    }
 
     const data = await response.json();
     return data.choices[0].message.content.trim();
