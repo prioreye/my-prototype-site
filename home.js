@@ -1,4 +1,4 @@
-console.log("エリア選択機能とホーム画面の追加機能準備完了");
+console.log("ホーム画面の機能準備完了");
 
 // 仮の投稿データ
 const postData = [
@@ -14,6 +14,31 @@ let rankingData = [
     { rank: 2, user: "ユーザーB", points: 120 },
     { rank: 3, user: "ユーザーC", points: 100 },
 ];
+
+// エリアごとの遷移先ページ
+const areaPages = {
+    tokyo: "tokyo.html",
+    kyoto: "kyoto.html",
+    osaka: "osaka.html",
+    hokkaido: "hokkaido.html",
+    fukuoka: "fukuoka.html"
+};
+
+// エリア選択機能
+document.getElementById("goToArea").addEventListener("click", function () {
+    const selectedArea = document.getElementById("area").value;
+
+    if (!selectedArea) {
+        alert("エリアを選択してください。");
+        return;
+    }
+
+    if (areaPages[selectedArea]) {
+        window.location.href = areaPages[selectedArea];
+    } else {
+        alert("エリアに対応するページが存在しません。");
+    }
+});
 
 // 新着投稿を表示
 function displayNewPosts() {
