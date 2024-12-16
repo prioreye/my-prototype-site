@@ -1,7 +1,7 @@
 console.log("ホーム画面の機能準備完了");
 
 // Vercelの環境変数を直接注入（静的に埋め込む）
-const apiKey = "NEXT_PUBLIC_OPENAI_API_KEY_PLACEHOLDER"; // Vercelがビルド時に置き換えます
+const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY; // 環境変数を参照
 
 // 翻訳APIを利用した動的翻訳
 async function translateContent(targetLanguage) {
