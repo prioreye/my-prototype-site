@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム - 新着投稿とランキングプレビュー</title>
+    <title id="pageTitle">ホーム - 新着投稿とランキングプレビュー</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>サイトタイトル</h1>
+        <h1 id="pageTitle">サイトタイトル</h1>
         <nav>
             <ul>
-                <li><a href="home.html">ホーム</a></li>
-                <li><a href="post.html">投稿</a></li>
-                <li><a href="ranking.html">ランキング</a></li>
-                <li><a href="mypage.html">マイページ</a></li>
+                <li><a href="home.html" id="homeLink">ホーム</a></li>
+                <li><a href="post.html" id="postLink">投稿</a></li>
+                <li><a href="ranking.html" id="rankingLink">ランキング</a></li>
+                <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
             </ul>
         </nav>
         <select id="languageSelect">
@@ -24,9 +24,9 @@
     </header>
 
     <main>
-        <h2>エリアを選んで探そう！</h2>
+        <h2 id="areaSelectionTitle">エリアを選んで探そう！</h2>
         <div id="area-selection">
-            <label for="area">エリアを選択：</label>
+            <label for="area" id="areaLabel">エリアを選択：</label>
             <select id="area" name="area">
                 <option value="">選択してください</option>
                 <option value="tokyo">東京</option>
@@ -39,19 +39,19 @@
         </div>
 
         <section id="newPosts">
-            <h2>新着投稿</h2>
+            <h2 id="newPostsLabel">新着投稿</h2>
             <div id="newPostsContainer"></div>
         </section>
 
         <section id="rankingPreview">
-            <h2>ランキングトップ3</h2>
+            <h2 id="rankingLabel">ランキングトップ3</h2>
             <div id="rankingContainer"></div>
             <button id="updateRankingButton">ランキングを更新</button>
         </section>
     </main>
 
     <footer>
-        <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
+        <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
     </footer>
     <script src="home.js"></script>
 </body>

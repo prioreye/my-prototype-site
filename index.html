@@ -3,48 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロトタイプ - ホーム</title>
+    <title id="pageTitle">ホーム - 新着投稿とランキングプレビュー</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>サイトタイトル</h1>
+        <h1 id="pageTitle">サイトタイトル</h1>
         <nav>
             <ul>
-                <li><a href="home.html">ホーム</a></li>
-                <li><a href="post.html">投稿</a></li>
-                <li><a href="ranking.html">ランキング</a></li>
-                <li><a href="mypage.html">マイページ</a></li>
+                <li><a href="home.html" id="homeLink">ホーム</a></li>
+                <li><a href="post.html" id="postLink">投稿</a></li>
+                <li><a href="ranking.html" id="rankingLink">ランキング</a></li>
+                <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
             </ul>
         </nav>
+        <select id="languageSelect">
+            <option value="ja">日本語</option>
+            <option value="en">English</option>
+        </select>
     </header>
+
     <main>
-        <!-- ランキングセクション -->
-        <section id="ranking">
-            <h2>月間ランキング</h2>
-            <div id="rankingData">
-                <p>1位: ユーザーA</p>
-                <p>2位: ユーザーB</p>
-                <p>3位: ユーザーC</p>
+        <h2 id="areaSelectionTitle">エリアを選んで探そう！</h2>
+        <div id="area-selection">
+            <label for="area" id="areaLabel">エリアを選択：</label>
+            <select id="area" name="area">
+                <option value="">選択してください</option>
+                <option value="tokyo">東京</option>
+                <option value="osaka">大阪</option>
+                <option value="kyoto">京都</option>
+                <option value="hokkaido">北海道</option>
+                <option value="fukuoka">福岡</option>
+            </select>
+            <button id="goToArea">決定</button>
+        </div>
+
+        <section id="newPosts">
+            <h2 id="newPostsLabel">新着投稿</h2>
+            <div id="newPostsContainer">
+                <p>ユーザー1が「店舗A」をレビューしました。</p>
+                <p>ユーザー2が「店舗B」をレビューしました。</p>
+                <p>ユーザー3が「店舗C」をレビューしました。</p>
             </div>
-            <button id="updateRankingButton">更新する</button>
         </section>
 
-        <!-- 投稿フォームセクション -->
-        <section id="postForm">
-            <h2>新しい投稿</h2>
-            <form id="reviewForm">
-                <label for="storeName">店舗名:</label>
-                <input type="text" id="storeName" placeholder="店舗名を入力"><br><br>
-                <label for="reviewContent">レビュー:</label>
-                <textarea id="reviewContent" placeholder="レビューを入力"></textarea><br><br>
-                <button type="button" id="submitReviewButton">投稿する</button>
-            </form>
+        <section id="rankingPreview">
+            <h2 id="rankingLabel">ランキングトップ3</h2>
+            <div id="rankingContainer">
+                <p>1位: ユーザーA - 150ポイント</p>
+                <p>2位: ユーザーB - 120ポイント</p>
+                <p>3位: ユーザーC - 100ポイント</p>
+            </div>
         </section>
     </main>
+
     <footer>
-        <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
+        <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
     </footer>
-    <script src="script.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
