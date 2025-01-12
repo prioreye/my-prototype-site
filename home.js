@@ -1,64 +1,88 @@
-console.log("ホーム画面の機能準備完了");
-
-// 固定テキストの翻訳データ
-const staticTranslations = {
-    ja: {
-        pageTitle: "ホーム - 新着投稿とランキングプレビュー",
-        siteTitle: "サイトタイトル",
-        homeLink: "ホーム",
-        postLink: "投稿",
-        rankingLink: "ランキング",
-        mypageLink: "マイページ",
-        areaSelectionTitle: "エリアを選んで探そう！",
-        areaLabel: "エリアを選択：",
-        newPostsLabel: "新着投稿",
-        rankingLabel: "ランキングトップ3",
-        contactLink: "お問い合わせ",
-        aboutLink: "サイトについて"
-    },
-    en: {
-        pageTitle: "Home - New Posts and Ranking Preview",
-        siteTitle: "Site Title",
-        homeLink: "Home",
-        postLink: "Post",
-        rankingLink: "Ranking",
-        mypageLink: "My Page",
-        areaSelectionTitle: "Explore by Area!",
-        areaLabel: "Select an Area:",
-        newPostsLabel: "New Posts",
-        rankingLabel: "Top 3 Rankings",
-        contactLink: "Contact Us",
-        aboutLink: "About the Site"
-    }
-};
-
-// 固定テキストを翻訳する関数
-function translateStaticContent() {
-    const selectedLanguage = document.getElementById("languageSelect").value;
-
-    const translations = staticTranslations[selectedLanguage];
-
-    // 各要素のテキストを更新
-    document.getElementById("pageTitle").textContent = translations.pageTitle;
-    document.getElementById("pageTitle").setAttribute("title", translations.pageTitle);
-    document.getElementById("homeLink").textContent = translations.homeLink;
-    document.getElementById("postLink").textContent = translations.postLink;
-    document.getElementById("rankingLink").textContent = translations.rankingLink;
-    document.getElementById("mypageLink").textContent = translations.mypageLink;
-    document.getElementById("areaSelectionTitle").textContent = translations.areaSelectionTitle;
-    document.getElementById("areaLabel").textContent = translations.areaLabel;
-    document.getElementById("newPostsLabel").textContent = translations.newPostsLabel;
-    document.getElementById("rankingLabel").textContent = translations.rankingLabel;
-    document.getElementById("contactLink").textContent = translations.contactLink;
-    document.getElementById("aboutLink").textContent = translations.aboutLink;
+body {
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-// 言語選択イベントリスナー
-document.getElementById("languageSelect").addEventListener("change", function () {
-    translateStaticContent();
-});
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
 
-// ページロード時の初期化
-document.addEventListener("DOMContentLoaded", function () {
-    translateStaticContent();
-});
+.site-header, .site-footer {
+  background-color: #0078d7;
+  color: #fff;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.navigation ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+.navigation ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.language-select {
+  margin-top: 10px;
+}
+
+.site-main {
+  padding: 30px 15px;
+}
+
+.area-selection, .new-posts, .ranking-preview {
+  margin-bottom: 30px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #0078d7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn-primary:hover {
+  background-color: #005a9e;
+}
+
+.site-footer {
+  margin-top: 30px;
+  font-size: 0.9em;
+}
