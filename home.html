@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム - 新着投稿とランキングプレビュー</title>
+    <title>ホーム</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -28,29 +28,19 @@
 
     <main class="site-main">
         <section class="area-selection">
-            <h2>エリアを選んで探そう！</h2>
-            <div>
-                <label for="area">エリアを選択：</label>
-                <select id="area" name="area">
-                    <option value="">選択してください</option>
-                    <option value="tokyo">東京</option>
-                    <option value="osaka">大阪</option>
-                    <option value="kyoto">京都</option>
-                    <option value="hokkaido">北海道</option>
-                    <option value="fukuoka">福岡</option>
-                </select>
-                <button id="goToArea" class="btn-primary">決定</button>
+            <h2>エリアを選択してください</h2>
+            <div class="area-buttons">
+                <button class="btn-area" data-area="tokyo">東京</button>
+                <button class="btn-area" data-area="osaka">大阪</button>
+                <button class="btn-area" data-area="kyoto">京都</button>
+                <button class="btn-area" data-area="hokkaido">北海道</button>
+                <button class="btn-area" data-area="fukuoka">福岡</button>
             </div>
         </section>
 
-        <section class="new-posts">
-            <h2>新着投稿</h2>
-            <div id="newPostsContainer" class="card-container"></div>
-        </section>
-
-        <section class="ranking-preview">
-            <h2>ランキングトップ3</h2>
-            <div id="rankingContainer" class="card-container"></div>
+        <section class="review-link">
+            <h2>レビューを書く</h2>
+            <button id="writeReviewButton" class="btn-primary">投稿ページへ</button>
         </section>
     </main>
 

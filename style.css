@@ -50,25 +50,18 @@ body {
   padding: 30px 15px;
 }
 
-.area-selection, .new-posts, .ranking-preview {
+.area-selection, .review-link {
   margin-bottom: 30px;
+  text-align: center;
 }
 
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.area-buttons {
+  display: flex;
+  justify-content: center;
   gap: 15px;
 }
 
-.card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
+.btn-area {
   background-color: #0078d7;
   color: #fff;
   border: none;
@@ -78,8 +71,22 @@ body {
   font-size: 1em;
 }
 
-.btn-primary:hover {
+.btn-area:hover {
   background-color: #005a9e;
+}
+
+.btn-primary {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
 }
 
 .site-footer {
