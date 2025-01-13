@@ -22,7 +22,7 @@ const areaDetails = {
           "南部": ["堺", "岸和田"],
       },
   },
-  // 他のエリア（省略）
+  // 他のエリアデータを追加
 };
 
 // メインエリア選択イベント
@@ -32,7 +32,6 @@ document.getElementById("areaSelect").addEventListener("change", function () {
   const regionSelect = document.getElementById("regionSelect");
   const subRegionSelect = document.getElementById("subRegionSelect");
 
-  // HTML要素の存在確認
   if (!regionSelect || !subRegionSelect || !detailContainer) {
       console.error("必要なHTML要素が不足しています。HTMLを確認してください。");
       return;
@@ -64,10 +63,16 @@ document.getElementById("regionSelect").addEventListener("change", function () {
   const selectedRegion = this.value;
   const subRegionSelect = document.getElementById("subRegionSelect");
 
+  if (!selectedArea || !subRegionSelect) {
+      console.error("選択データが正しくありません。");
+      return;
+  }
+
   // 初期化
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
 
-  if (selectedArea && selectedRegion && areaDetails[selectedArea][selectedRegion]) {
+  // 詳細エリアを更新
+  if (selectedRegion && areaDetails[selectedArea][selectedRegion]) {
       const subRegions = areaDetails[selectedArea][selectedRegion];
       subRegions.forEach((subRegion) => {
           const option = document.createElement("option");
@@ -113,6 +118,10 @@ function applyLanguage(language) {
   };
 
   const content = translations[language];
+  if (!content) {
+      console.error(`対応していない言語: ${language}`);
+      return;
+  }
 
   // 各セレクターのプレースホルダーを更新
   const areaSelect = document.getElementById("areaSelect");

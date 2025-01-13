@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム</title>
+    <title>エリア選択</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- 言語選択ポップアップ -->
@@ -20,7 +19,7 @@
     <!-- ヘッダー -->
     <header class="site-header">
         <div class="container">
-            <h1 class="site-title">サイトタイトル</h1>
+            <h1 class="site-title">エリア選択</h1>
             <nav class="navigation">
                 <ul>
                     <li><a href="home.html" id="homeLink">ホーム</a></li>
@@ -29,7 +28,6 @@
                     <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
                 </ul>
             </nav>
-            <!-- ヘッダーの言語切り替え -->
             <select id="headerLanguageSelect">
                 <option value="ja">日本語</option>
                 <option value="en">English</option>
@@ -39,7 +37,6 @@
 
     <!-- メインコンテンツ -->
     <main class="site-main">
-        <!-- エリア選択 -->
         <section class="area-selection">
             <h2 id="areaSelectionTitle">旅行先を選ぼう！</h2>
             <div class="area-dropdown">
@@ -52,40 +49,21 @@
                     <option value="hokkaido" id="hokkaidoOption">北海道</option>
                     <option value="fukuoka" id="fukuokaOption">福岡</option>
                 </select>
-                <button id="goToArea">決定</button>
             </div>
-            <!-- 詳細エリア選択 -->
-            <div id="detailAreaContainer" class="area-dropdown" style="display: none;">
-                <label for="regionSelect">地域を選択：</label>
+            <div id="detailAreaContainer" style="display: none;">
+                <label for="regionSelect" id="regionLabel">地域を選択：</label>
                 <select id="regionSelect">
                     <option value="" disabled selected>地域を選択...</option>
                 </select>
-
-                <label for="subRegionSelect" style="display: none;">詳細エリアを選択：</label>
-                <select id="subRegionSelect" style="display: none;">
+                <label for="subRegionSelect" id="subRegionLabel">詳細エリアを選択：</label>
+                <select id="subRegionSelect">
                     <option value="" disabled selected>詳細エリアを選択...</option>
                 </select>
-
-                <button id="confirmAreaButton">決定</button>
             </div>
-        </section>
-
-        <!-- 区切り線 -->
-        <div class="section-divider"></div>
-
-        <!-- レビュー投稿ボタン -->
-        <section class="review-post">
-            <a href="review.html" class="btn-review" id="reviewPostButton">レビュー投稿ページはこちら</a>
+            <button id="confirmAreaButton">決定</button>
         </section>
     </main>
 
-    <!-- フッター -->
-    <footer class="site-footer">
-        <div class="container">
-            <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
-        </div>
-    </footer>
-
-    <script src="home.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
