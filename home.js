@@ -1,103 +1,90 @@
-// 言語選択ポップアップ制御
-document.addEventListener("DOMContentLoaded", function () {
-  const modal = document.getElementById("languageModal");
-  const headerSelect = document.getElementById("headerLanguageSelect");
+const areaDetails = {
+  tokyo: {
+      "23区内": {
+          "中央エリア": ["新宿", "渋谷", "池袋", "原宿", "銀座", "六本木"],
+          "下町エリア": ["浅草", "上野", "月島", "両国", "門前仲町"],
+          "湾岸エリア": ["お台場", "豊洲"],
+          "西エリア": ["中野", "荻窪", "高円寺", "吉祥寺"],
+      },
+      "23区外": {
+          "多摩エリア": ["立川", "八王子", "三鷹", "国分寺"],
+          "自然エリア": ["高尾山", "奥多摩"],
+      },
+  },
+  // その他エリアデータ（省略）
+};
 
-  // ローカルストレージで言語を確認
-  const savedLanguage = localStorage.getItem("selectedLanguage");
-  if (!savedLanguage) {
-      modal.style.display = "flex"; // ポップアップ表示
-  } else {
-      applyLanguage(savedLanguage);
-      headerSelect.value = savedLanguage; // ヘッダーのセレクターを更新
+// メインエリア選択イベント
+document.getElementById("areaSelect").addEventListener("change", function () {
+  const selectedArea = this.value;
+  const detailContainer = document.getElementById("detailAreaContainer");
+  const regionSelect = document.getElementById("regionSelect");
+  const subRegionSelect = document.getElementById("subRegionSelect");
+
+  if (!regionSelect || !subRegionSelect || !detailContainer) {
+      console.error("必要な要素が存在しません。HTMLを確認してください。");
+      return;
   }
 
-  // 言語ポップアップのボタンイベント
-  document.querySelectorAll(".btn-language").forEach((button) => {
-      button.addEventListener("click", function () {
-          const selectedLanguage = button.getAttribute("data-lang");
-          localStorage.setItem("selectedLanguage", selectedLanguage); // 言語を保存
-          modal.style.display = "none"; // ポップアップ非表示
-          applyLanguage(selectedLanguage);
-          headerSelect.value = selectedLanguage; // ヘッダーのセレクターを更新
-      });
-  });
+  // 初期化
+  regionSelect.innerHTML = '<option value="" disabled selected>地域を選択...</option>';
+  subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
+  subRegionSelect.style.display = "none";
 
-  // ヘッダーの言語セレクターイベント
-  headerSelect.addEventListener("change", function () {
-      const selectedLanguage = headerSelect.value;
-      localStorage.setItem("selectedLanguage", selectedLanguage); // 言語を保存
-      applyLanguage(selectedLanguage);
-  });
+  // エリアが選択された場合
+  if (selectedArea && areaDetails[selectedArea]) {
+      const regions = areaDetails[selectedArea];
+      for (const region in regions) {
+          const option = document.createElement("option");
+          option.value = region;
+          option.textContent = region;
+          regionSelect.appendChild(option);
+      }
+      detailContainer.style.display = "block";
+  } else {
+      detailContainer.style.display = "none";
+  }
 });
 
-// 言語を反映する関数
-function applyLanguage(language) {
-  const translations = {
-      ja: {
-          siteTitle: "サイトタイトル",
-          homeLink: "ホーム",
-          postLink: "投稿",
-          rankingLink: "ランキング",
-          mypageLink: "マイページ",
-          areaSelectionTitle: "旅行先を選ぼう！",
-          areaLabel: "エリアを選択：",
-          areaPlaceholder: "エリアを選択...",
-          tokyo: "東京",
-          osaka: "大阪",
-          kyoto: "京都",
-          hokkaido: "北海道",
-          fukuoka: "福岡",
-          contact: "お問い合わせ",
-          about: "サイトについて",
-          goToArea: "決定",
-          reviewPostButton: "レビュー投稿ページはこちら",
-      },
-      en: {
-          siteTitle: "Site Title",
-          homeLink: "Home",
-          postLink: "Post",
-          rankingLink: "Ranking",
-          mypageLink: "My Page",
-          areaSelectionTitle: "Choose Your Destination!",
-          areaLabel: "Select an Area:",
-          areaPlaceholder: "Select an Area...",
-          tokyo: "Tokyo",
-          osaka: "Osaka",
-          kyoto: "Kyoto",
-          hokkaido: "Hokkaido",
-          fukuoka: "Fukuoka",
-          contact: "Contact Us",
-          about: "About Us",
-          goToArea: "Submit",
-          reviewPostButton: "Go to Review Post Page",
-      },
-  };
+// 地域選択イベント
+document.getElementById("regionSelect").addEventListener("change", function () {
+  const selectedArea = document.getElementById("areaSelect").value;
+  const selectedRegion = this.value;
+  const subRegionSelect = document.getElementById("subRegionSelect");
 
-  const content = translations[language];
+  if (!selectedArea || !subRegionSelect) {
+      console.error("選択データが正しくありません。");
+      return;
+  }
 
-  // ヘッダー
-  document.querySelector(".site-title").textContent = content.siteTitle;
-  document.getElementById("homeLink").textContent = content.homeLink;
-  document.getElementById("postLink").textContent = content.postLink;
-  document.getElementById("rankingLink").textContent = content.rankingLink;
-  document.getElementById("mypageLink").textContent = content.mypageLink;
+  // 初期化
+  subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
 
-  // エリア選択
-  document.getElementById("areaSelectionTitle").textContent = content.areaSelectionTitle;
-  document.getElementById("areaLabel").textContent = content.areaLabel;
-  document.getElementById("areaPlaceholder").textContent = content.areaPlaceholder;
-  document.getElementById("tokyoOption").textContent = content.tokyo;
-  document.getElementById("osakaOption").textContent = content.osaka;
-  document.getElementById("kyotoOption").textContent = content.kyoto;
-  document.getElementById("hokkaidoOption").textContent = content.hokkaido;
-  document.getElementById("fukuokaOption").textContent = content.fukuoka;
-  document.getElementById("goToArea").textContent = content.goToArea;
+  // 詳細エリアを更新
+  if (selectedRegion && areaDetails[selectedArea][selectedRegion]) {
+      const subRegions = areaDetails[selectedArea][selectedRegion];
+      subRegions.forEach((subRegion) => {
+          const option = document.createElement("option");
+          option.value = subRegion;
+          option.textContent = subRegion;
+          subRegionSelect.appendChild(option);
+      });
+      subRegionSelect.style.display = "block";
+  } else {
+      subRegionSelect.style.display = "none";
+  }
+});
 
-  // レビュー投稿
-  document.getElementById("reviewPostButton").textContent = content.reviewPostButton;
+// 最終決定ボタンのイベント
+document.getElementById("confirmAreaButton").addEventListener("click", function () {
+  const mainArea = document.getElementById("areaSelect").value;
+  const region = document.getElementById("regionSelect").value;
+  const subRegion = document.getElementById("subRegionSelect").value;
 
-  // フッター
-  document.getElementById("contactLink").textContent = content.contact;
-  document.getElementById("aboutLink").textContent = content.about;
-}
+  if (mainArea && region && subRegion) {
+      alert(`選択されたエリア: ${mainArea} - ${region} - ${subRegion}`);
+      // ページ遷移ロジックをここに追加
+  } else {
+      alert("全てのエリアを選択してください！");
+  }
+});

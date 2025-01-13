@@ -166,6 +166,60 @@ body {
   transform: scale(0.98);
 }
 
+/* 詳細エリア選択 */
+.detail-area {
+  display: none;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.detail-area select {
+  width: 250px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  outline: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="5,7 15,7 10,12" style="fill:%23cccccc"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+}
+
+.detail-area select:hover {
+  border-color: #666;
+  background-color: #fff;
+}
+
+.detail-area select:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.detail-area button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #0078d7;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.detail-area button:hover {
+  background-color: #005a9e;
+}
+
+.detail-area button:active {
+  transform: scale(0.98);
+}
+
 /* エリア選択とレビュー遷移の区切り */
 .section-divider {
   margin: 30px auto;
