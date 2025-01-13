@@ -93,24 +93,65 @@ body {
   margin-bottom: 30px;
 }
 
-.area-buttons {
+.area-dropdown {
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.btn-area {
-  background-color: #0078d7;
+.area-dropdown label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.area-dropdown select {
+  width: 250px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="5,7 15,7 10,12" style="fill:%23cccccc"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+}
+
+.area-dropdown select:hover {
+  border-color: #666;
+  background-color: #fff;
+}
+
+.area-dropdown select:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.area-dropdown button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
   color: #fff;
+  background-color: #0078d7;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
   cursor: pointer;
-  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-area:hover {
+.area-dropdown button:hover {
   background-color: #005a9e;
+}
+
+.area-dropdown button:active {
+  transform: scale(0.98);
 }
 
 /* フッター */
