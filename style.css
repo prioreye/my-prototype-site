@@ -16,32 +16,44 @@ body {
 
 /* ヘッダー */
 .site-header {
-  background-color: #0078d7;
+  background-color: #005a9e; /* より深みのある青 */
   color: #fff;
-  padding: 15px 0;
+  padding: 20px 0;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 少し浮き上がったデザイン */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .site-title {
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.8em;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .navigation ul {
   list-style: none;
   padding: 0;
-  margin: 10px 0;
-}
-
-.navigation ul li {
-  display: inline;
-  margin-right: 15px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .navigation ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: 700;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navigation ul li a:hover {
+  background-color: #0078d7;
+  transform: scale(1.05);
 }
 
 /* モーダル */
@@ -154,33 +166,41 @@ body {
   transform: scale(0.98);
 }
 
+/* エリア選択とレビュー遷移の区切り */
+.section-divider {
+  margin: 30px auto;
+  width: 80%;
+  height: 2px;
+  background-color: #ddd;
+}
+
 /* レビュー投稿 */
 .review-post {
-  text-align: center; /* 中央配置 */
+  text-align: center;
   margin-top: 30px;
 }
 
 .review-post .btn-review {
-  display: inline-block; /* ボタンのように見えるように */
+  display: inline-block;
   padding: 12px 24px;
   font-size: 1rem;
   font-weight: bold;
   color: #fff;
-  background-color: #0078d7; /* 統一されたテーマカラー */
+  background-color: #0078d7;
   border: none;
   border-radius: 5px;
-  text-decoration: none; /* リンクの下線を削除 */
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 影を追加して浮き上がった見た目に */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .review-post .btn-review:hover {
-  background-color: #005a9e; /* ホバーカラー */
+  background-color: #005a9e;
 }
 
 .review-post .btn-review:active {
-  transform: scale(0.98); /* 押したときに少し小さくなる */
+  transform: scale(0.98);
 }
 
 /* フッター */

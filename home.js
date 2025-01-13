@@ -50,10 +50,8 @@ function applyLanguage(language) {
           postLink: "投稿",
           rankingLink: "ランキング",
           mypageLink: "マイページ",
-          areaSelectionTitle: "エリアを選択してください",
+          areaSelectionTitle: "旅行先を選ぼう！",
           areaLabel: "エリアを選択：",
-          reviewPostTitle: "レビューを投稿しよう！",
-          reviewPostButton: "レビュー投稿ページへ",
           tokyo: "東京",
           osaka: "大阪",
           kyoto: "京都",
@@ -69,10 +67,8 @@ function applyLanguage(language) {
           postLink: "Post",
           rankingLink: "Ranking",
           mypageLink: "My Page",
-          areaSelectionTitle: "Select an Area",
+          areaSelectionTitle: "Choose Your Destination!",
           areaLabel: "Select an Area:",
-          reviewPostTitle: "Write a Review!",
-          reviewPostButton: "Go to Review Page",
           tokyo: "Tokyo",
           osaka: "Osaka",
           kyoto: "Kyoto",
@@ -84,17 +80,13 @@ function applyLanguage(language) {
       },
   };
 
-  // 翻訳データを取得
   const content = translations[language];
 
-  // ヘッダー
   document.querySelector(".site-title").textContent = content.siteTitle;
   document.getElementById("homeLink").textContent = content.homeLink;
   document.getElementById("postLink").textContent = content.postLink;
   document.getElementById("rankingLink").textContent = content.rankingLink;
   document.getElementById("mypageLink").textContent = content.mypageLink;
-
-  // メイン
   document.getElementById("areaSelectionTitle").textContent = content.areaSelectionTitle;
   document.getElementById("areaLabel").textContent = content.areaLabel;
   document.getElementById("tokyoOption").textContent = content.tokyo;
@@ -103,12 +95,6 @@ function applyLanguage(language) {
   document.getElementById("hokkaidoOption").textContent = content.hokkaido;
   document.getElementById("fukuokaOption").textContent = content.fukuoka;
   document.getElementById("goToArea").textContent = content.goToArea;
-
-  // レビュー投稿
-  document.getElementById("reviewPostTitle").textContent = content.reviewPostTitle;
-  document.getElementById("reviewPostButton").textContent = content.reviewPostButton;
-
-  // フッター
   document.getElementById("contactLink").textContent = content.contact;
   document.getElementById("aboutLink").textContent = content.about;
 }
