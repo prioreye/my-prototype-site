@@ -11,7 +11,18 @@ const areaDetails = {
           "自然エリア": ["高尾山", "奥多摩"],
       },
   },
-  // その他エリアデータ（省略）
+  osaka: {
+      "市内エリア": {
+          "中央エリア": ["梅田", "難波", "心斎橋", "道頓堀"],
+          "西エリア": ["天王寺", "新世界", "西成"],
+          "ベイエリア": ["大阪港", "ユニバーサルシティ"],
+      },
+      "市外エリア": {
+          "北部": ["豊中", "箕面", "茨木"],
+          "南部": ["堺", "岸和田"],
+      },
+  },
+  // 他のエリア（省略）
 };
 
 // メインエリア選択イベント
@@ -21,17 +32,18 @@ document.getElementById("areaSelect").addEventListener("change", function () {
   const regionSelect = document.getElementById("regionSelect");
   const subRegionSelect = document.getElementById("subRegionSelect");
 
+  // HTML要素の存在確認
   if (!regionSelect || !subRegionSelect || !detailContainer) {
-      console.error("必要な要素が存在しません。HTMLを確認してください。");
+      console.error("必要なHTML要素が不足しています。HTMLを確認してください。");
       return;
   }
 
-  // 初期化
+  // 各セレクターを初期化
   regionSelect.innerHTML = '<option value="" disabled selected>地域を選択...</option>';
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
   subRegionSelect.style.display = "none";
 
-  // エリアが選択された場合
+  // エリア選択時に詳細エリアを更新
   if (selectedArea && areaDetails[selectedArea]) {
       const regions = areaDetails[selectedArea];
       for (const region in regions) {
@@ -52,16 +64,10 @@ document.getElementById("regionSelect").addEventListener("change", function () {
   const selectedRegion = this.value;
   const subRegionSelect = document.getElementById("subRegionSelect");
 
-  if (!selectedArea || !subRegionSelect) {
-      console.error("選択データが正しくありません。");
-      return;
-  }
-
   // 初期化
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
 
-  // 詳細エリアを更新
-  if (selectedRegion && areaDetails[selectedArea][selectedRegion]) {
+  if (selectedArea && selectedRegion && areaDetails[selectedArea][selectedRegion]) {
       const subRegions = areaDetails[selectedArea][selectedRegion];
       subRegions.forEach((subRegion) => {
           const option = document.createElement("option");
@@ -83,8 +89,40 @@ document.getElementById("confirmAreaButton").addEventListener("click", function 
 
   if (mainArea && region && subRegion) {
       alert(`選択されたエリア: ${mainArea} - ${region} - ${subRegion}`);
-      // ページ遷移ロジックをここに追加
+      // ページ遷移のロジックをここに追加
   } else {
       alert("全てのエリアを選択してください！");
   }
+});
+
+// 言語切り替え対応
+function applyLanguage(language) {
+  const translations = {
+      ja: {
+          areaPlaceholder: "エリアを選択...",
+          regionPlaceholder: "地域を選択...",
+          subRegionPlaceholder: "詳細エリアを選択...",
+          confirmButton: "決定"
+      },
+      en: {
+          areaPlaceholder: "Select an Area...",
+          regionPlaceholder: "Select a Region...",
+          subRegionPlaceholder: "Select a Sub-Region...",
+          confirmButton: "Submit"
+      }
+  };
+
+  const content = translations[language];
+
+  // 各セレクターのプレースホルダーを更新
+  document.getElementById("areaSelect").options[0].text = content.areaPlaceholder;
+  document.getElementById("regionSelect").options[0].text = content.regionPlaceholder;
+  document.getElementById("subRegionSelect").options[0].text = content.subRegionPlaceholder;
+  document.getElementById("confirmAreaButton").textContent = content.confirmButton;
+}
+
+// ページロード時に言語を適用
+document.addEventListener("DOMContentLoaded", function () {
+  const savedLanguage = localStorage.getItem("selectedLanguage") || "ja";
+  applyLanguage(savedLanguage);
 });
