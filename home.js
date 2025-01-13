@@ -89,7 +89,7 @@ document.getElementById("confirmAreaButton").addEventListener("click", function 
 
   if (mainArea && region && subRegion) {
       alert(`選択されたエリア: ${mainArea} - ${region} - ${subRegion}`);
-      // ページ遷移のロジックをここに追加
+      // ページ遷移ロジックをここに追加
   } else {
       alert("全てのエリアを選択してください！");
   }
@@ -115,14 +115,29 @@ function applyLanguage(language) {
   const content = translations[language];
 
   // 各セレクターのプレースホルダーを更新
-  document.getElementById("areaSelect").options[0].text = content.areaPlaceholder;
-  document.getElementById("regionSelect").options[0].text = content.regionPlaceholder;
-  document.getElementById("subRegionSelect").options[0].text = content.subRegionPlaceholder;
-  document.getElementById("confirmAreaButton").textContent = content.confirmButton;
+  const areaSelect = document.getElementById("areaSelect");
+  const regionSelect = document.getElementById("regionSelect");
+  const subRegionSelect = document.getElementById("subRegionSelect");
+  const confirmButton = document.getElementById("confirmAreaButton");
+
+  if (areaSelect && regionSelect && subRegionSelect && confirmButton) {
+      areaSelect.options[0].text = content.areaPlaceholder;
+      regionSelect.options[0].text = content.regionPlaceholder;
+      subRegionSelect.options[0].text = content.subRegionPlaceholder;
+      confirmButton.textContent = content.confirmButton;
+  } else {
+      console.error("言語切り替えに必要な要素が不足しています。");
+  }
 }
 
 // ページロード時に言語を適用
 document.addEventListener("DOMContentLoaded", function () {
   const savedLanguage = localStorage.getItem("selectedLanguage") || "ja";
   applyLanguage(savedLanguage);
+
+  // 言語切り替えポップアップの表示
+  const modal = document.getElementById("languageModal");
+  if (!savedLanguage && modal) {
+      modal.style.display = "flex";
+  }
 });
