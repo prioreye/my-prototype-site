@@ -50,6 +50,7 @@ function applyLanguage(language) {
           postLink: "投稿",
           rankingLink: "ランキング",
           mypageLink: "マイページ",
+          reviewLink: "レビュー記入",
           areaSelectionTitle: "エリアを選択してください",
           areaLabel: "エリアを選択：",
           tokyo: "東京",
@@ -67,6 +68,7 @@ function applyLanguage(language) {
           postLink: "Post",
           rankingLink: "Ranking",
           mypageLink: "My Page",
+          reviewLink: "Write Review",
           areaSelectionTitle: "Select an Area",
           areaLabel: "Select an Area:",
           tokyo: "Tokyo",
@@ -89,6 +91,7 @@ function applyLanguage(language) {
   document.getElementById("postLink").textContent = content.postLink;
   document.getElementById("rankingLink").textContent = content.rankingLink;
   document.getElementById("mypageLink").textContent = content.mypageLink;
+  document.getElementById("reviewLink").textContent = content.reviewLink;
 
   // メイン
   document.getElementById("areaSelectionTitle").textContent = content.areaSelectionTitle;
