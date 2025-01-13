@@ -29,16 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("selectedLanguage", selectedLanguage); // 言語を保存
       applyLanguage(selectedLanguage);
   });
-
-  // エリア選択ボタンのイベント
-  document.getElementById("goToArea").addEventListener("click", function () {
-      const selectedArea = document.getElementById("areaSelect").value;
-      if (selectedArea) {
-          alert(`Selected Area: ${selectedArea}`); // デバッグ用アラート（実際にはページ遷移処理を記述）
-      } else {
-          alert("エリアを選択してください！");
-      }
-  });
 });
 
 // 言語を反映する関数
@@ -52,6 +42,7 @@ function applyLanguage(language) {
           mypageLink: "マイページ",
           areaSelectionTitle: "旅行先を選ぼう！",
           areaLabel: "エリアを選択：",
+          areaPlaceholder: "エリアを選択...",
           tokyo: "東京",
           osaka: "大阪",
           kyoto: "京都",
@@ -60,6 +51,7 @@ function applyLanguage(language) {
           contact: "お問い合わせ",
           about: "サイトについて",
           goToArea: "決定",
+          reviewPostButton: "レビュー投稿ページはこちら",
       },
       en: {
           siteTitle: "Site Title",
@@ -69,6 +61,7 @@ function applyLanguage(language) {
           mypageLink: "My Page",
           areaSelectionTitle: "Choose Your Destination!",
           areaLabel: "Select an Area:",
+          areaPlaceholder: "Select an Area...",
           tokyo: "Tokyo",
           osaka: "Osaka",
           kyoto: "Kyoto",
@@ -77,24 +70,34 @@ function applyLanguage(language) {
           contact: "Contact Us",
           about: "About Us",
           goToArea: "Submit",
+          reviewPostButton: "Go to Review Post Page",
       },
   };
 
   const content = translations[language];
 
+  // ヘッダー
   document.querySelector(".site-title").textContent = content.siteTitle;
   document.getElementById("homeLink").textContent = content.homeLink;
   document.getElementById("postLink").textContent = content.postLink;
   document.getElementById("rankingLink").textContent = content.rankingLink;
   document.getElementById("mypageLink").textContent = content.mypageLink;
+
+  // エリア選択
   document.getElementById("areaSelectionTitle").textContent = content.areaSelectionTitle;
   document.getElementById("areaLabel").textContent = content.areaLabel;
+  document.getElementById("areaPlaceholder").textContent = content.areaPlaceholder;
   document.getElementById("tokyoOption").textContent = content.tokyo;
   document.getElementById("osakaOption").textContent = content.osaka;
   document.getElementById("kyotoOption").textContent = content.kyoto;
   document.getElementById("hokkaidoOption").textContent = content.hokkaido;
   document.getElementById("fukuokaOption").textContent = content.fukuoka;
   document.getElementById("goToArea").textContent = content.goToArea;
+
+  // レビュー投稿
+  document.getElementById("reviewPostButton").textContent = content.reviewPostButton;
+
+  // フッター
   document.getElementById("contactLink").textContent = content.contact;
   document.getElementById("aboutLink").textContent = content.about;
 }
