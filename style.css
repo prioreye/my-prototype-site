@@ -1,3 +1,159 @@
+/* 全体設定 */
+body {
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* ヘッダー */
+.site-header {
+  background-color: #0078d7;
+  color: #fff;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.navigation ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+.navigation ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* モーダル */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.btn-language {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0078d7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn-language:hover {
+  background-color: #005a9e;
+}
+
+/* メインセクション */
+.site-main {
+  padding: 30px 15px;
+}
+
+.area-selection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.area-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.area-dropdown label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.area-dropdown select {
+  width: 250px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="5,7 15,7 10,12" style="fill:%23cccccc"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+}
+
+.area-dropdown select:hover {
+  border-color: #666;
+  background-color: #fff;
+}
+
+.area-dropdown select:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.area-dropdown button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #0078d7;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.area-dropdown button:hover {
+  background-color: #005a9e;
+}
+
+.area-dropdown button:active {
+  transform: scale(0.98);
+}
+
 /* レビュー投稿 */
 .review-post {
   text-align: center; /* 中央配置 */
@@ -25,4 +181,13 @@
 
 .review-post .btn-review:active {
   transform: scale(0.98); /* 押したときに少し小さくなる */
+}
+
+/* フッター */
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9em;
 }
