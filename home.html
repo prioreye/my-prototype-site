@@ -29,7 +29,7 @@
                     <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
                 </ul>
             </nav>
-            <!-- ヘッダーの言語切り替えセレクター -->
+            <!-- ヘッダーの言語切り替え -->
             <select id="headerLanguageSelect">
                 <option value="ja">日本語</option>
                 <option value="en">English</option>
@@ -41,12 +41,16 @@
     <main class="site-main">
         <section class="area-selection">
             <h2 id="areaSelectionTitle">エリアを選択してください</h2>
-            <div class="area-buttons">
-                <button class="btn-area" id="tokyoButton">東京</button>
-                <button class="btn-area" id="osakaButton">大阪</button>
-                <button class="btn-area" id="kyotoButton">京都</button>
-                <button class="btn-area" id="hokkaidoButton">北海道</button>
-                <button class="btn-area" id="fukuokaButton">福岡</button>
+            <div class="area-dropdown">
+                <label for="areaSelect" id="areaLabel">エリアを選択：</label>
+                <select id="areaSelect">
+                    <option value="tokyo" id="tokyoOption">東京</option>
+                    <option value="osaka" id="osakaOption">大阪</option>
+                    <option value="kyoto" id="kyotoOption">京都</option>
+                    <option value="hokkaido" id="hokkaidoOption">北海道</option>
+                    <option value="fukuoka" id="fukuokaOption">福岡</option>
+                </select>
+                <button id="goToArea">決定</button>
             </div>
         </section>
     </main>

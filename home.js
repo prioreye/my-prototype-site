@@ -29,6 +29,16 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("selectedLanguage", selectedLanguage); // 言語を保存
       applyLanguage(selectedLanguage);
   });
+
+  // エリア選択ボタンのイベント
+  document.getElementById("goToArea").addEventListener("click", function () {
+      const selectedArea = document.getElementById("areaSelect").value;
+      if (selectedArea) {
+          alert(`Selected Area: ${selectedArea}`); // デバッグ用アラート（実際にはページ遷移処理を記述）
+      } else {
+          alert("エリアを選択してください！");
+      }
+  });
 });
 
 // 言語を反映する関数
@@ -41,6 +51,7 @@ function applyLanguage(language) {
           rankingLink: "ランキング",
           mypageLink: "マイページ",
           areaSelectionTitle: "エリアを選択してください",
+          areaLabel: "エリアを選択：",
           tokyo: "東京",
           osaka: "大阪",
           kyoto: "京都",
@@ -48,6 +59,7 @@ function applyLanguage(language) {
           fukuoka: "福岡",
           contact: "お問い合わせ",
           about: "サイトについて",
+          goToArea: "決定",
       },
       en: {
           siteTitle: "Site Title",
@@ -56,6 +68,7 @@ function applyLanguage(language) {
           rankingLink: "Ranking",
           mypageLink: "My Page",
           areaSelectionTitle: "Select an Area",
+          areaLabel: "Select an Area:",
           tokyo: "Tokyo",
           osaka: "Osaka",
           kyoto: "Kyoto",
@@ -63,6 +76,7 @@ function applyLanguage(language) {
           fukuoka: "Fukuoka",
           contact: "Contact Us",
           about: "About Us",
+          goToArea: "Submit",
       },
   };
 
@@ -78,11 +92,13 @@ function applyLanguage(language) {
 
   // メイン
   document.getElementById("areaSelectionTitle").textContent = content.areaSelectionTitle;
-  document.getElementById("tokyoButton").textContent = content.tokyo;
-  document.getElementById("osakaButton").textContent = content.osaka;
-  document.getElementById("kyotoButton").textContent = content.kyoto;
-  document.getElementById("hokkaidoButton").textContent = content.hokkaido;
-  document.getElementById("fukuokaButton").textContent = content.fukuoka;
+  document.getElementById("areaLabel").textContent = content.areaLabel;
+  document.getElementById("tokyoOption").textContent = content.tokyo;
+  document.getElementById("osakaOption").textContent = content.osaka;
+  document.getElementById("kyotoOption").textContent = content.kyoto;
+  document.getElementById("hokkaidoOption").textContent = content.hokkaido;
+  document.getElementById("fukuokaOption").textContent = content.fukuoka;
+  document.getElementById("goToArea").textContent = content.goToArea;
 
   // フッター
   document.getElementById("contactLink").textContent = content.contact;
