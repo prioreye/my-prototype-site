@@ -27,7 +27,6 @@
                     <li><a href="post.html" id="postLink">投稿</a></li>
                     <li><a href="ranking.html" id="rankingLink">ランキング</a></li>
                     <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
-                    <li><a href="review.html" id="reviewLink">レビュー記入</a></li>
                 </ul>
             </nav>
             <!-- ヘッダーの言語切り替え -->
@@ -43,6 +42,7 @@
 
     <!-- メインコンテンツ -->
     <main class="site-main">
+        <!-- エリア選択 -->
         <section class="area-selection">
             <h2 id="areaSelectionTitle">エリアを選択してください</h2>
             <div class="area-dropdown">
@@ -57,7 +57,15 @@
                 </select>
                 <button id="goToArea">決定</button>
             </div>
-        </section>        
+        </section>  
+
+        <!-- レビュー投稿 -->
+        <section class="review-post">
+            <h2 id="reviewPostTitle">レビューを投稿しよう！</h2>
+            <div class="review-button">
+                <a href="review.html" id="reviewPostButton" class="btn-review">レビュー投稿ページへ</a>
+            </div>
+        </section>
     </main>
 
     <!-- フッター -->

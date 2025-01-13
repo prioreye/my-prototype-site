@@ -50,9 +50,10 @@ function applyLanguage(language) {
           postLink: "投稿",
           rankingLink: "ランキング",
           mypageLink: "マイページ",
-          reviewLink: "レビュー記入",
           areaSelectionTitle: "エリアを選択してください",
           areaLabel: "エリアを選択：",
+          reviewPostTitle: "レビューを投稿しよう！",
+          reviewPostButton: "レビュー投稿ページへ",
           tokyo: "東京",
           osaka: "大阪",
           kyoto: "京都",
@@ -68,9 +69,10 @@ function applyLanguage(language) {
           postLink: "Post",
           rankingLink: "Ranking",
           mypageLink: "My Page",
-          reviewLink: "Write Review",
           areaSelectionTitle: "Select an Area",
           areaLabel: "Select an Area:",
+          reviewPostTitle: "Write a Review!",
+          reviewPostButton: "Go to Review Page",
           tokyo: "Tokyo",
           osaka: "Osaka",
           kyoto: "Kyoto",
@@ -91,7 +93,6 @@ function applyLanguage(language) {
   document.getElementById("postLink").textContent = content.postLink;
   document.getElementById("rankingLink").textContent = content.rankingLink;
   document.getElementById("mypageLink").textContent = content.mypageLink;
-  document.getElementById("reviewLink").textContent = content.reviewLink;
 
   // メイン
   document.getElementById("areaSelectionTitle").textContent = content.areaSelectionTitle;
@@ -102,6 +103,10 @@ function applyLanguage(language) {
   document.getElementById("hokkaidoOption").textContent = content.hokkaido;
   document.getElementById("fukuokaOption").textContent = content.fukuoka;
   document.getElementById("goToArea").textContent = content.goToArea;
+
+  // レビュー投稿
+  document.getElementById("reviewPostTitle").textContent = content.reviewPostTitle;
+  document.getElementById("reviewPostButton").textContent = content.reviewPostButton;
 
   // フッター
   document.getElementById("contactLink").textContent = content.contact;
