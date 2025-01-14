@@ -1,3 +1,4 @@
+// エリアデータ
 const areaDetails = {
   tokyo: {
       "23区内": {
@@ -22,7 +23,6 @@ const areaDetails = {
           "南部": ["堺", "岸和田"],
       },
   },
-  // 他エリアも追加可能
 };
 
 // メインエリア選択イベント
@@ -37,7 +37,6 @@ document.getElementById("areaSelect").addEventListener("change", function () {
       return;
   }
 
-  // 初期化
   regionSelect.innerHTML = '<option value="" disabled selected>地域を選択...</option>';
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
   subRegionSelect.style.display = "none";
@@ -86,7 +85,6 @@ document.getElementById("confirmAreaButton").addEventListener("click", function 
 
   if (mainArea && region && subRegion) {
       alert(`選択されたエリア: ${mainArea} - ${region} - ${subRegion}`);
-      // ページ遷移ロジックをここに追加
   } else {
       alert("全てのエリアを選択してください！");
   }
@@ -96,52 +94,97 @@ document.getElementById("confirmAreaButton").addEventListener("click", function 
 function applyLanguage(language) {
   const translations = {
       ja: {
+          siteTitle: "サイトタイトル",
+          homeLink: "ホーム",
+          postLink: "投稿",
+          rankingLink: "ランキング",
+          mypageLink: "マイページ",
+          areaSelectionTitle: "旅行先を選ぼう！",
+          areaLabel: "エリアを選択：",
           areaPlaceholder: "エリアを選択...",
           regionPlaceholder: "地域を選択...",
           subRegionPlaceholder: "詳細エリアを選択...",
           confirmButton: "決定",
           reviewButton: "レビュー投稿ページはこちら",
+          contactLink: "お問い合わせ",
+          aboutLink: "サイトについて",
+          tokyo: "東京",
+          osaka: "大阪",
+          kyoto: "京都",
+          hokkaido: "北海道",
+          fukuoka: "福岡",
       },
       en: {
+          siteTitle: "Site Title",
+          homeLink: "Home",
+          postLink: "Post",
+          rankingLink: "Ranking",
+          mypageLink: "My Page",
+          areaSelectionTitle: "Choose Your Destination!",
+          areaLabel: "Select an Area:",
           areaPlaceholder: "Select an Area...",
           regionPlaceholder: "Select a Region...",
           subRegionPlaceholder: "Select a Sub-Region...",
           confirmButton: "Submit",
           reviewButton: "Go to Review Post Page",
+          contactLink: "Contact Us",
+          aboutLink: "About Us",
+          tokyo: "Tokyo",
+          osaka: "Osaka",
+          kyoto: "Kyoto",
+          hokkaido: "Hokkaido",
+          fukuoka: "Fukuoka",
       },
   };
 
   const content = translations[language];
   if (!content) {
-      console.error(`対応していない言語: ${language}`);
+      console.error(`Unsupported language: ${language}`);
       return;
   }
 
-  // 各セレクターのプレースホルダーを更新
-  const areaSelect = document.getElementById("areaSelect");
-  const regionSelect = document.getElementById("regionSelect");
-  const subRegionSelect = document.getElementById("subRegionSelect");
-  const confirmButton = document.getElementById("confirmAreaButton");
-  const reviewButton = document.getElementById("reviewPostButton");
+  // 翻訳対象要素
+  const elements = {
+      siteTitle: document.querySelector(".site-title"),
+      homeLink: document.getElementById("homeLink"),
+      postLink: document.getElementById("postLink"),
+      rankingLink: document.getElementById("rankingLink"),
+      mypageLink: document.getElementById("mypageLink"),
+      areaSelectionTitle: document.getElementById("areaSelectionTitle"),
+      areaLabel: document.getElementById("areaLabel"),
+      areaSelect: document.getElementById("areaSelect"),
+      regionSelect: document.getElementById("regionSelect"),
+      subRegionSelect: document.getElementById("subRegionSelect"),
+      confirmButton: document.getElementById("confirmAreaButton"),
+      reviewButton: document.getElementById("reviewPostButton"),
+      contactLink: document.getElementById("contactLink"),
+      aboutLink: document.getElementById("aboutLink"),
+  };
 
-  if (areaSelect && areaSelect.options.length > 0) {
-      areaSelect.options[0].text = content.areaPlaceholder;
-  }
+  // 各要素に翻訳を適用
+  if (elements.siteTitle) elements.siteTitle.textContent = content.siteTitle;
+  if (elements.homeLink) elements.homeLink.textContent = content.homeLink;
+  if (elements.postLink) elements.postLink.textContent = content.postLink;
+  if (elements.rankingLink) elements.rankingLink.textContent = content.rankingLink;
+  if (elements.mypageLink) elements.mypageLink.textContent = content.mypageLink;
+  if (elements.areaSelectionTitle) elements.areaSelectionTitle.textContent = content.areaSelectionTitle;
+  if (elements.areaLabel) elements.areaLabel.textContent = content.areaLabel;
+  if (elements.areaSelect) elements.areaSelect.options[0].text = content.areaPlaceholder;
+  if (elements.regionSelect) elements.regionSelect.options[0].text = content.regionPlaceholder;
+  if (elements.subRegionSelect) elements.subRegionSelect.options[0].text = content.subRegionPlaceholder;
+  if (elements.confirmButton) elements.confirmButton.textContent = content.confirmButton;
+  if (elements.reviewButton) elements.reviewButton.textContent = content.reviewButton;
+  if (elements.contactLink) elements.contactLink.textContent = content.contactLink;
+  if (elements.aboutLink) elements.aboutLink.textContent = content.aboutLink;
 
-  if (regionSelect && regionSelect.options.length > 0) {
-      regionSelect.options[0].text = content.regionPlaceholder;
-  }
-
-  if (subRegionSelect && subRegionSelect.options.length > 0) {
-      subRegionSelect.options[0].text = content.subRegionPlaceholder;
-  }
-
-  if (confirmButton) {
-      confirmButton.textContent = content.confirmButton;
-  }
-
-  if (reviewButton) {
-      reviewButton.textContent = content.reviewButton;
+  // 都市名の翻訳
+  const areaOptions = elements.areaSelect?.options;
+  if (areaOptions) {
+      const areaKeys = ["tokyo", "osaka", "kyoto", "hokkaido", "fukuoka"];
+      for (let i = 1; i < areaOptions.length; i++) {
+          const areaKey = areaKeys[i - 1];
+          areaOptions[i].text = content[areaKey];
+      }
   }
 }
 
