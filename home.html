@@ -46,11 +46,17 @@
             </div>
 
             <div id="detailAreaContainer" class="area-dropdown" style="display: none;">
+                <!-- 第2階層: 地域選択 -->
                 <label for="regionSelect" id="regionLabel">地域を選択：</label>
                 <select id="regionSelect"></select>
 
-                <label for="subRegionSelect" id="subRegionLabel">詳細エリアを選択：</label>
+                <!-- 第3階層: 詳細エリア選択 -->
+                <label for="subRegionSelect" id="subRegionLabel" style="display: none;">詳細エリアを選択：</label>
                 <select id="subRegionSelect" style="display: none;"></select>
+
+                <!-- 第4階層: 最終エリア選択 -->
+                <label for="finalAreaSelect" id="finalAreaLabel" style="display: none;">最終エリアを選択：</label>
+                <select id="finalAreaSelect" style="display: none;"></select>
 
                 <button id="confirmAreaButton">決定</button>
             </div>
@@ -61,7 +67,6 @@
 
         <!-- 投稿者向け部分 -->
         <section class="review-post">
-            <!-- ここを review.html から post.html に修正 -->
             <a href="post.html" class="btn-review" id="reviewPostButton">レビュー投稿ページはこちら</a>
         </section>
     </main>
@@ -69,10 +74,14 @@
     <!-- フッター -->
     <footer class="site-footer">
         <div class="container">
-            <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
+            <p>
+                <a href="#" id="contactLink">お問い合わせ</a> | 
+                <a href="#" id="aboutLink">サイトについて</a>
+            </p>
         </div>
     </footer>
 
+    <!-- JSファイル -->
     <script src="home.js"></script>
 </body>
 </html>

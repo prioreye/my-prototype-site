@@ -1,4 +1,4 @@
-// エリアデータ
+// エリアデータ（5都市分）
 const areaDetails = {
   tokyo: {
       "23区内": {
@@ -23,7 +23,6 @@ const areaDetails = {
           "南部": ["堺", "岸和田"],
       },
   },
-  // --- ここから追記 ---
   kyoto: {
       "市内エリア": {
           "観光中心エリア": ["東山（清水寺・祇園）", "嵐山", "金閣寺エリア"],
@@ -58,75 +57,133 @@ const areaDetails = {
           "南部": ["太宰府", "久留米"],
       },
   },
-  // --- 追記ここまで ---
 };
 
-// メインエリア選択イベント
+// ▼ 第1階層: 都市選択 (areaSelect)
 document.getElementById("areaSelect").addEventListener("change", function () {
-  const selectedArea = this.value;
+  const selectedCity = this.value;
   const detailContainer = document.getElementById("detailAreaContainer");
+
   const regionSelect = document.getElementById("regionSelect");
   const subRegionSelect = document.getElementById("subRegionSelect");
+  const finalAreaSelect = document.getElementById("finalAreaSelect");
 
-  if (!regionSelect || !subRegionSelect || !detailContainer) {
-      console.error("必要なHTML要素が不足しています。HTMLを確認してください。");
-      return;
-  }
+  const subRegionLabel = document.getElementById("subRegionLabel");
+  const finalAreaLabel = document.getElementById("finalAreaLabel");
 
+  // 初期化 (各セレクトを空＆最初のoptionをセット)
   regionSelect.innerHTML = '<option value="" disabled selected>地域を選択...</option>';
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
+  finalAreaSelect.innerHTML = '<option value="" disabled selected>最終エリアを選択...</option>';
+
+  // 初期状態では表示オフ
   subRegionSelect.style.display = "none";
+  subRegionLabel.style.display = "none";
+  finalAreaSelect.style.display = "none";
+  finalAreaLabel.style.display = "none";
 
-  if (selectedArea && areaDetails[selectedArea]) {
-      const regions = areaDetails[selectedArea];
-      for (const region in regions) {
-          const option = document.createElement("option");
-          option.value = region;
-          option.textContent = region;
-          regionSelect.appendChild(option);
-      }
-      detailContainer.style.display = "block";
+  // 都市が有効に選択されていれば regionSelect にオプション追加
+  if (selectedCity && areaDetails[selectedCity]) {
+    const cityData = areaDetails[selectedCity];
+    for (const region in cityData) {
+      const option = document.createElement("option");
+      option.value = region;
+      option.textContent = region;
+      regionSelect.appendChild(option);
+    }
+    detailContainer.style.display = "block";
   } else {
-      detailContainer.style.display = "none";
+    detailContainer.style.display = "none";
   }
 });
 
-// 地域選択イベント
+// ▼ 第2階層: 地域選択 (regionSelect)
 document.getElementById("regionSelect").addEventListener("change", function () {
-  const selectedArea = document.getElementById("areaSelect").value;
+  const selectedCity = document.getElementById("areaSelect").value;
   const selectedRegion = this.value;
+
   const subRegionSelect = document.getElementById("subRegionSelect");
+  const finalAreaSelect = document.getElementById("finalAreaSelect");
+  const subRegionLabel = document.getElementById("subRegionLabel");
+  const finalAreaLabel = document.getElementById("finalAreaLabel");
 
+  // 初期化
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
+  finalAreaSelect.innerHTML = '<option value="" disabled selected>最終エリアを選択...</option>';
+  subRegionSelect.style.display = "none";
+  subRegionLabel.style.display = "none";
+  finalAreaSelect.style.display = "none";
+  finalAreaLabel.style.display = "none";
 
-  if (selectedRegion && areaDetails[selectedArea][selectedRegion]) {
-      const subRegions = areaDetails[selectedArea][selectedRegion];
-      subRegions.forEach((subRegion) => {
-          const option = document.createElement("option");
-          option.value = subRegion;
-          option.textContent = subRegion;
-          subRegionSelect.appendChild(option);
-      });
-      subRegionSelect.style.display = "block";
-  } else {
-      subRegionSelect.style.display = "none";
+  if (selectedCity && selectedRegion && areaDetails[selectedCity][selectedRegion]) {
+    const regionData = areaDetails[selectedCity][selectedRegion];
+    // regionDataは { "観光中心エリア": [...], "中心地": [...] } など
+
+    // subRegionSelectにキー(= "観光中心エリア", "中心地"...)を追加
+    for (const subKey in regionData) {
+      const option = document.createElement("option");
+      option.value = subKey;
+      option.textContent = subKey;
+      subRegionSelect.appendChild(option);
+    }
+    subRegionSelect.style.display = "block";
+    subRegionLabel.style.display = "inline-block";
   }
 });
 
-// 最終決定ボタンのイベント
+// ▼ 第3階層: 詳細エリア選択 (subRegionSelect)
+document.getElementById("subRegionSelect").addEventListener("change", function () {
+  const selectedCity = document.getElementById("areaSelect").value;
+  const selectedRegion = document.getElementById("regionSelect").value;
+  const selectedSubRegion = this.value;
+
+  const finalAreaSelect = document.getElementById("finalAreaSelect");
+  const finalAreaLabel = document.getElementById("finalAreaLabel");
+
+  // 初期化
+  finalAreaSelect.innerHTML = '<option value="" disabled selected>最終エリアを選択...</option>';
+  finalAreaSelect.style.display = "none";
+  finalAreaLabel.style.display = "none";
+
+  // 該当の最終エリア配列を取得
+  if (
+    selectedCity &&
+    selectedRegion &&
+    selectedSubRegion &&
+    areaDetails[selectedCity][selectedRegion][selectedSubRegion]
+  ) {
+    const finalAreas = areaDetails[selectedCity][selectedRegion][selectedSubRegion];
+    // 例: ["東山（清水寺・祇園）", "嵐山", ...]
+
+    finalAreas.forEach((area) => {
+      const option = document.createElement("option");
+      option.value = area;
+      option.textContent = area;
+      finalAreaSelect.appendChild(option);
+    });
+
+    finalAreaSelect.style.display = "block";
+    finalAreaLabel.style.display = "inline-block";
+  }
+});
+
+// ▼ 決定ボタンのイベント
 document.getElementById("confirmAreaButton").addEventListener("click", function () {
   const mainArea = document.getElementById("areaSelect").value;
   const region = document.getElementById("regionSelect").value;
   const subRegion = document.getElementById("subRegionSelect").value;
+  const finalArea = document.getElementById("finalAreaSelect").value;
 
-  if (mainArea && region && subRegion) {
-      alert(`選択されたエリア: ${mainArea} - ${region} - ${subRegion}`);
+  if (mainArea && region && subRegion && finalArea) {
+    alert(`選択されたエリア:\n【都市】${mainArea}\n【地域】${region}\n【詳細】${subRegion}\n【最終エリア】${finalArea}`);
   } else {
-      alert("全てのエリアを選択してください！");
+    alert("全てのエリアを選択してください！");
   }
 });
 
-// 言語切り替え対応
+// --------------------------------------------------
+// 多言語切り替え対応
+// --------------------------------------------------
 function applyLanguage(language) {
   const translations = {
       ja: {
@@ -135,15 +192,25 @@ function applyLanguage(language) {
           postLink: "投稿",
           rankingLink: "ランキング",
           mypageLink: "マイページ",
+
           areaSelectionTitle: "旅行先を選ぼう！",
           areaLabel: "エリアを選択：",
           areaPlaceholder: "エリアを選択...",
+
+          regionLabel: "地域を選択：",
           regionPlaceholder: "地域を選択...",
+
+          subRegionLabel: "詳細エリアを選択：",
           subRegionPlaceholder: "詳細エリアを選択...",
+
+          finalAreaLabel: "最終エリアを選択：",
+          finalAreaPlaceholder: "最終エリアを選択...",
+
           confirmButton: "決定",
           reviewButton: "レビュー投稿ページはこちら",
           contactLink: "お問い合わせ",
           aboutLink: "サイトについて",
+
           tokyo: "東京",
           osaka: "大阪",
           kyoto: "京都",
@@ -156,15 +223,25 @@ function applyLanguage(language) {
           postLink: "Post",
           rankingLink: "Ranking",
           mypageLink: "My Page",
+
           areaSelectionTitle: "Choose Your Destination!",
           areaLabel: "Select an Area:",
           areaPlaceholder: "Select an Area...",
+
+          regionLabel: "Select a Region:",
           regionPlaceholder: "Select a Region...",
+
+          subRegionLabel: "Select a Sub-Region:",
           subRegionPlaceholder: "Select a Sub-Region...",
+
+          finalAreaLabel: "Select Final Area:",
+          finalAreaPlaceholder: "Select Final Area...",
+
           confirmButton: "Submit",
           reviewButton: "Go to Review Post Page",
           contactLink: "Contact Us",
           aboutLink: "About Us",
+
           tokyo: "Tokyo",
           osaka: "Osaka",
           kyoto: "Kyoto",
@@ -186,11 +263,20 @@ function applyLanguage(language) {
       postLink: document.getElementById("postLink"),
       rankingLink: document.getElementById("rankingLink"),
       mypageLink: document.getElementById("mypageLink"),
+
       areaSelectionTitle: document.getElementById("areaSelectionTitle"),
       areaLabel: document.getElementById("areaLabel"),
       areaSelect: document.getElementById("areaSelect"),
+
+      regionLabel: document.getElementById("regionLabel"),
       regionSelect: document.getElementById("regionSelect"),
+
+      subRegionLabel: document.getElementById("subRegionLabel"),
       subRegionSelect: document.getElementById("subRegionSelect"),
+
+      finalAreaLabel: document.getElementById("finalAreaLabel"),
+      finalAreaSelect: document.getElementById("finalAreaSelect"),
+
       confirmButton: document.getElementById("confirmAreaButton"),
       reviewButton: document.getElementById("reviewPostButton"),
       contactLink: document.getElementById("contactLink"),
@@ -203,19 +289,30 @@ function applyLanguage(language) {
   if (elements.postLink) elements.postLink.textContent = content.postLink;
   if (elements.rankingLink) elements.rankingLink.textContent = content.rankingLink;
   if (elements.mypageLink) elements.mypageLink.textContent = content.mypageLink;
+
   if (elements.areaSelectionTitle) elements.areaSelectionTitle.textContent = content.areaSelectionTitle;
   if (elements.areaLabel) elements.areaLabel.textContent = content.areaLabel;
+  // 最初のoptionの文言を書き換え
   if (elements.areaSelect) elements.areaSelect.options[0].text = content.areaPlaceholder;
+
+  if (elements.regionLabel) elements.regionLabel.textContent = content.regionLabel;
   if (elements.regionSelect) elements.regionSelect.options[0].text = content.regionPlaceholder;
+
+  if (elements.subRegionLabel) elements.subRegionLabel.textContent = content.subRegionLabel;
   if (elements.subRegionSelect) elements.subRegionSelect.options[0].text = content.subRegionPlaceholder;
+
+  if (elements.finalAreaLabel) elements.finalAreaLabel.textContent = content.finalAreaLabel;
+  if (elements.finalAreaSelect) elements.finalAreaSelect.options[0].text = content.finalAreaPlaceholder;
+
   if (elements.confirmButton) elements.confirmButton.textContent = content.confirmButton;
   if (elements.reviewButton) elements.reviewButton.textContent = content.reviewButton;
   if (elements.contactLink) elements.contactLink.textContent = content.contactLink;
   if (elements.aboutLink) elements.aboutLink.textContent = content.aboutLink;
 
-  // 都市名の翻訳
+  // 都市名(東京, 大阪, ... )の翻訳
   const areaOptions = elements.areaSelect?.options;
   if (areaOptions) {
+      // 先頭はplaceholderなので、i = 1からスタート
       const areaKeys = ["tokyo", "osaka", "kyoto", "hokkaido", "fukuoka"];
       for (let i = 1; i < areaOptions.length; i++) {
           const areaKey = areaKeys[i - 1];
