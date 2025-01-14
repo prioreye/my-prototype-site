@@ -124,14 +124,24 @@ function applyLanguage(language) {
   const confirmButton = document.getElementById("confirmAreaButton");
   const reviewButton = document.getElementById("reviewPostButton");
 
-  if (areaSelect && regionSelect && subRegionSelect && confirmButton && reviewButton) {
+  if (areaSelect && areaSelect.options.length > 0) {
       areaSelect.options[0].text = content.areaPlaceholder;
+  }
+
+  if (regionSelect && regionSelect.options.length > 0) {
       regionSelect.options[0].text = content.regionPlaceholder;
+  }
+
+  if (subRegionSelect && subRegionSelect.options.length > 0) {
       subRegionSelect.options[0].text = content.subRegionPlaceholder;
+  }
+
+  if (confirmButton) {
       confirmButton.textContent = content.confirmButton;
+  }
+
+  if (reviewButton) {
       reviewButton.textContent = content.reviewButton;
-  } else {
-      console.error("言語切り替えに必要な要素が不足しています。");
   }
 }
 
