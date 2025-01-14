@@ -22,7 +22,7 @@ const areaDetails = {
           "南部": ["堺", "岸和田"],
       },
   },
-  // 他のエリアデータを追加
+  // 他エリアも追加可能
 };
 
 // メインエリア選択イベント
@@ -37,12 +37,11 @@ document.getElementById("areaSelect").addEventListener("change", function () {
       return;
   }
 
-  // 各セレクターを初期化
+  // 初期化
   regionSelect.innerHTML = '<option value="" disabled selected>地域を選択...</option>';
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
   subRegionSelect.style.display = "none";
 
-  // エリア選択時に詳細エリアを更新
   if (selectedArea && areaDetails[selectedArea]) {
       const regions = areaDetails[selectedArea];
       for (const region in regions) {
@@ -63,15 +62,8 @@ document.getElementById("regionSelect").addEventListener("change", function () {
   const selectedRegion = this.value;
   const subRegionSelect = document.getElementById("subRegionSelect");
 
-  if (!selectedArea || !subRegionSelect) {
-      console.error("選択データが正しくありません。");
-      return;
-  }
-
-  // 初期化
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
 
-  // 詳細エリアを更新
   if (selectedRegion && areaDetails[selectedArea][selectedRegion]) {
       const subRegions = areaDetails[selectedArea][selectedRegion];
       subRegions.forEach((subRegion) => {
@@ -107,14 +99,16 @@ function applyLanguage(language) {
           areaPlaceholder: "エリアを選択...",
           regionPlaceholder: "地域を選択...",
           subRegionPlaceholder: "詳細エリアを選択...",
-          confirmButton: "決定"
+          confirmButton: "決定",
+          reviewButton: "レビュー投稿ページはこちら",
       },
       en: {
           areaPlaceholder: "Select an Area...",
           regionPlaceholder: "Select a Region...",
           subRegionPlaceholder: "Select a Sub-Region...",
-          confirmButton: "Submit"
-      }
+          confirmButton: "Submit",
+          reviewButton: "Go to Review Post Page",
+      },
   };
 
   const content = translations[language];
@@ -128,12 +122,14 @@ function applyLanguage(language) {
   const regionSelect = document.getElementById("regionSelect");
   const subRegionSelect = document.getElementById("subRegionSelect");
   const confirmButton = document.getElementById("confirmAreaButton");
+  const reviewButton = document.getElementById("reviewPostButton");
 
-  if (areaSelect && regionSelect && subRegionSelect && confirmButton) {
+  if (areaSelect && regionSelect && subRegionSelect && confirmButton && reviewButton) {
       areaSelect.options[0].text = content.areaPlaceholder;
       regionSelect.options[0].text = content.regionPlaceholder;
       subRegionSelect.options[0].text = content.subRegionPlaceholder;
       confirmButton.textContent = content.confirmButton;
+      reviewButton.textContent = content.reviewButton;
   } else {
       console.error("言語切り替えに必要な要素が不足しています。");
   }
@@ -144,9 +140,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const savedLanguage = localStorage.getItem("selectedLanguage") || "ja";
   applyLanguage(savedLanguage);
 
-  // 言語切り替えポップアップの表示
-  const modal = document.getElementById("languageModal");
-  if (!savedLanguage && modal) {
-      modal.style.display = "flex";
-  }
+  document.getElementById("headerLanguageSelect").addEventListener("change", function () {
+      const selectedLanguage = this.value;
+      localStorage.setItem("selectedLanguage", selectedLanguage);
+      applyLanguage(selectedLanguage);
+  });
 });
