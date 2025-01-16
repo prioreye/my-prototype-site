@@ -33,6 +33,8 @@
         <!-- 閲覧者向け部分 -->
         <section class="area-selection">
             <h2 id="areaSelectionTitle">旅行先を選ぼう！</h2>
+
+            <!-- 第1階層: 都市選択 -->
             <div class="area-dropdown">
                 <label for="areaSelect" id="areaLabel">エリアを選択：</label>
                 <select id="areaSelect">
@@ -45,18 +47,31 @@
                 </select>
             </div>
 
+            <!-- 第2～4階層のコンテナ -->
             <div id="detailAreaContainer" class="area-dropdown" style="display: none;">
                 <!-- 第2階層: 地域選択 -->
-                <label for="regionSelect" id="regionLabel">地域を選択：</label>
-                <select id="regionSelect"></select>
+                <div class="dropdown-row" id="regionContainer">
+                    <label for="regionSelect" id="regionLabel">地域を選択：</label>
+                    <select id="regionSelect">
+                        <option value="" disabled selected>地域を選択...</option>
+                    </select>
+                </div>
 
                 <!-- 第3階層: 詳細エリア選択 -->
-                <label for="subRegionSelect" id="subRegionLabel" style="display: none;">詳細エリアを選択：</label>
-                <select id="subRegionSelect" style="display: none;"></select>
+                <div class="dropdown-row" id="subRegionContainer" style="display: none;">
+                    <label for="subRegionSelect" id="subRegionLabel">詳細エリアを選択：</label>
+                    <select id="subRegionSelect">
+                        <option value="" disabled selected>詳細エリアを選択...</option>
+                    </select>
+                </div>
 
                 <!-- 第4階層: 最終エリア選択 -->
-                <label for="finalAreaSelect" id="finalAreaLabel" style="display: none;">最終エリアを選択：</label>
-                <select id="finalAreaSelect" style="display: none;"></select>
+                <div class="dropdown-row" id="finalAreaContainer" style="display: none;">
+                    <label for="finalAreaSelect" id="finalAreaLabel">最終エリアを選択：</label>
+                    <select id="finalAreaSelect">
+                        <option value="" disabled selected>最終エリアを選択...</option>
+                    </select>
+                </div>
 
                 <button id="confirmAreaButton">決定</button>
             </div>
@@ -75,7 +90,7 @@
     <footer class="site-footer">
         <div class="container">
             <p>
-                <a href="#" id="contactLink">お問い合わせ</a> | 
+                <a href="#" id="contactLink">お問い合わせ</a> |
                 <a href="#" id="aboutLink">サイトについて</a>
             </p>
         </div>

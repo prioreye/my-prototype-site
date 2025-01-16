@@ -16,7 +16,7 @@ body {
 
 /* ヘッダー */
 .site-header {
-  background-color: #005a9e; /* より深みのある青 */
+  background-color: #005a9e; /* 深めの青 */
   color: #fff;
   padding: 20px 0;
   text-align: center;
@@ -66,6 +66,7 @@ body {
   margin-bottom: 30px;
 }
 
+/* 全体を縦方向にまとめるコンテナ */
 .area-dropdown {
   display: flex;
   flex-direction: column;
@@ -73,14 +74,24 @@ body {
   margin-top: 20px;
 }
 
-.area-dropdown label {
+/* ドロップダウン1セット（label + select） */
+.dropdown-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dropdown-row label {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
 }
 
-.area-dropdown select {
+/* ドロップダウンの共通スタイル */
+.area-dropdown select,
+.dropdown-row select {
   width: 250px;
   padding: 10px;
   font-size: 1rem;
@@ -95,19 +106,21 @@ body {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 15px;
-  margin-bottom: 20px; /* 3つのセレクトに隙間を空ける */
 }
 
-.area-dropdown select:hover {
+.area-dropdown select:hover,
+.dropdown-row select:hover {
   border-color: #666;
   background-color: #fff;
 }
 
-.area-dropdown select:focus {
+.area-dropdown select:focus,
+.dropdown-row select:focus {
   border-color: #0078d7;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
+/* 決定ボタン */
 .area-dropdown button {
   margin-top: 20px;
   padding: 10px 20px;
