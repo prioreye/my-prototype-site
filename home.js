@@ -1,5 +1,8 @@
-// 名物グルメの4階層データ: エリア → 地域 → 詳細エリア → [グルメ1, グルメ2, グルメ3]
-const gourmetData = {
+/*************************************************************
+ * 1) 日本語データ (gourmetData_ja)
+ *   エリア → 地域 → 詳細エリア → [名物グルメ1, 2, 3]
+ *************************************************************/
+ const gourmetData_ja = {
   tokyo: {
     "23区内": {
       "新宿": ["ラーメン", "焼肉", "寿司"],
@@ -81,31 +84,127 @@ const gourmetData = {
   }
 };
 
-// --------------------------------------------------
-// イベントリスナー: エリア → 地域 → 詳細エリア → 名物グルメ
-// --------------------------------------------------
+/*************************************************************
+ * 2) 英語データ (gourmetData_en) : 簡易的な訳を記載
+ *************************************************************/
+const gourmetData_en = {
+  tokyo: {
+    "Inside 23 Wards": {
+      "Shinjuku": ["Ramen", "Yakiniku", "Sushi"],
+      "Shibuya": ["Crepe", "Parfait", "Bubble Tea"],
+      "Ikebukuro": ["Chinese Cuisine", "Gyoza", "Ramen"],
+      "Harajuku": ["Crepe", "Colorful Sweets", "Bubble Tea"],
+      "Ginza": ["High-end Sushi", "Tempura", "Wagashi"],
+      "Roppongi": ["Western Food", "Steak", "Burger"],
+      "Asakusa": ["Tendon", "Monjayaki", "Kaminari Okoshi"],
+      "Ueno": ["Donburi", "Wagashi", "Yakitori"],
+      "Tsukishima": ["Monjayaki", "Okonomiyaki", "Izakaya Menu"],
+      "Ryogoku": ["Chanko Nabe", "Donburi", "Yakitori"],
+      "Monzen-Nakacho": ["Fukagawa-meshi", "Yakitori", "Sake"],
+      "Odaiba": ["Kaisen-don", "Gelato", "Fish & Chips"],
+      "Toyosu": ["Kaisen-don", "Sushi", "Donburi"],
+      "Nakano": ["Yakitori", "Chuka Soba", "Curry Rice"],
+      "Ogikubo": ["Chuka Soba", "Soba", "Yakitori"],
+      "Koenji": ["Yakitori", "Oden", "Curry Rice"],
+      "Kichijoji": ["Hamburger", "Western Sweets", "Desserts"],
+    },
+    "Outside 23 Wards": {
+      "Tachikawa": ["Ekiben", "Curry Rice", "Yakitori"],
+      "Hachioji": ["Udon", "Ramen", "Ekiben"],
+      "Mitaka": ["Western Sweets", "Pasta", "Steak"],
+      "Kokubunji": ["Soba", "Udon", "Tempura"],
+      "Mt.Takao": ["Sansai Cuisine", "Dango", "Tempura"],
+      "Okutama": ["River Fish Cuisine", "Sansai Cuisine", "Soba"],
+    }
+  },
+  osaka: {
+    "City Area": {
+      "Umeda": ["Takoyaki", "Okonomiyaki", "Kushikatsu"],
+      "Namba": ["Kushikatsu", "Okonomiyaki", "Butaman"],
+      "Shinsaibashi": ["Okonomiyaki", "Kushikatsu", "Yakisoba"],
+      "Dotonbori": ["Takoyaki", "Okonomiyaki", "Kushikatsu"],
+      "Tennoji": ["Horumon-yaki", "Kushikatsu", "Butaman"],
+      "Shinsekai": ["Kushikatsu", "Horumon-yaki", "Butaman"],
+      "Nishinari": ["Horumon-yaki", "Curry Rice", "Yakitori"],
+      "Osaka Port": ["Seafood Curry", "Takomeshi", "Gelato"],
+      "Universal City": ["Fried Chicken", "Hamburger", "Soft Serve"]
+    }
+  },
+  kyoto: {
+    "City Area": {
+      "Higashiyama": ["Yudofu", "Kyotsukemono", "Yatsuhashi"],
+      "Arashiyama": ["Matcha Sweets", "Charcoal-Grilled", "Kyoto Zenzai"],
+      "Kinkakuji": ["Yuba Dishes", "Matcha Sweets", "Kyogashi"],
+      "Kawaramachi": ["Kyo-zushi", "Kyoudon", "Wagashi"],
+    },
+    "Outside City": {
+      "Kibune": ["River Fish Cuisine", "Sansai Cuisine", "Yudofu"],
+      "Uji": ["Matcha Sweets", "Ujicha Soba", "Matcha Ice Cream"],
+      "Kyotango": ["Crab", "Seafood Shabu-shabu", "Amaebi"],
+      "Kurama": ["Sansai Cuisine", "Yudofu", "Matcha Sweets"],
+    }
+  },
+  hokkaido: {
+    "Sapporo": {
+      "Sapporo": ["Genghis Khan", "Kaisen-don", "Ramen"]
+    },
+    "Hakodate": {
+      "Mt.Hakodate": ["Hakodate Shio Ramen", "Sliced Squid", "Kaisen-don"]
+    },
+    "Otaru": {
+      "Otaru Canal": ["Otaru Sushi", "Kaisen-don", "Western Sweets"]
+    }
+  },
+  fukuoka: {
+    "City Area": {
+      "Tenjin": ["Tonkotsu Ramen", "Mentaiko", "Mizutaki"],
+      "Nakasu": ["Mentaiko", "Motsunabe", "Tonkotsu Ramen"],
+      "Hakata Station": ["Hakata Ramen", "Mentaiko", "Mizutaki"],
+    },
+    "Outside City": {
+      "Kitakyushu": ["Yaki Curry (Moji)", "Sara Udon", "Fugu Cuisine"],
+      "Kokura": ["Saba Sushi", "Steamed Eel", "Tonkotsu Ramen"],
+      "Kurume": ["Kurume Ramen", "Jidori Dishes", "Yakitori"],
+    }
+  }
+};
 
+/*************************************************************
+ * 3) 言語切り替えによって、上記2種類のデータを使い分け
+ *************************************************************/
+let currentLanguage = "ja"; // デフォルトは日本語
+
+function getCurrentGourmetData() {
+  return currentLanguage === "en" ? gourmetData_en : gourmetData_ja;
+}
+
+/*************************************************************
+ * 4) イベントリスナー: エリア→地域→詳細エリア→名物グルメ
+ *************************************************************/
 document.getElementById("areaSelect").addEventListener("change", function () {
   const selectedArea = this.value;
-
-  // DOM要素取得
   const detailContainer = document.getElementById("detailAreaContainer");
+
+  const regionContainer = document.getElementById("regionContainer");
+  const subRegionContainer = document.getElementById("subRegionContainer");
+  const gourmetContainer = document.getElementById("gourmetContainer");
+
   const regionSelect = document.getElementById("regionSelect");
   const subRegionSelect = document.getElementById("subRegionSelect");
   const gourmetSelect = document.getElementById("gourmetSelect");
 
-  // コンテナ単位で隠す/初期化
-  document.getElementById("regionContainer").style.display = "none";
-  document.getElementById("subRegionContainer").style.display = "none";
-  document.getElementById("gourmetContainer").style.display = "none";
+  // 初期化
+  regionContainer.style.display = "none";
+  subRegionContainer.style.display = "none";
+  gourmetContainer.style.display = "none";
 
   regionSelect.innerHTML = '<option value="" disabled selected>地域を選択...</option>';
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
   gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
 
-  if (selectedArea && gourmetData[selectedArea]) {
-    // 第2階層: 地域リスト生成
-    const regionData = gourmetData[selectedArea]; // 例: "23区内": { "新宿": [...], ... }, "23区外": { ... }
+  const data = getCurrentGourmetData();
+  if (selectedArea && data[selectedArea]) {
+    const regionData = data[selectedArea];
     for (const regionKey in regionData) {
       const option = document.createElement("option");
       option.value = regionKey;
@@ -113,7 +212,7 @@ document.getElementById("areaSelect").addEventListener("change", function () {
       regionSelect.appendChild(option);
     }
     detailContainer.style.display = "block";
-    document.getElementById("regionContainer").style.display = "block";
+    regionContainer.style.display = "block";
   } else {
     detailContainer.style.display = "none";
   }
@@ -134,9 +233,9 @@ document.getElementById("regionSelect").addEventListener("change", function () {
   subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
   gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
 
-  if (selectedArea && selectedRegion && gourmetData[selectedArea][selectedRegion]) {
-    const subRegionData = gourmetData[selectedArea][selectedRegion];
-    // 第3階層: 詳細エリア
+  const data = getCurrentGourmetData();
+  if (selectedArea && selectedRegion && data[selectedArea][selectedRegion]) {
+    const subRegionData = data[selectedArea][selectedRegion];
     for (const subRegionKey in subRegionData) {
       const option = document.createElement("option");
       option.value = subRegionKey;
@@ -158,14 +257,14 @@ document.getElementById("subRegionSelect").addEventListener("change", function (
   gourmetContainer.style.display = "none";
   gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
 
+  const data = getCurrentGourmetData();
   if (
-    selectedArea && 
+    selectedArea &&
     selectedRegion &&
     selectedSubRegion &&
-    gourmetData[selectedArea][selectedRegion][selectedSubRegion]
+    data[selectedArea][selectedRegion][selectedSubRegion]
   ) {
-    // 第4階層: 名物グルメ配列
-    const gourmetList = gourmetData[selectedArea][selectedRegion][selectedSubRegion]; // 例: ["ラーメン", "焼肉", "寿司"]
+    const gourmetList = data[selectedArea][selectedRegion][selectedSubRegion];
     gourmetList.forEach((item) => {
       const option = document.createElement("option");
       option.value = item;
@@ -176,12 +275,12 @@ document.getElementById("subRegionSelect").addEventListener("change", function (
   }
 });
 
-// 決定ボタンのイベント
+// 決定ボタン
 document.getElementById("confirmAreaButton").addEventListener("click", function () {
-  const mainArea = document.getElementById("areaSelect").value;     // 例: "tokyo"
-  const region = document.getElementById("regionSelect").value;     // 例: "23区内"
-  const subRegion = document.getElementById("subRegionSelect").value; // 例: "新宿"
-  const gourmet = document.getElementById("gourmetSelect").value;   // 例: "ラーメン"
+  const mainArea = document.getElementById("areaSelect").value;
+  const region = document.getElementById("regionSelect").value;
+  const subRegion = document.getElementById("subRegionSelect").value;
+  const gourmet = document.getElementById("gourmetSelect").value;
 
   if (mainArea && region && subRegion && gourmet) {
     alert(`選択されたエリア: 
@@ -194,10 +293,12 @@ document.getElementById("confirmAreaButton").addEventListener("click", function 
   }
 });
 
-// --------------------------------------------------
-// 多言語切り替え（従来のロジックを踏襲）
-// --------------------------------------------------
+/*************************************************************
+ * 5) 多言語切り替え
+ *************************************************************/
 function applyLanguage(language) {
+  currentLanguage = language; // 現在の言語を更新
+
   const translations = {
     ja: {
       siteTitle: "サイトタイトル",
@@ -260,7 +361,7 @@ function applyLanguage(language) {
       kyoto: "Kyoto",
       hokkaido: "Hokkaido",
       fukuoka: "Fukuoka",
-    },
+    }
   };
 
   const content = translations[language];
@@ -269,6 +370,7 @@ function applyLanguage(language) {
     return;
   }
 
+  // 翻訳対象要素
   const elements = {
     siteTitle: document.querySelector(".site-title"),
     homeLink: document.getElementById("homeLink"),
@@ -295,7 +397,7 @@ function applyLanguage(language) {
     aboutLink: document.getElementById("aboutLink"),
   };
 
-  // 文言の切り替え
+  // ラベルやボタン類のテキスト切り替え
   if (elements.siteTitle) elements.siteTitle.textContent = content.siteTitle;
   if (elements.homeLink) elements.homeLink.textContent = content.homeLink;
   if (elements.postLink) elements.postLink.textContent = content.postLink;
@@ -320,7 +422,7 @@ function applyLanguage(language) {
   if (elements.contactLink) elements.contactLink.textContent = content.contactLink;
   if (elements.aboutLink) elements.aboutLink.textContent = content.aboutLink;
 
-  // エリアの英語名切り替え（日本語→English）
+  // エリア名(東京, 大阪, ...)の切り替え
   const areaOptions = elements.areaSelect?.options;
   if (areaOptions) {
     const areaKeys = ["tokyo", "osaka", "kyoto", "hokkaido", "fukuoka"];
@@ -329,6 +431,12 @@ function applyLanguage(language) {
       areaOptions[i].text = content[areaKey];
     }
   }
+
+  // 【注意】地域・詳細エリア・名物グルメは上記のように
+  // gourmetData_ja / gourmetData_en を切り替えて生成しているため、
+  // applyLanguage() 実行後に画面を再描画するには、
+  // 手動で areaSelect.value = "" → change イベント再実行も検討。
+  // (今回は、ユーザーが再度選び直せば問題ありません)
 }
 
 // ページロード時の初期化

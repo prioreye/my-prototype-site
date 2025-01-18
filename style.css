@@ -74,7 +74,7 @@ body {
   margin-top: 20px;
 }
 
-/* 各階層 (ラベル+セレクト) をまとめる */
+/* 各階層 (ラベル+select) をまとめて中央揃え */
 .dropdown-row {
   display: flex;
   flex-direction: column;
@@ -87,6 +87,7 @@ body {
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
+  text-align: center; /* 中央寄せを明示 */
 }
 
 /* ドロップダウンの共通スタイル */

@@ -30,7 +30,7 @@
 
     <!-- メインコンテンツ -->
     <main class="site-main">
-        <!-- 閲覧者向け部分（エリア → 地域 → 詳細エリア → 名物グルメ） -->
+        <!-- 観光客向け部分（4階層: エリア→地域→詳細エリア→名物グルメ） -->
         <section class="area-selection">
             <h2 id="areaSelectionTitle">旅行先を選ぼう！</h2>
 
@@ -50,7 +50,7 @@
             <!-- 第2～4階層のコンテナ -->
             <div id="detailAreaContainer" class="area-dropdown" style="display: none;">
                 <!-- 第2階層: 地域選択 -->
-                <div class="dropdown-row" id="regionContainer">
+                <div class="dropdown-row" id="regionContainer" style="display: none;">
                     <label for="regionSelect" id="regionLabel">地域を選択：</label>
                     <select id="regionSelect">
                         <option value="" disabled selected>地域を選択...</option>
