@@ -16,7 +16,7 @@ body {
 
 /* ヘッダー */
 .site-header {
-  background-color: #005a9e; /* 深めの青 */
+  background-color: #005a9e; 
   color: #fff;
   padding: 20px 0;
   text-align: center;
@@ -66,7 +66,7 @@ body {
   margin-bottom: 30px;
 }
 
-/* 全体を縦方向にまとめるコンテナ */
+/* 全体の枠 */
 .area-dropdown {
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@ body {
   margin-top: 20px;
 }
 
-/* ドロップダウン1セット（label + select） */
+/* 各階層 (ラベル+セレクト) をまとめる */
 .dropdown-row {
   display: flex;
   flex-direction: column;

@@ -30,20 +30,20 @@
 
     <!-- メインコンテンツ -->
     <main class="site-main">
-        <!-- 閲覧者向け部分 -->
+        <!-- 閲覧者向け部分（エリア → 地域 → 詳細エリア → 名物グルメ） -->
         <section class="area-selection">
             <h2 id="areaSelectionTitle">旅行先を選ぼう！</h2>
 
-            <!-- 第1階層: 都市選択 -->
+            <!-- 第1階層: エリア選択 -->
             <div class="area-dropdown">
                 <label for="areaSelect" id="areaLabel">エリアを選択：</label>
                 <select id="areaSelect">
                     <option value="" disabled selected id="areaPlaceholder">エリアを選択...</option>
-                    <option value="tokyo" id="tokyoOption">東京</option>
-                    <option value="osaka" id="osakaOption">大阪</option>
-                    <option value="kyoto" id="kyotoOption">京都</option>
-                    <option value="hokkaido" id="hokkaidoOption">北海道</option>
-                    <option value="fukuoka" id="fukuokaOption">福岡</option>
+                    <option value="tokyo">東京</option>
+                    <option value="osaka">大阪</option>
+                    <option value="kyoto">京都</option>
+                    <option value="hokkaido">北海道</option>
+                    <option value="fukuoka">福岡</option>
                 </select>
             </div>
 
@@ -65,11 +65,11 @@
                     </select>
                 </div>
 
-                <!-- 第4階層: 最終エリア選択 -->
-                <div class="dropdown-row" id="finalAreaContainer" style="display: none;">
-                    <label for="finalAreaSelect" id="finalAreaLabel">最終エリアを選択：</label>
-                    <select id="finalAreaSelect">
-                        <option value="" disabled selected>最終エリアを選択...</option>
+                <!-- 第4階層: 名物グルメ選択 -->
+                <div class="dropdown-row" id="gourmetContainer" style="display: none;">
+                    <label for="gourmetSelect" id="gourmetLabel">名物グルメを選択：</label>
+                    <select id="gourmetSelect">
+                        <option value="" disabled selected>名物グルメを選択...</option>
                     </select>
                 </div>
 
@@ -80,7 +80,7 @@
         <!-- 区切り線 -->
         <div class="section-divider"></div>
 
-        <!-- 投稿者向け部分 -->
+        <!-- 投稿者向け部分（変更なし） -->
         <section class="review-post">
             <a href="post.html" class="btn-review" id="reviewPostButton">レビュー投稿ページはこちら</a>
         </section>
