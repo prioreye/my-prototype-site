@@ -1,5 +1,6 @@
 /*************************************************************
  * 1) 日本語データ (gourmetData_ja)
+ *   エリア → 地域 → 詳細エリア → [名物グルメ1, 2, 3]
  *************************************************************/
  const gourmetData_ja = {
   tokyo: {
@@ -31,24 +32,154 @@
       "奥多摩": ["川魚料理", "山菜料理", "蕎麦"],
     }
   },
-  // ... (osaka, kyoto, hokkaido, fukuoka もそのまま)
-};
-
-const gourmetData_en = {
-  // ... (省略: 前回の英語版データをそのまま)
+  osaka: {
+    "市内エリア": {
+      "梅田": ["たこ焼き", "お好み焼き", "串カツ"],
+      "難波": ["串カツ", "お好み焼き", "豚まん"],
+      "心斎橋": ["お好み焼き", "串カツ", "焼きそば"],
+      "道頓堀": ["たこ焼き", "お好み焼き", "串カツ"],
+      "天王寺": ["ホルモン焼き", "串カツ", "豚まん"],
+      "新世界": ["串カツ", "ホルモン焼き", "豚まん"],
+      "西成": ["ホルモン焼き", "カレーライス", "焼き鳥"],
+      "大阪港": ["シーフードカレー", "たこ飯", "ジェラート"],
+      "ユニバーサルシティ": ["フライドチキン", "ハンバーガー", "ソフトクリーム"],
+    }
+  },
+  kyoto: {
+    "市内エリア": {
+      "東山": ["湯豆腐", "京漬物", "八ツ橋"],
+      "嵐山": ["抹茶スイーツ", "炭火焼き料理", "京ぜんざい"],
+      "金閣寺": ["湯葉料理", "抹茶スイーツ", "京菓子"],
+      "河原町": ["京寿司", "京うどん", "和菓子"],
+    },
+    "市外エリア": {
+      "貴船": ["川魚料理", "山菜料理", "湯豆腐"],
+      "宇治": ["抹茶スイーツ", "宇治茶そば", "抹茶アイス"],
+      "京丹後市": ["蟹", "海鮮しゃぶしゃぶ", "甘えび"],
+      "鞍馬": ["山菜料理", "湯豆腐", "抹茶スイーツ"],
+    }
+  },
+  hokkaido: {
+    "札幌": {
+      "札幌": ["ジンギスカン", "海鮮丼", "ラーメン"]
+    },
+    "函館": {
+      "函館山": ["函館塩ラーメン", "イカ刺し", "海鮮丼"]
+    },
+    "小樽": {
+      "小樽運河": ["小樽寿司", "海鮮丼", "洋菓子"]
+    }
+  },
+  fukuoka: {
+    "市内エリア": {
+      "天神": ["豚骨ラーメン", "明太子", "水炊き"],
+      "中洲": ["明太子", "もつ鍋", "豚骨ラーメン"],
+      "博多駅": ["博多ラーメン", "明太子", "水炊き"],
+    },
+    "市外エリア": {
+      "北九州": ["焼きカレー（門司港）", "皿うどん", "ふぐ料理"],
+      "小倉": ["鯖寿司", "鰻のせいろ蒸し", "豚骨ラーメン"],
+      "久留米": ["久留米ラーメン", "地鶏料理", "焼き鳥"],
+    }
+  }
 };
 
 /*************************************************************
- * 2) 言語切り替えによって、上記2種類のデータを使い分け
+ * 2) 英語データ (gourmetData_en) : 簡易的な訳を記載
  *************************************************************/
-let currentLanguage = "ja"; // デフォルト日本語
+const gourmetData_en = {
+  tokyo: {
+    "Inside 23 Wards": {
+      "Shinjuku": ["Ramen", "Yakiniku", "Sushi"],
+      "Shibuya": ["Crepe", "Parfait", "Bubble Tea"],
+      "Ikebukuro": ["Chinese Cuisine", "Gyoza", "Ramen"],
+      "Harajuku": ["Crepe", "Colorful Sweets", "Bubble Tea"],
+      "Ginza": ["High-end Sushi", "Tempura", "Wagashi"],
+      "Roppongi": ["Western Food", "Steak", "Burger"],
+      "Asakusa": ["Tendon", "Monjayaki", "Kaminari Okoshi"],
+      "Ueno": ["Donburi", "Wagashi", "Yakitori"],
+      "Tsukishima": ["Monjayaki", "Okonomiyaki", "Izakaya Menu"],
+      "Ryogoku": ["Chanko Nabe", "Donburi", "Yakitori"],
+      "Monzen-Nakacho": ["Fukagawa-meshi", "Yakitori", "Sake"],
+      "Odaiba": ["Kaisen-don", "Gelato", "Fish & Chips"],
+      "Toyosu": ["Kaisen-don", "Sushi", "Donburi"],
+      "Nakano": ["Yakitori", "Chuka Soba", "Curry Rice"],
+      "Ogikubo": ["Chuka Soba", "Soba", "Yakitori"],
+      "Koenji": ["Yakitori", "Oden", "Curry Rice"],
+      "Kichijoji": ["Hamburger", "Western Sweets", "Desserts"],
+    },
+    "Outside 23 Wards": {
+      "Tachikawa": ["Ekiben", "Curry Rice", "Yakitori"],
+      "Hachioji": ["Udon", "Ramen", "Ekiben"],
+      "Mitaka": ["Western Sweets", "Pasta", "Steak"],
+      "Kokubunji": ["Soba", "Udon", "Tempura"],
+      "Mt.Takao": ["Sansai Cuisine", "Dango", "Tempura"],
+      "Okutama": ["River Fish Cuisine", "Sansai Cuisine", "Soba"],
+    }
+  },
+  osaka: {
+    "City Area": {
+      "Umeda": ["Takoyaki", "Okonomiyaki", "Kushikatsu"],
+      "Namba": ["Kushikatsu", "Okonomiyaki", "Butaman"],
+      "Shinsaibashi": ["Okonomiyaki", "Kushikatsu", "Yakisoba"],
+      "Dotonbori": ["Takoyaki", "Okonomiyaki", "Kushikatsu"],
+      "Tennoji": ["Horumon-yaki", "Kushikatsu", "Butaman"],
+      "Shinsekai": ["Kushikatsu", "Horumon-yaki", "Butaman"],
+      "Nishinari": ["Horumon-yaki", "Curry Rice", "Yakitori"],
+      "Osaka Port": ["Seafood Curry", "Takomeshi", "Gelato"],
+      "Universal City": ["Fried Chicken", "Hamburger", "Soft Serve"]
+    }
+  },
+  kyoto: {
+    "City Area": {
+      "Higashiyama": ["Yudofu", "Kyotsukemono", "Yatsuhashi"],
+      "Arashiyama": ["Matcha Sweets", "Charcoal-Grilled", "Kyoto Zenzai"],
+      "Kinkakuji": ["Yuba Dishes", "Matcha Sweets", "Kyogashi"],
+      "Kawaramachi": ["Kyo-zushi", "Kyoudon", "Wagashi"],
+    },
+    "Outside City": {
+      "Kibune": ["River Fish Cuisine", "Sansai Cuisine", "Yudofu"],
+      "Uji": ["Matcha Sweets", "Ujicha Soba", "Matcha Ice Cream"],
+      "Kyotango": ["Crab", "Seafood Shabu-shabu", "Amaebi"],
+      "Kurama": ["Sansai Cuisine", "Yudofu", "Matcha Sweets"],
+    }
+  },
+  hokkaido: {
+    "Sapporo": {
+      "Sapporo": ["Genghis Khan", "Kaisen-don", "Ramen"]
+    },
+    "Hakodate": {
+      "Mt.Hakodate": ["Hakodate Shio Ramen", "Sliced Squid", "Kaisen-don"]
+    },
+    "Otaru": {
+      "Otaru Canal": ["Otaru Sushi", "Kaisen-don", "Western Sweets"]
+    }
+  },
+  fukuoka: {
+    "City Area": {
+      "Tenjin": ["Tonkotsu Ramen", "Mentaiko", "Mizutaki"],
+      "Nakasu": ["Mentaiko", "Motsunabe", "Tonkotsu Ramen"],
+      "Hakata Station": ["Hakata Ramen", "Mentaiko", "Mizutaki"],
+    },
+    "Outside City": {
+      "Kitakyushu": ["Yaki Curry (Moji)", "Sara Udon", "Fugu Cuisine"],
+      "Kokura": ["Saba Sushi", "Steamed Eel", "Tonkotsu Ramen"],
+      "Kurume": ["Kurume Ramen", "Jidori Dishes", "Yakitori"],
+    }
+  }
+};
+
+/*************************************************************
+ * 3) 言語切り替えによって、上記2種類のデータを使い分け
+ *************************************************************/
+let currentLanguage = "ja"; // デフォルトは日本語
 
 function getCurrentGourmetData() {
   return currentLanguage === "en" ? gourmetData_en : gourmetData_ja;
 }
 
 /*************************************************************
- * 3) イベントリスナー: エリア→地域→詳細エリア→名物グルメ
+ * 4) イベントリスナー: エリア→地域→詳細エリア→名物グルメ
  *************************************************************/
 document.getElementById("areaSelect").addEventListener("change", function () {
   const selectedArea = this.value;
@@ -152,8 +283,8 @@ document.getElementById("confirmAreaButton").addEventListener("click", function 
   const gourmet = document.getElementById("gourmetSelect").value;
 
   if (mainArea && region && subRegion && gourmet) {
-    alert(`選択されたエリア:
-【エリア】${mainArea}
+    alert(`選択されたエリア: 
+【エリア】${mainArea} 
 【地域】${region}
 【詳細エリア】${subRegion}
 【名物グルメ】${gourmet}`);
@@ -163,7 +294,7 @@ document.getElementById("confirmAreaButton").addEventListener("click", function 
 });
 
 /*************************************************************
- * 4) 多言語切り替え
+ * 5) 多言語切り替え
  *************************************************************/
 function applyLanguage(language) {
   currentLanguage = language; // 現在の言語を更新
@@ -177,16 +308,16 @@ function applyLanguage(language) {
       mypageLink: "マイページ",
 
       areaSelectionTitle: "旅行先を選ぼう！",
-      areaLabel: "エリアを選択:",
+      areaLabel: "エリアを選択：",
       areaPlaceholder: "エリアを選択...",
 
-      regionLabel: "地域を選択:",
+      regionLabel: "地域を選択：",
       regionPlaceholder: "地域を選択...",
 
-      subRegionLabel: "詳細エリアを選択:",
+      subRegionLabel: "詳細エリアを選択：",
       subRegionPlaceholder: "詳細エリアを選択...",
 
-      gourmetLabel: "名物グルメを選択:",
+      gourmetLabel: "名物グルメを選択：",
       gourmetPlaceholder: "名物グルメを選択...",
 
       confirmButton: "決定",
@@ -300,6 +431,12 @@ function applyLanguage(language) {
       areaOptions[i].text = content[areaKey];
     }
   }
+
+  // 【注意】地域・詳細エリア・名物グルメは上記のように
+  // gourmetData_ja / gourmetData_en を切り替えて生成しているため、
+  // applyLanguage() 実行後に画面を再描画するには、
+  // 手動で areaSelect.value = "" → change イベント再実行も検討。
+  // (今回は、ユーザーが再度選び直せば問題ありません)
 }
 
 // ページロード時の初期化
