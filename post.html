@@ -4,15 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>レビュー投稿</title>
-  <!-- 既存のstyle.cssを使う想定 -->
   <link rel="stylesheet" href="style.css" />
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
     rel="stylesheet"
   />
+  <!-- Google Maps JavaScript API (Autocomplete用) -->
+  <!-- ★ 実際には YOUR_API_KEY をプロジェクトのAPIキーに置き換えてください ★ -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"
+    defer
+  ></script>
 </head>
 <body>
-  <!-- ヘッダー: ホームやマイページへのリンクは共通化できるならincludeなどで共通化 -->
+  <!-- ヘッダー -->
   <header class="site-header">
     <div class="container">
       <h1 class="site-title">サイトタイトル</h1>
@@ -24,7 +29,7 @@
           <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
         </ul>
       </nav>
-      <!-- 言語切替セレクター (必要なら) -->
+      <!-- 言語切替セレクター (任意) -->
       <select id="headerLanguageSelect">
         <option value="ja">日本語</option>
         <option value="en">English</option>
@@ -36,28 +41,65 @@
   <main class="site-main">
     <section class="post-section container">
       <h2 class="page-title">レビュー投稿</h2>
-      <!-- 投稿フォーム -->
-      <form id="reviewForm" class="review-form">
-        <!-- 店舗名 -->
+
+      <!-- ▼ 1) エリア → 地域 → 詳細エリアの選択 -->
+      <div id="postAreaContainer">
+        <!-- エリア選択 -->
+        <div class="dropdown-row">
+          <label for="postAreaSelect">エリアを選択:</label>
+          <select id="postAreaSelect">
+            <option value="" disabled selected>選択してください</option>
+            <option value="tokyo">東京</option>
+            <option value="osaka">大阪</option>
+            <option value="kyoto">京都</option>
+            <option value="hokkaido">北海道</option>
+            <option value="fukuoka">福岡</option>
+          </select>
+        </div>
+
+        <!-- 地域選択 -->
+        <div class="dropdown-row" id="postRegionContainer" style="display:none;">
+          <label for="postRegionSelect">地域を選択:</label>
+          <select id="postRegionSelect">
+            <option value="" disabled selected>選択してください</option>
+          </select>
+        </div>
+
+        <!-- 詳細エリア選択 -->
+        <div class="dropdown-row" id="postSubRegionContainer" style="display:none;">
+          <label for="postSubRegionSelect">詳細エリアを選択:</label>
+          <select id="postSubRegionSelect">
+            <option value="" disabled selected>選択してください</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ▼ 2) 店舗情報フォーム -->
+      <form id="postReviewForm" class="review-form" style="margin-top:30px;">
+        <!-- Google Placesオートコンプリート: 店舗名検索 -->
         <div class="form-group">
-          <label for="storeName">店舗名 <span class="required">*</span></label>
+          <label for="storeNameInput">店舗名 (オートコンプリート) <span class="required">*</span></label>
+          <!-- ユーザーが入力 → オートコンプリート表示 -->
           <input
             type="text"
-            id="storeName"
-            name="storeName"
-            placeholder="店舗名を入力"
+            id="storeNameInput"
+            placeholder="店舗名を入力..."
             required
           />
         </div>
 
-        <!-- 所在地 -->
+        <!-- 自動設定される Hidden Fields: place_id, lat, lng -->
+        <input type="hidden" id="googlePlaceId" />
+        <input type="hidden" id="storeLat" />
+        <input type="hidden" id="storeLng" />
+
+        <!-- 住所 (編集可能) -->
         <div class="form-group">
-          <label for="location">所在地 <span class="required">*</span></label>
+          <label for="addressInput">住所 (編集可) <span class="required">*</span></label>
           <input
             type="text"
-            id="location"
-            name="location"
-            placeholder="所在地を入力"
+            id="addressInput"
+            placeholder="ビル名・階数など自由に追記可"
             required
           />
         </div>
@@ -68,7 +110,6 @@
           <input
             type="text"
             id="recommendMenu"
-            name="recommendMenu"
             placeholder="例: チーズラーメン"
             required
           />
@@ -79,7 +120,6 @@
           <label for="comment">コメント <span class="required">*</span></label>
           <textarea
             id="comment"
-            name="comment"
             rows="4"
             placeholder="実際に食べた感想などを入力"
             required
@@ -97,11 +137,6 @@
           />
         </div>
 
-        <!-- 今後の拡張: もし “エリア / グルメID” を受け取るなら hidden で保持 -->
-        <!--
-        <input type="hidden" id="selectedGourmetId" name="gourmetId" value="" />
-        -->
-
         <!-- 送信ボタン -->
         <button type="submit" class="btn-submit">投稿する</button>
       </form>
@@ -118,7 +153,7 @@
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- JSファイル -->
   <script src="post.js"></script>
 </body>
 </html>
