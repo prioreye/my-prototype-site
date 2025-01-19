@@ -1,25 +1,41 @@
-console.log("投稿ページ準備完了");
+// post.js
 
-// 投稿フォームの動作
-document.getElementById("submitReviewButton").addEventListener("click", function () {
-    const storeName = document.getElementById("storeName").value;
-    const reviewContent = document.getElementById("reviewContent").value;
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("reviewForm");
 
-    if (storeName === "" || reviewContent === "") {
-        alert("店舗名とレビューを入力してください。");
-        return;
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // 本来のフォーム送信を止める
+
+    // フォーム入力値を取得
+    const storeName = document.getElementById("storeName").value.trim();
+    const location = document.getElementById("location").value.trim();
+    const recommendMenu = document.getElementById("recommendMenu").value.trim();
+    const comment = document.getElementById("comment").value.trim();
+    const photoFile = document.getElementById("photo").files[0];
+
+    // バリデーションチェック（HTML5のrequiredでもOK）
+    if (!storeName || !location || !recommendMenu || !comment) {
+      alert("必須項目を全て入力してください。");
+      return;
     }
 
-    // 現在の日時を取得
-    const currentDate = new Date().toISOString();
+    // TODO: ここでバックエンドに送信 or ローカルストレージに保存など
+    // 例: 簡易的にJSON化してconsole.logで確認
+    const postData = {
+      storeName,
+      location,
+      recommendMenu,
+      comment,
+      // photoは一旦ファイル名だけ取得（実際にはFormDataで送るなど工夫が必要）
+      photoName: photoFile ? photoFile.name : "",
+      // areaId, gourmetId などがあるなら hidden から取得して追加
+    };
 
-    // ローカルストレージに保存
-    const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-    reviews.push({ storeName, reviewContent, date: currentDate });
-    localStorage.setItem("reviews", JSON.stringify(reviews));
+    console.log("投稿データ:", postData);
 
-    alert("投稿が完了しました！");
+    alert("投稿が完了しました！\n" + JSON.stringify(postData, null, 2));
+
     // フォームをリセット
-    document.getElementById("storeName").value = "";
-    document.getElementById("reviewContent").value = "";
+    form.reset();
+  });
 });

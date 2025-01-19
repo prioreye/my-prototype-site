@@ -1,38 +1,124 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロトタイプ - 投稿</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>レビュー投稿</title>
+  <!-- 既存のstyle.cssを使う想定 -->
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    <header>
-        <h1>投稿</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">ホーム</a></li>
-                <li><a href="post.html">投稿</a></li>
-                <li><a href="ranking.html">ランキング</a></li>
-                <li><a href="mypage.html">マイページ</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="postForm">
-            <h2>新しい投稿</h2>
-            <form id="reviewForm">
-                <label for="storeName">店舗名:</label>
-                <input type="text" id="storeName" placeholder="店舗名を入力"><br><br>
-                <label for="reviewContent">レビュー:</label>
-                <textarea id="reviewContent" placeholder="レビューを入力"></textarea><br><br>
-                <button type="button" id="submitReviewButton">投稿する</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
-    </footer>
-    <script src="post.js"></script>
+  <!-- ヘッダー: ホームやマイページへのリンクは共通化できるならincludeなどで共通化 -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">サイトタイトル</h1>
+      <nav class="navigation">
+        <ul>
+          <li><a href="home.html" id="homeLink">ホーム</a></li>
+          <li><a href="post.html" id="postLink">投稿</a></li>
+          <li><a href="ranking.html" id="rankingLink">ランキング</a></li>
+          <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
+        </ul>
+      </nav>
+      <!-- 言語切替セレクター (必要なら) -->
+      <select id="headerLanguageSelect">
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- メイン -->
+  <main class="site-main">
+    <section class="post-section container">
+      <h2 class="page-title">レビュー投稿</h2>
+      <!-- 投稿フォーム -->
+      <form id="reviewForm" class="review-form">
+        <!-- 店舗名 -->
+        <div class="form-group">
+          <label for="storeName">店舗名 <span class="required">*</span></label>
+          <input
+            type="text"
+            id="storeName"
+            name="storeName"
+            placeholder="店舗名を入力"
+            required
+          />
+        </div>
+
+        <!-- 所在地 -->
+        <div class="form-group">
+          <label for="location">所在地 <span class="required">*</span></label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="所在地を入力"
+            required
+          />
+        </div>
+
+        <!-- イチオシメニュー -->
+        <div class="form-group">
+          <label for="recommendMenu">イチオシメニュー <span class="required">*</span></label>
+          <input
+            type="text"
+            id="recommendMenu"
+            name="recommendMenu"
+            placeholder="例: チーズラーメン"
+            required
+          />
+        </div>
+
+        <!-- コメント -->
+        <div class="form-group">
+          <label for="comment">コメント <span class="required">*</span></label>
+          <textarea
+            id="comment"
+            name="comment"
+            rows="4"
+            placeholder="実際に食べた感想などを入力"
+            required
+          ></textarea>
+        </div>
+
+        <!-- 写真アップロード（任意） -->
+        <div class="form-group">
+          <label for="photo">写真アップロード (任意)</label>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+          />
+        </div>
+
+        <!-- 今後の拡張: もし “エリア / グルメID” を受け取るなら hidden で保持 -->
+        <!--
+        <input type="hidden" id="selectedGourmetId" name="gourmetId" value="" />
+        -->
+
+        <!-- 送信ボタン -->
+        <button type="submit" class="btn-submit">投稿する</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <a href="#" id="contactLink">お問い合わせ</a> |
+        <a href="#" id="aboutLink">サイトについて</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="post.js"></script>
 </body>
 </html>
