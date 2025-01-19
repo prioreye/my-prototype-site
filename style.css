@@ -80,6 +80,15 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
+}
+
+/* ラベルとセレクトを徹底的に中央寄せ */
+.dropdown-row label,
+.dropdown-row select {
+  margin: 0 auto;
+  text-align: center;
+  width: auto;
 }
 
 .dropdown-row label {
@@ -87,13 +96,11 @@ body {
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
-  text-align: center; /* 中央寄せを明示 */
 }
 
 /* ドロップダウンの共通スタイル */
 .area-dropdown select,
 .dropdown-row select {
-  width: 250px;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -107,6 +114,7 @@ body {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 15px;
+  min-width: 250px; /* 必要に応じて確保 */
 }
 
 .area-dropdown select:hover,
