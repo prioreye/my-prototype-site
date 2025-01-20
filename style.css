@@ -288,3 +288,27 @@ body {
 .btn-submit:active {
   transform: scale(0.98);
 }
+
+/* 既存のstyle.cssをベースに、アイコン表示や多言語対応を追加 */
+
+.nav-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* あとは既存のCSSをそのまま流用 */
+
+/* 全体設定など... */
+body {
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* container, site-header, navigation, etc. 同様に継承 */
