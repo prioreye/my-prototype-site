@@ -10,7 +10,6 @@
     rel="stylesheet"
   />
   <!-- Google Maps JavaScript API (Autocomplete用) -->
-  <!-- ★ 実際には YOUR_API_KEY をプロジェクトのAPIキーに置き換えてください ★ -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"
     defer
@@ -23,27 +22,11 @@
       <h1 class="site-title">サイトタイトル</h1>
       <nav class="navigation">
         <ul>
-          <!-- アイコン表示 -->
-          <li>
-            <a href="home.html" id="homeLink">
-              <img src="img/icon_home.png" alt="Home Icon" class="nav-icon" />
-            </a>
-          </li>
-          <li>
-            <a href="post.html" id="postLink">
-              <img src="img/icon_post.png" alt="Post Icon" class="nav-icon" />
-            </a>
-          </li>
-          <li>
-            <a href="ranking.html" id="rankingLink">
-              <img src="img/icon_ranking.png" alt="Ranking Icon" class="nav-icon" />
-            </a>
-          </li>
-          <li>
-            <a href="mypage.html" id="mypageLink">
-              <img src="img/icon_mypage.png" alt="My Page Icon" class="nav-icon" />
-            </a>
-          </li>
+          <!-- 文字に戻す -->
+          <li><a href="home.html" id="homeLink">ホーム</a></li>
+          <li><a href="post.html" id="postLink">投稿</a></li>
+          <li><a href="ranking.html" id="rankingLink">ランキング</a></li>
+          <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
         </ul>
       </nav>
       <!-- 言語切替セレクター -->
@@ -59,10 +42,10 @@
     <section class="post-section container">
       <h2 class="page-title" id="reviewPostTitle">レビュー投稿</h2>
 
-      <!-- ▼ エリア → 地域 → 詳細エリア選択 -->
+      <!-- ▼ エリア -> 地域 -> 詳細エリア -> 名物グルメ -->
       <div id="postAreaContainer">
-        <!-- エリア選択 -->
-        <div class="dropdown-row" id="areaSelectContainer">
+        <!-- 第1階層 -->
+        <div class="dropdown-row">
           <label for="postAreaSelect" id="postAreaLabel">エリアを選択:</label>
           <select id="postAreaSelect">
             <option value="" disabled selected>選択してください</option>
@@ -74,7 +57,7 @@
           </select>
         </div>
 
-        <!-- 地域選択 -->
+        <!-- 第2階層: 地域 -->
         <div class="dropdown-row" id="postRegionContainer" style="display:none;">
           <label for="postRegionSelect" id="postRegionLabel">地域を選択:</label>
           <select id="postRegionSelect">
@@ -82,18 +65,25 @@
           </select>
         </div>
 
-        <!-- 詳細エリア選択 -->
+        <!-- 第3階層: 詳細エリア -->
         <div class="dropdown-row" id="postSubRegionContainer" style="display:none;">
           <label for="postSubRegionSelect" id="postSubRegionLabel">詳細エリアを選択:</label>
           <select id="postSubRegionSelect">
             <option value="" disabled selected>選択してください</option>
           </select>
         </div>
+
+        <!-- 第4階層: 名物グルメ -->
+        <div class="dropdown-row" id="gourmetContainer" style="display:none;">
+          <label for="gourmetSelect" id="gourmetLabel">名物グルメを選択:</label>
+          <select id="gourmetSelect">
+            <option value="" disabled selected>名物グルメを選択...</option>
+          </select>
+        </div>
       </div>
 
       <!-- ▼ 店舗情報フォーム -->
       <form id="postReviewForm" class="review-form" style="margin-top:30px;">
-        <!-- Google Placesオートコンプリート: 店舗名 -->
         <div class="form-group">
           <label for="storeNameInput" id="storeNameLabel">店舗名 (オートコンプリート) <span class="required">*</span></label>
           <input
@@ -103,11 +93,11 @@
             required
           />
         </div>
+
         <input type="hidden" id="googlePlaceId" />
         <input type="hidden" id="storeLat" />
         <input type="hidden" id="storeLng" />
 
-        <!-- 住所 (編集可能) -->
         <div class="form-group">
           <label for="addressInput" id="addressLabel">住所 (編集可) <span class="required">*</span></label>
           <input
@@ -118,40 +108,29 @@
           />
         </div>
 
-        <!-- イチオシメニュー -->
         <div class="form-group">
           <label for="recommendMenu" id="recommendMenuLabel">イチオシメニュー <span class="required">*</span></label>
           <input
             type="text"
             id="recommendMenu"
-            placeholder="例: チーズラーメン"
             required
           />
         </div>
 
-        <!-- コメント -->
         <div class="form-group">
           <label for="comment" id="commentLabel">コメント <span class="required">*</span></label>
           <textarea
             id="comment"
             rows="4"
-            placeholder="実際に食べた感想などを入力"
             required
           ></textarea>
         </div>
 
-        <!-- 写真アップロード（任意） -->
         <div class="form-group">
           <label for="photo" id="photoLabel">写真アップロード (任意)</label>
-          <input
-            type="file"
-            id="photo"
-            name="photo"
-            accept="image/*"
-          />
+          <input type="file" id="photo" accept="image/*" />
         </div>
 
-        <!-- 送信ボタン -->
         <button type="submit" class="btn-submit" id="submitReviewButton">投稿する</button>
       </form>
     </section>
@@ -167,7 +146,6 @@
     </div>
   </footer>
 
-  <!-- JSファイル -->
   <script src="post.js"></script>
 </body>
 </html>

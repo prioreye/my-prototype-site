@@ -1,30 +1,51 @@
 /*************************************************************
- * 1) 日本語データ (gourmetData_ja) + 英語データ (gourmetData_en)
- *   エリア → 地域 → 詳細エリア → [名物グルメ1, 2, 3]
+ * 1) 多言語データ: 日本語 / 英語
  *************************************************************/
  const gourmetData_ja = {
   tokyo: {
     "23区内": {
       "新宿": ["ラーメン", "焼肉", "寿司"],
       "渋谷": ["クレープ", "パフェ", "タピオカドリンク"],
-      // ... 省略 ...
+      /* ... */
     },
     "23区外": {
       "立川": ["駅弁", "カレーライス", "焼き鳥"],
-      // ... 省略 ...
+      /* ... */
     }
   },
   osaka: {
-    // ...
+    "市内エリア": {
+      "梅田": ["たこ焼き", "お好み焼き", "串カツ"],
+      /* ... */
+    }
   },
   kyoto: {
-    // ...
+    "市内エリア": {
+      "東山": ["湯豆腐", "京漬物", "八ツ橋"],
+      /* ... */
+    },
+    "市外エリア": {
+      "宇治": ["抹茶スイーツ", "宇治茶そば", "抹茶アイス"],
+      /* ... */
+    }
   },
   hokkaido: {
-    // ...
+    "札幌": {
+      "札幌": ["ジンギスカン", "海鮮丼", "ラーメン"]
+    },
+    "函館": {
+      "函館山": ["函館塩ラーメン", "イカ刺し", "海鮮丼"]
+    }
   },
   fukuoka: {
-    // ...
+    "市内エリア": {
+      "天神": ["豚骨ラーメン", "明太子", "水炊き"],
+      /* ... */
+    },
+    "市外エリア": {
+      "北九州": ["焼きカレー（門司港）", "皿うどん", "ふぐ料理"],
+      /* ... */
+    }
   }
 };
 
@@ -33,45 +54,85 @@ const gourmetData_en = {
     "Inside 23 Wards": {
       "Shinjuku": ["Ramen", "Yakiniku", "Sushi"],
       "Shibuya": ["Crepe", "Parfait", "Bubble Tea"],
-      // ... 省略 ...
+      /* ... */
     },
     "Outside 23 Wards": {
       "Tachikawa": ["Ekiben", "Curry Rice", "Yakitori"],
-      // ... 省略 ...
+      /* ... */
     }
   },
-  // ...
+  osaka: {
+    "City Area": {
+      "Umeda": ["Takoyaki", "Okonomiyaki", "Kushikatsu"],
+      /* ... */
+    }
+  },
+  kyoto: {
+    "City Area": {
+      "Higashiyama": ["Yudofu", "Kyotsukemono", "Yatsuhashi"],
+      /* ... */
+    },
+    "Outside City": {
+      "Uji": ["Matcha Sweets", "Ujicha Soba", "Matcha Ice Cream"],
+      /* ... */
+    }
+  },
+  hokkaido: {
+    "Sapporo": {
+      "Sapporo": ["Genghis Khan", "Kaisen-don", "Ramen"]
+    },
+    "Hakodate": {
+      "Mt.Hakodate": ["Hakodate Shio Ramen", "Sliced Squid", "Kaisen-don"]
+    }
+  },
+  fukuoka: {
+    "City Area": {
+      "Tenjin": ["Tonkotsu Ramen", "Mentaiko", "Mizutaki"],
+      /* ... */
+    },
+    "Outside City": {
+      "Kitakyushu": ["Yaki Curry (Moji)", "Sara Udon", "Fugu Cuisine"],
+      /* ... */
+    }
+  }
 };
 
 /*************************************************************
- * 2) 多言語のフラグ
+ * 2) 言語フラグ & データ取得
  *************************************************************/
-let currentLanguage = "ja"; // デフォルト日本語
+let currentLanguage = "ja"; // デフォルトは日本語
 
-function getCurrentGourmetData() {
+function getGourmetData() {
   return currentLanguage === "en" ? gourmetData_en : gourmetData_ja;
 }
 
 /*************************************************************
- * 3) イベントリスナー: エリア→地域→詳細エリア (名物グルメも可)
+ * 3) DOMContentLoaded: イベントリスナー設定 (4段階)
  *************************************************************/
 document.addEventListener("DOMContentLoaded", function() {
   const areaSelect = document.getElementById("areaSelect");
   const regionSelect = document.getElementById("regionSelect");
   const subRegionSelect = document.getElementById("subRegionSelect");
-  const detailAreaContainer = document.getElementById("detailAreaContainer");
+  const gourmetSelect = document.getElementById("gourmetSelect");
 
+  const detailAreaContainer = document.getElementById("detailAreaContainer");
+  const gourmetContainer = document.getElementById("gourmetContainer");
+
+  // ▼ 第1階層: エリア選択
   areaSelect.addEventListener("change", function() {
     const selectedArea = this.value;
-
     regionSelect.innerHTML = '<option value="" disabled selected>地域を選択...</option>';
     subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
-    subRegionSelect.style.display = "none";
+    gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
 
-    const data = getCurrentGourmetData();
+    subRegionSelect.style.display = "none";
+    gourmetContainer.style.display = "none";
+
+    const data = getGourmetData();
     if (selectedArea && data[selectedArea]) {
-      const regions = data[selectedArea];
-      for (const regionKey in regions) {
+      const regionData = data[selectedArea];
+      // 地域を生成
+      for (const regionKey in regionData) {
         const option = document.createElement("option");
         option.value = regionKey;
         option.textContent = regionKey;
@@ -83,56 +144,86 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+  // ▼ 第2階層: 地域選択
   regionSelect.addEventListener("change", function() {
     const selectedArea = areaSelect.value;
     const selectedRegion = this.value;
 
     subRegionSelect.innerHTML = '<option value="" disabled selected>詳細エリアを選択...</option>';
+    gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
     subRegionSelect.style.display = "none";
+    gourmetContainer.style.display = "none";
 
-    const data = getCurrentGourmetData();
+    const data = getGourmetData();
     if (selectedArea && selectedRegion && data[selectedArea][selectedRegion]) {
-      const subRegions = data[selectedArea][selectedRegion];
-      for (const subRegionKey in subRegions) {
+      const subRegionData = data[selectedArea][selectedRegion];
+      for (const subRegionKey in subRegionData) {
         const option = document.createElement("option");
         option.value = subRegionKey;
         option.textContent = subRegionKey;
         subRegionSelect.appendChild(option);
       }
       subRegionSelect.style.display = "block";
-    } else {
-      subRegionSelect.style.display = "none";
     }
   });
 
-  document.getElementById("confirmAreaButton").addEventListener("click", function () {
+  // ▼ 第3階層: 詳細エリア選択
+  subRegionSelect.addEventListener("change", function() {
+    const selectedArea = areaSelect.value;
+    const selectedRegion = regionSelect.value;
+    const selectedSubRegion = this.value;
+
+    gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
+    gourmetContainer.style.display = "none";
+
+    const data = getGourmetData();
+    if (
+      selectedArea &&
+      selectedRegion &&
+      selectedSubRegion &&
+      data[selectedArea][selectedRegion][selectedSubRegion]
+    ) {
+      const gourmetList = data[selectedArea][selectedRegion][selectedSubRegion];
+      gourmetList.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        gourmetSelect.appendChild(option);
+      });
+      gourmetContainer.style.display = "block";
+    }
+  });
+
+  // ▼ 決定ボタン
+  document.getElementById("confirmAreaButton").addEventListener("click", function() {
     const mainArea = areaSelect.value;
     const region = regionSelect.value;
     const subRegion = subRegionSelect.value;
-    if (mainArea && region && subRegion) {
-      alert(`選択されたエリア:\n【エリア】${mainArea}\n【地域】${region}\n【詳細エリア】${subRegion}`);
+    const gourmet = gourmetSelect.value;
+
+    if (mainArea && region && subRegion && gourmet) {
+      alert(`選択されたエリア:\n【エリア】${mainArea}\n【地域】${region}\n【詳細エリア】${subRegion}\n【名物グルメ】${gourmet}`);
     } else {
       alert("全ての項目を選択してください！");
     }
   });
 
-  // ▼ ページロード時に言語を適用
-  const savedLanguage = localStorage.getItem("selectedLanguage") || "ja";
-  applyLanguage(savedLanguage);
+  // ▼ 多言語対応 初期化
+  const savedLang = localStorage.getItem("selectedLanguage") || "ja";
+  applyLanguage(savedLang);
 
-  // ▼ ヘッダーの言語セレクト
   document.getElementById("headerLanguageSelect").addEventListener("change", function() {
-    const selectedLanguage = this.value;
-    localStorage.setItem("selectedLanguage", selectedLanguage);
-    applyLanguage(selectedLanguage);
+    const selLang = this.value;
+    localStorage.setItem("selectedLanguage", selLang);
+    applyLanguage(selLang);
   });
 });
 
 /*************************************************************
- * 4) 多言語切り替え (home.html 用)
+ * 4) 多言語切り替え
  *************************************************************/
 function applyLanguage(language) {
-  currentLanguage = language;
+  currentLanguage = language; 
 
   const translations = {
     ja: {
@@ -147,6 +238,7 @@ function applyLanguage(language) {
       areaPlaceholder: "エリアを選択...",
       regionLabel: "地域を選択:",
       subRegionLabel: "詳細エリアを選択:",
+      gourmetLabel: "名物グルメを選択:",
       confirmButton: "決定",
       reviewButton: "レビュー投稿ページはこちら",
       contactLink: "お問い合わせ",
@@ -170,6 +262,7 @@ function applyLanguage(language) {
       areaPlaceholder: "Select an Area...",
       regionLabel: "Select a Region:",
       subRegionLabel: "Select a Sub-Region:",
+      gourmetLabel: "Select a Gourmet:",
       confirmButton: "Submit",
       reviewButton: "Go to Review Post Page",
       contactLink: "Contact Us",
@@ -183,39 +276,39 @@ function applyLanguage(language) {
     }
   };
 
-  const content = translations[language];
-  if (!content) return;
+  const c = translations[language] || translations.ja;
 
   // ヘッダー
-  document.querySelector(".site-title").textContent = content.siteTitle;
-  document.getElementById("homeLink").querySelector("img").alt = content.homeLink + " Icon";
-  document.getElementById("postLink").querySelector("img").alt = content.postLink + " Icon";
-  document.getElementById("rankingLink").querySelector("img").alt = content.rankingLink + " Icon";
-  document.getElementById("mypageLink").querySelector("img").alt = content.mypageLink + " Icon";
+  document.querySelector(".site-title").textContent = c.siteTitle;
+  document.getElementById("homeLink").textContent = c.homeLink;
+  document.getElementById("postLink").textContent = c.postLink;
+  document.getElementById("rankingLink").textContent = c.rankingLink;
+  document.getElementById("mypageLink").textContent = c.mypageLink;
 
   // メイン文言
-  document.getElementById("areaSelectionTitle").textContent = content.areaSelectionTitle;
-  document.getElementById("areaLabel").textContent = content.areaLabel;
-  document.getElementById("areaSelect").options[0].text = content.areaPlaceholder;
-  document.getElementById("regionLabel").textContent = content.regionLabel;
-  document.getElementById("subRegionLabel").textContent = content.subRegionLabel;
-  document.getElementById("confirmAreaButton").textContent = content.confirmButton;
+  document.getElementById("areaSelectionTitle").textContent = c.areaSelectionTitle;
+  document.getElementById("areaLabel").textContent = c.areaLabel;
+  document.getElementById("areaSelect").options[0].text = c.areaPlaceholder;
+  document.getElementById("regionLabel").textContent = c.regionLabel;
+  document.getElementById("subRegionLabel").textContent = c.subRegionLabel;
 
-  // レビュー投稿リンク
-  document.getElementById("reviewPostButton").textContent = content.reviewButton;
+  // 第4階層: 名物グルメ
+  document.getElementById("gourmetLabel").textContent = c.gourmetLabel;
+  // gourmetSelect の先頭option も変えたいなら:
+  document.getElementById("gourmetSelect").options[0].text = c.gourmetLabel;
+
+  document.getElementById("confirmAreaButton").textContent = c.confirmButton;
+  document.getElementById("reviewPostButton").textContent = c.reviewButton;
 
   // フッター
-  document.getElementById("contactLink").textContent = content.contactLink;
-  document.getElementById("aboutLink").textContent = content.aboutLink;
+  document.getElementById("contactLink").textContent = c.contactLink;
+  document.getElementById("aboutLink").textContent = c.aboutLink;
 
-  // エリア名の翻訳 (東京, 大阪, 京都, 北海道, 福岡)
+  // エリア名翻訳
   const areaSelect = document.getElementById("areaSelect");
-  if (areaSelect) {
-    const areaOptions = areaSelect.options;
-    const areaKeys = ["tokyo", "osaka", "kyoto", "hokkaido", "fukuoka"];
-    for (let i = 1; i < areaOptions.length; i++) {
-      const areaKey = areaKeys[i - 1];
-      areaOptions[i].text = content[areaKey];
-    }
+  const areaOptions = areaSelect.options;
+  const areaKeys = ["tokyo", "osaka", "kyoto", "hokkaido", "fukuoka"];
+  for (let i = 1; i < areaOptions.length; i++) {
+    areaOptions[i].text = c[areaKeys[i - 1]];
   }
 }

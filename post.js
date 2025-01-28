@@ -1,6 +1,5 @@
 /***********************************************************
- * 1) 日本語データ & 英語データ
- *   area -> region -> subRegion (名物グルメも含められる)
+ * 1) 日本語 & 英語データ: 4段階 (エリア→地域→詳細エリア→名物グルメ)
  ***********************************************************/
  const gourmetDataPost_ja = {
   tokyo: {
@@ -10,44 +9,41 @@
       // ...
     },
     "23区外": {
-      "立川": [],
-      "八王子": [],
+      "立川": ["駅弁", "カレーライス", "焼き鳥"],
       // ...
     }
   },
   osaka: {
     "市内エリア": {
-      "梅田": [],
-      "難波": [],
+      "梅田": ["たこ焼き", "お好み焼き", "串カツ"],
       // ...
     }
   },
   kyoto: {
     "市内エリア": {
-      "東山": [],
+      "東山": ["湯豆腐", "京漬物", "八ツ橋"],
       // ...
     },
     "市外エリア": {
-      "宇治": [],
+      "宇治": ["抹茶スイーツ", "宇治茶そば", "抹茶アイス"],
       // ...
     }
   },
   hokkaido: {
     "札幌": {
-      "札幌": []
+      "札幌": ["ジンギスカン", "海鮮丼", "ラーメン"]
     },
     "函館": {
-      "函館山": []
-    },
-    // ...
+      "函館山": ["函館塩ラーメン", "イカ刺し", "海鮮丼"]
+    }
   },
   fukuoka: {
     "市内エリア": {
-      "天神": [],
+      "天神": ["豚骨ラーメン", "明太子", "水炊き"],
       // ...
     },
     "市外エリア": {
-      "北九州": [],
+      "北九州": ["焼きカレー（門司港）", "皿うどん", "ふぐ料理"],
       // ...
     }
   }
@@ -56,48 +52,46 @@
 const gourmetDataPost_en = {
   tokyo: {
     "Inside 23 Wards": {
-      "Shinjuku": [],
-      "Shibuya": [],
+      "Shinjuku": ["Ramen", "Yakiniku", "Sushi"],
+      "Shibuya": ["Crepe", "Parfait", "Bubble Tea"],
       // ...
     },
     "Outside 23 Wards": {
-      "Tachikawa": [],
-      "Hachioji": [],
+      "Tachikawa": ["Ekiben", "Curry Rice", "Yakitori"],
       // ...
     }
   },
   osaka: {
     "City Area": {
-      "Umeda": [],
-      "Namba": [],
+      "Umeda": ["Takoyaki", "Okonomiyaki", "Kushikatsu"],
       // ...
     }
   },
   kyoto: {
     "City Area": {
-      "Higashiyama": [],
+      "Higashiyama": ["Yudofu", "Kyotsukemono", "Yatsuhashi"],
       // ...
     },
     "Outside City": {
-      "Uji": [],
+      "Uji": ["Matcha Sweets", "Ujicha Soba", "Matcha Ice Cream"],
       // ...
     }
   },
   hokkaido: {
     "Sapporo": {
-      "Sapporo": []
+      "Sapporo": ["Genghis Khan", "Kaisen-don", "Ramen"]
     },
     "Hakodate": {
-      "Mt.Hakodate": []
+      "Mt.Hakodate": ["Hakodate Shio Ramen", "Sliced Squid", "Kaisen-don"]
     }
   },
   fukuoka: {
     "City Area": {
-      "Tenjin": [],
+      "Tenjin": ["Tonkotsu Ramen", "Mentaiko", "Mizutaki"],
       // ...
     },
     "Outside City": {
-      "Kitakyushu": [],
+      "Kitakyushu": ["Yaki Curry (Moji)", "Sara Udon", "Fugu Cuisine"],
       // ...
     }
   }
@@ -106,34 +100,37 @@ const gourmetDataPost_en = {
 /***********************************************************
  * 2) 言語フラグ & データ取得関数
  ***********************************************************/
-let currentLanguagePost = "ja";
+let currentLangPost = "ja";
 
-function getPostGourmetData() {
-  return currentLanguagePost === "en" ? gourmetDataPost_en : gourmetDataPost_ja;
+function getPostData() {
+  return currentLangPost === "en" ? gourmetDataPost_en : gourmetDataPost_ja;
 }
 
 /***********************************************************
- * 3) エリア→地域→詳細エリア
+ * 3) DOMContentLoaded
  ***********************************************************/
 document.addEventListener("DOMContentLoaded", function() {
   const postAreaSelect = document.getElementById("postAreaSelect");
   const postRegionSelect = document.getElementById("postRegionSelect");
   const postSubRegionSelect = document.getElementById("postSubRegionSelect");
+  const gourmetSelect = document.getElementById("gourmetSelect");
 
   const postRegionContainer = document.getElementById("postRegionContainer");
   const postSubRegionContainer = document.getElementById("postSubRegionContainer");
+  const gourmetContainer = document.getElementById("gourmetContainer");
 
-  // ▼ エリア選択
+  // ▼ 第1階層: エリア
   postAreaSelect.addEventListener("change", function() {
-    const selectedArea = this.value;
-
-    // 初期化
     postRegionContainer.style.display = "none";
     postSubRegionContainer.style.display = "none";
+    gourmetContainer.style.display = "none";
+
     postRegionSelect.innerHTML = '<option value="" disabled selected>選択してください</option>';
     postSubRegionSelect.innerHTML = '<option value="" disabled selected>選択してください</option>';
+    gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
 
-    const data = getPostGourmetData();
+    const selectedArea = this.value;
+    const data = getPostData();
     if (selectedArea && data[selectedArea]) {
       const regionData = data[selectedArea];
       for (const regionKey in regionData) {
@@ -146,15 +143,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // ▼ 地域選択
+  // ▼ 第2階層: 地域
   postRegionSelect.addEventListener("change", function() {
+    postSubRegionContainer.style.display = "none";
+    gourmetContainer.style.display = "none";
+
+    postSubRegionSelect.innerHTML = '<option value="" disabled selected>選択してください</option>';
+    gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
+
     const selectedArea = postAreaSelect.value;
     const selectedRegion = this.value;
-
-    postSubRegionContainer.style.display = "none";
-    postSubRegionSelect.innerHTML = '<option value="" disabled selected>選択してください</option>';
-
-    const data = getPostGourmetData();
+    const data = getPostData();
     if (selectedArea && selectedRegion && data[selectedArea][selectedRegion]) {
       const subRegionData = data[selectedArea][selectedRegion];
       for (const subRegionKey in subRegionData) {
@@ -164,6 +163,28 @@ document.addEventListener("DOMContentLoaded", function() {
         postSubRegionSelect.appendChild(option);
       }
       postSubRegionContainer.style.display = "block";
+    }
+  });
+
+  // ▼ 第3階層: 詳細エリア
+  postSubRegionSelect.addEventListener("change", function() {
+    gourmetContainer.style.display = "none";
+    gourmetSelect.innerHTML = '<option value="" disabled selected>名物グルメを選択...</option>';
+
+    const selectedArea = postAreaSelect.value;
+    const selectedRegion = postRegionSelect.value;
+    const selectedSubRegion = this.value;
+
+    const data = getPostData();
+    if (selectedArea && selectedRegion && selectedSubRegion && data[selectedArea][selectedRegion][selectedSubRegion]) {
+      const gourmetList = data[selectedArea][selectedRegion][selectedSubRegion];
+      gourmetList.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        gourmetSelect.appendChild(option);
+      });
+      gourmetContainer.style.display = "block";
     }
   });
 
@@ -178,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const area = postAreaSelect.value;
     const region = postRegionSelect.value;
     const subRegion = postSubRegionSelect.value;
+    const gourmet = gourmetSelect.value;
 
     const storeName = document.getElementById("storeNameInput").value.trim();
     const placeId = document.getElementById("googlePlaceId").value;
@@ -189,8 +211,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const comment = document.getElementById("comment").value.trim();
     const photoFile = document.getElementById("photo").files[0];
 
-    if (!area || !region || !subRegion) {
-      alert("エリア・地域・詳細エリアを選択してください。");
+    if (!area || !region || !subRegion || !gourmet) {
+      alert("エリア・地域・詳細エリア・名物グルメを全て選択してください。");
       return;
     }
     if (!storeName || !address || !recommendMenu || !comment) {
@@ -202,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function() {
       area,
       region,
       subRegion,
+      gourmet,
       storeName,
       placeId,
       address,
@@ -217,20 +240,19 @@ document.addEventListener("DOMContentLoaded", function() {
     reviewForm.reset();
   });
 
-  // ▼ ページロード時に言語適用
+  // ▼ 言語適用
   const savedLang = localStorage.getItem("selectedLanguage") || "ja";
   applyLanguageForPost(savedLang);
 
-  // ▼ ヘッダーの言語セレクト
   document.getElementById("headerLanguageSelect").addEventListener("change", function() {
-    const selectedLanguage = this.value;
-    localStorage.setItem("selectedLanguage", selectedLanguage);
-    applyLanguageForPost(selectedLanguage);
+    const sel = this.value;
+    localStorage.setItem("selectedLanguage", sel);
+    applyLanguageForPost(sel);
   });
 });
 
 /***********************************************************
- * 4) Google Places Autocomplete
+ * Google Places Autocomplete
  ***********************************************************/
 function initAutocomplete() {
   const storeNameInput = document.getElementById("storeNameInput");
@@ -252,8 +274,7 @@ function initAutocomplete() {
     if (place.name) {
       storeNameInput.value = place.name;
     }
-
-    // 住所 (編集可フィールド)
+    // 住所
     const addressInput = document.getElementById("addressInput");
     if (addressInput && place.formatted_address) {
       addressInput.value = place.formatted_address;
@@ -262,10 +283,10 @@ function initAutocomplete() {
 }
 
 /***********************************************************
- * 5) 多言語切り替え (post.html 用)
+ * 多言語切り替え
  ***********************************************************/
 function applyLanguageForPost(language) {
-  currentLanguagePost = language;
+  currentLangPost = language;
 
   const translations = {
     ja: {
@@ -280,6 +301,7 @@ function applyLanguageForPost(language) {
       postAreaLabel: "エリアを選択:",
       postRegionLabel: "地域を選択:",
       postSubRegionLabel: "詳細エリアを選択:",
+      gourmetLabel: "名物グルメを選択:",
 
       storeNameLabel: "店舗名 (オートコンプリート)",
       addressLabel: "住所 (編集可)",
@@ -303,6 +325,7 @@ function applyLanguageForPost(language) {
       postAreaLabel: "Select an Area:",
       postRegionLabel: "Select a Region:",
       postSubRegionLabel: "Select a Sub-Region:",
+      gourmetLabel: "Select a Gourmet:",
 
       storeNameLabel: "Store Name (Autocomplete)",
       addressLabel: "Address (Editable)",
@@ -316,15 +339,14 @@ function applyLanguageForPost(language) {
     }
   };
 
-  const c = translations[language];
-  if (!c) return;
+  const c = translations[language] || translations.ja;
 
   // ヘッダー
   document.querySelector(".site-title").textContent = c.siteTitle;
-  document.getElementById("homeLink").querySelector("img").alt = c.homeLink + " Icon";
-  document.getElementById("postLink").querySelector("img").alt = c.postLink + " Icon";
-  document.getElementById("rankingLink").querySelector("img").alt = c.rankingLink + " Icon";
-  document.getElementById("mypageLink").querySelector("img").alt = c.mypageLink + " Icon";
+  document.getElementById("homeLink").textContent = c.homeLink;
+  document.getElementById("postLink").textContent = c.postLink;
+  document.getElementById("rankingLink").textContent = c.rankingLink;
+  document.getElementById("mypageLink").textContent = c.mypageLink;
 
   // タイトル
   document.getElementById("reviewPostTitle").textContent = c.reviewPostTitle;
@@ -333,6 +355,8 @@ function applyLanguageForPost(language) {
   document.getElementById("postAreaLabel").textContent = c.postAreaLabel;
   document.getElementById("postRegionLabel").textContent = c.postRegionLabel;
   document.getElementById("postSubRegionLabel").textContent = c.postSubRegionLabel;
+  document.getElementById("gourmetLabel").textContent = c.gourmetLabel;
+  document.getElementById("gourmetSelect").options[0].text = c.gourmetLabel;
 
   // フォームラベル
   document.getElementById("storeNameLabel").textContent = c.storeNameLabel;
