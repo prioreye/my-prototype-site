@@ -1,4 +1,6 @@
-/* 全体設定 */
+/* ---------------------------------------
+  全体設定
+---------------------------------------- */
 body {
   font-family: 'Roboto', 'Noto Sans JP', sans-serif;
   line-height: 1.6;
@@ -14,14 +16,16 @@ body {
   padding: 0 15px;
 }
 
-/* ヘッダー */
+/* ---------------------------------------
+  ヘッダー
+---------------------------------------- */
 .site-header {
   background-color: #005a9e;
   color: #fff;
   padding: 20px 0;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: sticky;       /* スクロール時に固定 */
   top: 0;
   z-index: 1000;
 }
@@ -33,6 +37,7 @@ body {
   letter-spacing: 1px;
 }
 
+/* ヘッダー内のナビゲーション */
 .navigation ul {
   list-style: none;
   padding: 0;
@@ -40,6 +45,10 @@ body {
   display: flex;
   justify-content: center;
   gap: 20px;
+
+  /* スマホで折り返さずに1行で表示＆スクロール */
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .navigation ul li a {
@@ -49,6 +58,7 @@ body {
   padding: 8px 15px;
   border-radius: 5px;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap; /* 文字折り返し防止 */
 }
 
 .navigation ul li a:hover {
@@ -56,25 +66,31 @@ body {
   transform: scale(1.05);
 }
 
-/* メインセクション */
+/* ---------------------------------------
+  メインセクション
+---------------------------------------- */
 .site-main {
   padding: 30px 15px;
 }
 
+/* ホーム画面エリア選択 */
 .area-selection {
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* 全体の枠 */
+/* ---------------------------------------
+  ドロップダウン: 4段階 
+---------------------------------------- */
+/* 4段階の全体コンテナ */
 .area-dropdown {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* 中央揃え */
   margin-top: 20px;
 }
 
-/* 各階層 (ラベル+select) をまとめて中央揃え */
+/* ラベル+セレクトを縦並び中央に */
 .dropdown-row {
   display: flex;
   flex-direction: column;
@@ -87,22 +103,26 @@ body {
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
-  text-align: center; /* 中央寄せ */
+  text-align: center;
 }
 
-/* ドロップダウンの共通スタイル */
+/* ドロップダウン共通スタイル */
 .area-dropdown select,
 .dropdown-row select {
   width: 250px;
   padding: 10px;
   font-size: 1rem;
+
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   outline: none;
   appearance: none;
+
+  /* ▼ 下矢印アイコンを背景画像で */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="5,7 15,7 10,12" style="fill:%23cccccc"/></svg>');
   background-repeat: no-repeat;
   background-position: right 10px center;
@@ -142,7 +162,7 @@ body {
   transform: scale(0.98);
 }
 
-/* エリア選択とレビュー遷移の区切り */
+/* 区切り線 */
 .section-divider {
   margin: 30px auto;
   width: 80%;
@@ -150,7 +170,9 @@ body {
   background-color: #ddd;
 }
 
-/* レビュー投稿 */
+/* ---------------------------------------
+  レビュー投稿リンク
+---------------------------------------- */
 .review-post {
   text-align: center;
   margin-top: 30px;
@@ -179,7 +201,9 @@ body {
   transform: scale(0.98);
 }
 
-/* フッター */
+/* ---------------------------------------
+  フッター
+---------------------------------------- */
 .site-footer {
   background-color: #333;
   color: #fff;
@@ -188,6 +212,7 @@ body {
   font-size: 0.9em;
 }
 
+/* ヘッダー右上の言語切替 */
 #headerLanguageSelect {
   padding: 8px;
   border-radius: 5px;
@@ -197,7 +222,9 @@ body {
   margin-left: 20px;
 }
 
-/* 投稿フォーム全体のレイアウト */
+/* ---------------------------------------
+  投稿フォーム
+---------------------------------------- */
 .post-section {
   margin: 40px auto;
   background-color: #fff;
@@ -232,7 +259,7 @@ body {
   color: #333;
 }
 
-/* 必須項目のマーク */
+/* 必須項目 */
 .required {
   color: red;
   margin-left: 5px;
@@ -255,7 +282,7 @@ body {
   padding: 5px;
 }
 
-/* フォーカス時のスタイル */
+/* フォーカス時 */
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: #0078d7;
@@ -264,7 +291,7 @@ body {
 
 /* テキストエリア */
 .form-group textarea {
-  resize: vertical; /* 高さを自由に変更可能 */
+  resize: vertical; /* 高さを自由に変更可 */
 }
 
 /* 送信ボタン */
