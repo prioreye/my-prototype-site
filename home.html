@@ -14,7 +14,6 @@
             <h1 class="site-title">My Best Gourmet</h1>
             <nav class="navigation">
                 <ul>
-                    <!-- 文字表示に戻す -->
                     <li><a href="home.html" id="homeLink">ホーム</a></li>
                     <li><a href="post.html" id="postLink">投稿</a></li>
                     <li><a href="ranking.html" id="rankingLink">ランキング</a></li>
@@ -31,39 +30,49 @@
 
     <!-- メインコンテンツ -->
     <main class="site-main">
-        <!-- 閲覧者向け部分 -->
+        <!-- 観光客向け部分 -->
         <section class="area-selection">
             <h2 id="areaSelectionTitle">旅行先を選ぼう！</h2>
+
             <div class="area-dropdown">
-                <label for="areaSelect" id="areaLabel">エリアを選択:</label>
-                <select id="areaSelect">
+                <!-- ▼ 第1階層: エリア -->
+                <div class="dropdown-row">
+                  <label for="areaSelect" id="areaLabel">エリアを選択:</label>
+                  <select id="areaSelect">
                     <option value="" disabled selected id="areaPlaceholder">エリアを選択...</option>
-                    <option value="tokyo" id="tokyoOption">東京</option>
-                    <option value="osaka" id="osakaOption">大阪</option>
-                    <option value="kyoto" id="kyotoOption">京都</option>
-                    <option value="hokkaido" id="hokkaidoOption">北海道</option>
-                    <option value="fukuoka" id="fukuokaOption">福岡</option>
-                </select>
-            </div>
-
-            <div id="detailAreaContainer" class="area-dropdown" style="display: none;">
-                <!-- 第2階層: 地域 -->
-                <label for="regionSelect" id="regionLabel">地域を選択:</label>
-                <select id="regionSelect"></select>
-
-                <!-- 第3階層: 詳細エリア -->
-                <label for="subRegionSelect" id="subRegionLabel">詳細エリアを選択:</label>
-                <select id="subRegionSelect" style="display: none;"></select>
-
-                <!-- 第4階層: 名物グルメ -->
-                <div id="gourmetContainer" style="display: none;">
-                  <label for="gourmetSelect" id="gourmetLabel">名物グルメを選択:</label>
-                  <select id="gourmetSelect">
-                    <option value="" disabled selected>名物グルメを選択...</option>
+                    <option value="tokyo">東京</option>
+                    <option value="osaka">大阪</option>
+                    <option value="kyoto">京都</option>
+                    <option value="hokkaido">北海道</option>
+                    <option value="fukuoka">福岡</option>
                   </select>
                 </div>
 
-                <button id="confirmAreaButton">決定</button>
+                <!-- ▼ detailAreaContainer全体をさらにdropdown-row風にまとめる -->
+                <div id="detailAreaContainer" style="display: none; flex-direction: column;">
+                  <!-- 第2階層: 地域 -->
+                  <div class="dropdown-row">
+                    <label for="regionSelect" id="regionLabel">地域を選択:</label>
+                    <select id="regionSelect"></select>
+                  </div>
+
+                  <!-- 第3階層: 詳細エリア -->
+                  <div class="dropdown-row">
+                    <label for="subRegionSelect" id="subRegionLabel">詳細エリアを選択:</label>
+                    <select id="subRegionSelect" style="display: none;"></select>
+                  </div>
+
+                  <!-- 第4階層: 名物グルメ -->
+                  <div class="dropdown-row" id="gourmetContainer" style="display: none;">
+                    <label for="gourmetSelect" id="gourmetLabel">名物グルメを選択:</label>
+                    <select id="gourmetSelect">
+                      <option value="" disabled selected>名物グルメを選択...</option>
+                    </select>
+                  </div>
+
+                  <!-- 決定ボタン -->
+                  <button id="confirmAreaButton">決定</button>
+                </div>
             </div>
         </section>
 

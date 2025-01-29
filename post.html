@@ -28,7 +28,6 @@
           <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
         </ul>
       </nav>
-      <!-- 言語切替セレクター -->
       <select id="headerLanguageSelect">
         <option value="ja">日本語</option>
         <option value="en">English</option>
@@ -41,9 +40,9 @@
     <section class="post-section container">
       <h2 class="page-title" id="reviewPostTitle">レビュー投稿</h2>
 
-      <!-- ▼ エリア -> 地域 -> 詳細エリア -> 名物グルメ -->
-      <div id="postAreaContainer">
-        <!-- 第1階層 -->
+      <!-- ▼ エリア -> 地域 -> 詳細エリア -> 名物グルメ (4段階) -->
+      <div class="area-dropdown">
+        <!-- 第1階層: エリア -->
         <div class="dropdown-row">
           <label for="postAreaSelect" id="postAreaLabel">エリアを選択:</label>
           <select id="postAreaSelect">
@@ -81,7 +80,7 @@
         </div>
       </div>
 
-      <!-- ▼ 店舗情報フォーム -->
+      <!-- ▼ 投稿フォーム -->
       <form id="postReviewForm" class="review-form" style="margin-top:30px;">
         <div class="form-group">
           <label for="storeNameInput" id="storeNameLabel">店舗名 (オートコンプリート) <span class="required">*</span></label>

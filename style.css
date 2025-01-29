@@ -1,6 +1,4 @@
-/* ---------------------------------------
-  全体設定
----------------------------------------- */
+/* 全体設定 */
 body {
   font-family: 'Roboto', 'Noto Sans JP', sans-serif;
   line-height: 1.6;
@@ -16,16 +14,14 @@ body {
   padding: 0 15px;
 }
 
-/* ---------------------------------------
-  ヘッダー
----------------------------------------- */
+/* ヘッダー */
 .site-header {
   background-color: #005a9e;
   color: #fff;
   padding: 20px 0;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;       /* スクロール時に固定 */
+  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -37,18 +33,16 @@ body {
   letter-spacing: 1px;
 }
 
-/* ヘッダー内のナビゲーション */
+/* ナビ部分: 左右が切れないよう paddingを追加 */
 .navigation ul {
   list-style: none;
-  padding: 0;
+  padding: 0 10px;           /* 横に10pxずつ余白 */
   margin: 15px 0;
   display: flex;
   justify-content: center;
   gap: 20px;
-
-  /* スマホで折り返さずに1行で表示＆スクロール */
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: nowrap;         /* 折り返さず一行 */
+  overflow-x: auto;          /* 横スクロール可 */
 }
 
 .navigation ul li a {
@@ -58,7 +52,7 @@ body {
   padding: 8px 15px;
   border-radius: 5px;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  white-space: nowrap; /* 文字折り返し防止 */
+  white-space: nowrap;       /* 折り返し防止 */
 }
 
 .navigation ul li a:hover {
@@ -66,31 +60,25 @@ body {
   transform: scale(1.05);
 }
 
-/* ---------------------------------------
-  メインセクション
----------------------------------------- */
+/* メイン */
 .site-main {
   padding: 30px 15px;
 }
 
-/* ホーム画面エリア選択 */
 .area-selection {
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* ---------------------------------------
-  ドロップダウン: 4段階 
----------------------------------------- */
-/* 4段階の全体コンテナ */
+/* 4段階ドロップダウン */
+/* 観光客向け( home.html ) と 投稿者向け( post.html ) で共通 */
 .area-dropdown {
   display: flex;
   flex-direction: column;
-  align-items: center; /* 中央揃え */
+  align-items: center;  /* 中央揃え */
   margin-top: 20px;
 }
 
-/* ラベル+セレクトを縦並び中央に */
 .dropdown-row {
   display: flex;
   flex-direction: column;
@@ -112,17 +100,14 @@ body {
   width: 250px;
   padding: 10px;
   font-size: 1rem;
-
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   outline: none;
   appearance: none;
 
-  /* ▼ 下矢印アイコンを背景画像で */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="5,7 15,7 10,12" style="fill:%23cccccc"/></svg>');
   background-repeat: no-repeat;
   background-position: right 10px center;
@@ -162,7 +147,7 @@ body {
   transform: scale(0.98);
 }
 
-/* 区切り線 */
+/* 観光客向けと投稿画面の区切り線 */
 .section-divider {
   margin: 30px auto;
   width: 80%;
@@ -170,9 +155,7 @@ body {
   background-color: #ddd;
 }
 
-/* ---------------------------------------
-  レビュー投稿リンク
----------------------------------------- */
+/* レビュー投稿 (home.html) */
 .review-post {
   text-align: center;
   margin-top: 30px;
@@ -201,9 +184,7 @@ body {
   transform: scale(0.98);
 }
 
-/* ---------------------------------------
-  フッター
----------------------------------------- */
+/* フッター */
 .site-footer {
   background-color: #333;
   color: #fff;
@@ -212,7 +193,6 @@ body {
   font-size: 0.9em;
 }
 
-/* ヘッダー右上の言語切替 */
 #headerLanguageSelect {
   padding: 8px;
   border-radius: 5px;
@@ -222,9 +202,7 @@ body {
   margin-left: 20px;
 }
 
-/* ---------------------------------------
-  投稿フォーム
----------------------------------------- */
+/* 投稿フォーム全体 (post.html) */
 .post-section {
   margin: 40px auto;
   background-color: #fff;
@@ -232,40 +210,34 @@ body {
   padding: 20px;
 }
 
-/* フォームタイトル */
 .page-title {
   font-size: 1.5em;
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* フォーム本体 */
 .review-form {
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* フォームグループ */
 .form-group {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
 
-/* ラベル */
 .form-group label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333;
 }
 
-/* 必須項目 */
 .required {
   color: red;
   margin-left: 5px;
 }
 
-/* テキスト・ファイル入力 */
 .form-group input[type="text"],
 .form-group input[type="file"],
 .form-group textarea {
@@ -282,19 +254,16 @@ body {
   padding: 5px;
 }
 
-/* フォーカス時 */
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: #0078d7;
   box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.2);
 }
 
-/* テキストエリア */
 .form-group textarea {
-  resize: vertical; /* 高さを自由に変更可 */
+  resize: vertical;
 }
 
-/* 送信ボタン */
 .btn-submit {
   width: 100%;
   padding: 12px;
