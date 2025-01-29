@@ -299,10 +299,10 @@ function applyLanguage(language) {
   const translations = {
     ja: {
       siteTitle: "My Best Gourmet",
-      homeLink: "ホーム",
-      postLink: "投稿",
-      rankingLink: "ランキング",
-      mypageLink: "マイページ",
+      homeLink: "Home",
+      postLink: "Post",
+      rankingLink: "Ranking",
+      mypageLink: "My Page",
 
       areaSelectionTitle: "旅行先を選ぼう！",
       areaLabel: "エリアを選択:",

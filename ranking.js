@@ -16,10 +16,10 @@ function applyRankingLanguage(lang) {
   const translations = {
     ja: {
       siteTitle: "My Best Gourmet",
-      homeLink: "ホーム",
-      postLink: "投稿",
-      rankingLink: "ランキング",
-      mypageLink: "マイページ",
+      homeLink: "Home",
+      postLink: "Post",
+      rankingLink: "Ranking",
+      mypageLink: "My Page",
 
       rankingTitle: "人気ランキング",
       rankingMessage: "ただいま準備中です...",

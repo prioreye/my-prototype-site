@@ -364,10 +364,10 @@ function applyLanguageForPost(language) {
   const translations = {
     ja: {
       siteTitle: "My Best Gourmet",
-      homeLink: "ホーム",
-      postLink: "投稿",
-      rankingLink: "ランキング",
-      mypageLink: "マイページ",
+      homeLink: "Home",
+      postLink: "Post",
+      rankingLink: "Ranking",
+      mypageLink: "My page",
 
       reviewPostTitle: "レビュー投稿",
 
