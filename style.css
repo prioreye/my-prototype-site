@@ -284,3 +284,23 @@ body {
 .btn-submit:active {
   transform: scale(0.98);
 }
+
+/* ランキングページ用のデザイン */
+.ranking-section {
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.ranking-section .page-title {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.ranking-content p {
+  font-size: 1.2em;
+  color: #666;
+  margin: 40px 0;
+}
