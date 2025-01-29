@@ -1,35 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロトタイプ - マイページ</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Best Gourmet - マイページ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    <header>
-        <h1>マイページ</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">ホーム</a></li>
-                <li><a href="post.html">投稿</a></li>
-                <li><a href="ranking.html">ランキング</a></li>
-                <li><a href="mypage.html">マイページ</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>マイページ</h2>
-        <p>ここでは投稿履歴を確認できます。</p>
-        <div>
-            <button id="sortNewest">最新順</button>
-            <button id="sortOldest">古い順</button>
+  <!-- ヘッダー (共通) -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">My Best Gourmet</h1>
+      <nav class="navigation">
+        <ul>
+          <li><a href="home.html" id="homeLink">ホーム</a></li>
+          <li><a href="post.html" id="postLink">投稿</a></li>
+          <li><a href="ranking.html" id="rankingLink">ランキング</a></li>
+          <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
+        </ul>
+      </nav>
+      <!-- 言語切替セレクター -->
+      <select id="headerLanguageSelect">
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- メイン -->
+  <main class="site-main">
+    <section class="mypage-section container">
+      <h2 class="page-title" id="mypageTitle">マイページ</h2>
+
+      <!-- 1) ユーザー情報 表示・編集 -->
+      <div class="mypage-block" id="userInfoBlock">
+        <h3 id="userInfoTitle">ユーザー情報</h3>
+        <!-- 擬似的なUI -->
+        <div class="user-info">
+          <p><strong id="userNameLabel">ユーザー名:</strong> <span id="userNameValue">山田 太郎</span></p>
+          <p><strong id="emailLabel">メールアドレス:</strong> <span id="emailValue">taro@example.com</span></p>
         </div>
-        <div id="reviewHistory"></div>
-    </main>
-    <footer>
-        <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
-    </footer>
-    <script src="mypage.js"></script>
+        <!-- パスワード再設定 (UIのみ) -->
+        <div class="password-reset">
+          <label for="passwordInput" id="passwordLabel">パスワード再設定:</label>
+          <input type="password" id="passwordInput" placeholder="********" />
+          <button id="btnUpdatePassword">更新</button>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- 2) 投稿履歴・管理 -->
+      <div class="mypage-block" id="postHistoryBlock">
+        <h3 id="postHistoryTitle">投稿履歴</h3>
+        <!-- 例: 投稿リスト (UIのみ) -->
+        <ul id="postHistoryList">
+          <li>
+            <span class="post-date">2023/01/10</span>
+            <span class="post-content">新宿でラーメンを投稿しました</span>
+            <button class="btn-edit">編集</button>
+            <button class="btn-delete">削除</button>
+          </li>
+          <li>
+            <span class="post-date">2022/12/28</span>
+            <span class="post-content">渋谷でクレープを投稿しました</span>
+            <button class="btn-edit">編集</button>
+            <button class="btn-delete">削除</button>
+          </li>
+        </ul>
+        <!-- ソートUI (UIのみ) -->
+        <div class="sort-ui">
+          <label id="sortLabel" for="sortSelect">並び替え:</label>
+          <select id="sortSelect">
+            <option value="dateDesc">投稿日時 新しい順</option>
+            <option value="dateAsc">投稿日時 古い順</option>
+          </select>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- 3) お気に入り (ブックマーク) -->
+      <div class="mypage-block" id="favoriteBlock">
+        <h3 id="favoriteTitle">お気に入り店舗</h3>
+        <!-- UIのみ: 例として静的に表示 -->
+        <ul id="favoriteList">
+          <li>渋谷のパフェ</li>
+          <li>梅田のたこ焼き</li>
+        </ul>
+      </div>
+
+      <hr />
+
+      <!-- 4) サブスク・課金状態 -->
+      <div class="mypage-block" id="subscriptionBlock">
+        <h3 id="subscriptionTitle">サブスク状況</h3>
+        <p id="subscriptionStatus">1週間プラン (2023/01/01 ～ 2023/01/08)</p>
+        <button id="btnUpdatePlan">プラン更新</button>
+        <button id="btnCancelPlan">解約</button>
+      </div>
+
+      <hr />
+
+      <!-- 5) 通知・メッセージ -->
+      <div class="mypage-block" id="notificationBlock">
+        <h3 id="notificationTitle">お知らせ</h3>
+        <ul id="notificationList">
+          <li>2023/01/10 サイトメンテナンスのお知らせ</li>
+          <li>2023/01/05 新機能「ブックマーク」を追加</li>
+        </ul>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <a href="#" id="contactLink">お問い合わせ</a> |
+        <a href="#" id="aboutLink">サイトについて</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="mypage.js"></script>
 </body>
 </html>
