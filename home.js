@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   applyLanguageHome(savedLang);
 
   document.getElementById("headerLanguageSelect").addEventListener("change", function() {
-    localStorage.setItem("selectedLanguage", this.value);
-    applyLanguageHome(this.value);
+    const selectedLang = this.value;
+    localStorage.setItem("selectedLanguage", selectedLang);
+    applyLanguageHome(selectedLang);
   });
 });
 
@@ -38,21 +39,21 @@ function applyLanguageHome(language) {
     }
   };
 
-  const t = translations[language] || translations.ja;
+  const c = translations[language] || translations.ja;
 
   // ヘッダー
-  document.querySelector(".site-title").textContent = t.siteTitle;
-  document.getElementById("homeLink").textContent = t.homeLink;
-  document.getElementById("postLink").textContent = t.postLink;
-  document.getElementById("rankingLink").textContent = t.rankingLink;
-  document.getElementById("mypageLink").textContent = t.mypageLink;
+  document.querySelector(".site-title").textContent = c.siteTitle;
+  document.getElementById("homeLink").textContent = c.homeLink;
+  document.getElementById("postLink").textContent = c.postLink;
+  document.getElementById("rankingLink").textContent = c.rankingLink;
+  document.getElementById("mypageLink").textContent = c.mypageLink;
 
-  // メイン文言 (ホームタイトル、ボタン)
-  document.getElementById("homeTitle").textContent = t.homeTitle;
-  document.getElementById("goToPostButton").textContent = t.goToPostButton;
-  document.getElementById("goToRankingButton").textContent = t.goToRankingButton;
+  // メイン文言
+  document.getElementById("homeTitle").textContent = c.homeTitle;
+  document.getElementById("goToPostButton").textContent = c.goToPostButton;
+  document.getElementById("goToRankingButton").textContent = c.goToRankingButton;
 
   // フッター
-  document.getElementById("contactLink").textContent = t.contactLink;
-  document.getElementById("aboutLink").textContent = t.aboutLink;
+  document.getElementById("contactLink").textContent = c.contactLink;
+  document.getElementById("aboutLink").textContent = c.aboutLink;
 }
