@@ -34,7 +34,7 @@
   <main class="site-main">
     <section class="ranking-section container">
       <h2 class="page-title" id="rankingTitle">名物グルメランキング</h2>
-      
+
       <!-- 4段階のUI -->
       <div class="area-dropdown">
         <!-- エリア -->
@@ -53,7 +53,9 @@
         <!-- 地域 -->
         <div class="dropdown-row" id="regionContainer" style="display:none;">
           <label for="regionSelect" id="rankingRegionLabel">地域を選択:</label>
-          <select id="regionSelect"></select>
+          <select id="regionSelect">
+            <option value="" disabled selected>選択してください</option>
+          </select>
         </div>
 
         <!-- 詳細エリア -->
@@ -84,7 +86,10 @@
   <!-- フッター -->
   <footer class="site-footer">
     <div class="container">
-      <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
+      <p>
+        <a href="#" id="contactLink">お問い合わせ</a> |
+        <a href="#" id="aboutLink">サイトについて</a>
+      </p>
     </div>
   </footer>
 
