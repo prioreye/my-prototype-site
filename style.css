@@ -155,7 +155,7 @@ body {
   background-color: #ddd;
 }
 
-　/* ボタン共通スタイル (使い回し) */
+/* ボタン共通スタイル (使い回し) */
  .btn-review {
    display: inline-block;
    padding: 12px 24px;
