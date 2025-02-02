@@ -23,6 +23,7 @@
           <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
         </ul>
       </nav>
+      <!-- 言語切り替えセレクター -->
       <select id="headerLanguageSelect">
         <option value="ja">日本語</option>
         <option value="en">English</option>
@@ -35,12 +36,12 @@
     <section class="ranking-section container">
       <h2 class="page-title" id="rankingTitle">名物グルメランキング</h2>
 
-      <!-- 4段階のUI -->
+      <!-- ▼ エリア->地域->詳細エリア->名物グルメ (4段階) -->
       <div class="area-dropdown">
-        <!-- エリア -->
+        <!-- 第1階層: エリア -->
         <div class="dropdown-row">
-          <label for="areaSelect" id="rankingAreaLabel">エリアを選択:</label>
-          <select id="areaSelect">
+          <label for="rankingAreaSelect" id="rankingAreaLabel">エリアを選択:</label>
+          <select id="rankingAreaSelect">
             <option value="" disabled selected>選択してください</option>
             <option value="tokyo">東京</option>
             <option value="osaka">大阪</option>
@@ -50,36 +51,36 @@
           </select>
         </div>
 
-        <!-- 地域 -->
-        <div class="dropdown-row" id="regionContainer" style="display:none;">
-          <label for="regionSelect" id="rankingRegionLabel">地域を選択:</label>
-          <select id="regionSelect">
+        <!-- 第2階層: 地域 -->
+        <div class="dropdown-row" id="rankingRegionContainer" style="display:none;">
+          <label for="rankingRegionSelect" id="rankingRegionLabel">地域を選択:</label>
+          <select id="rankingRegionSelect">
             <option value="" disabled selected>選択してください</option>
           </select>
         </div>
 
-        <!-- 詳細エリア -->
-        <div class="dropdown-row" id="subRegionContainer" style="display:none;">
-          <label for="subRegionSelect" id="rankingSubRegionLabel">詳細エリアを選択:</label>
-          <select id="subRegionSelect" style="display:none;"></select>
-        </div>
-
-        <!-- 名物グルメ -->
-        <div class="dropdown-row" id="gourmetContainer" style="display:none;">
-          <label for="gourmetSelect" id="rankingGourmetLabel">名物グルメを選択:</label>
-          <select id="gourmetSelect">
-            <option value="" disabled selected>名物グルメを選択...</option>
+        <!-- 第3階層: 詳細エリア -->
+        <div class="dropdown-row" id="rankingSubRegionContainer" style="display:none;">
+          <label for="rankingSubRegionSelect" id="rankingSubRegionLabel">詳細エリアを選択:</label>
+          <select id="rankingSubRegionSelect">
+            <option value="" disabled selected>選択してください</option>
           </select>
         </div>
 
-        <!-- 決定ボタン -->
-        <button id="btnShowRanking">決定</button>
+        <!-- 第4階層: 名物グルメ -->
+        <div class="dropdown-row" id="rankingGourmetContainer" style="display:none;">
+          <label for="rankingGourmetSelect" id="rankingGourmetLabel">名物グルメを選択:</label>
+          <select id="rankingGourmetSelect">
+            <option value="" disabled selected>名物グルメを選択...</option>
+          </select>
+        </div>
       </div>
 
-      <!-- モックのランキング表示 (将来的に実装) -->
-      <div id="rankingResult" style="margin-top:30px;">
-        <!-- 決定ボタン押下で alert() だけ出す(今はモック) -->
-      </div>
+      <!-- 決定ボタン: ランキング表示 (モック) -->
+      <button id="btnShowRanking">決定</button>
+
+      <!-- ランキング結果表示 (将来的に実装) -->
+      <div id="rankingResult" style="margin-top:30px;"></div>
     </section>
   </main>
 
