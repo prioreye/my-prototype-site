@@ -191,7 +191,7 @@ function applyRankingLanguage(lang) {
   currentRankingLang = lang;
   const translations = {
     ja: {
-      siteTitle: "My Best Gourmet",
+      siteTitle: "what's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",
@@ -208,7 +208,7 @@ function applyRankingLanguage(lang) {
       aboutLink: "サイトについて",
     },
     en: {
-      siteTitle: "My Best Gourmet",
+      siteTitle: "what's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",

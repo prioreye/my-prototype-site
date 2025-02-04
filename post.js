@@ -363,7 +363,7 @@ function applyLanguageForPost(language) {
 
   const translations = {
     ja: {
-      siteTitle: "My Best Gourmet",
+      siteTitle: "what's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",
@@ -379,7 +379,7 @@ function applyLanguageForPost(language) {
       storeNameLabel: "店舗名 (オートコンプリート)",
       addressLabel: "住所 (編集可)",
       recommendMenuLabel: "イチオシメニュー",
-      commentLabel: "コメント",
+      commentLabel: "イチオシポイント",
       photoLabel: "写真アップロード (任意)",
       submitReviewButton: "投稿する",
 
@@ -387,7 +387,7 @@ function applyLanguageForPost(language) {
       aboutLink: "サイトについて",
     },
     en: {
-      siteTitle: "My Best Gourmet",
+      siteTitle: "what's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",
@@ -403,7 +403,7 @@ function applyLanguageForPost(language) {
       storeNameLabel: "Store Name (Autocomplete)",
       addressLabel: "Address (Editable)",
       recommendMenuLabel: "Recommended Menu",
-      commentLabel: "Comment",
+      commentLabel: "Recommended Points",
       photoLabel: "Photo Upload (Optional)",
       submitReviewButton: "Submit",
 

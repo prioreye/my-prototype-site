@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function applyLanguageForMypage(language) {
   const translations = {
     ja: {
-      siteTitle: "My Best Gourmet",
+      siteTitle: "what's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",
@@ -65,7 +65,7 @@ function applyLanguageForMypage(language) {
       aboutLink: "サイトについて",
     },
     en: {
-      siteTitle: "My Best Gourmet",
+      siteTitle: "what's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",
