@@ -363,7 +363,7 @@ function applyLanguageForPost(language) {
 
   const translations = {
     ja: {
-      siteTitle: "what's Your No.1?",
+      siteTitle: "What's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",
@@ -387,7 +387,7 @@ function applyLanguageForPost(language) {
       aboutLink: "サイトについて",
     },
     en: {
-      siteTitle: "what's Your No.1?",
+      siteTitle: "What's Your No.1?",
       homeLink: "Home",
       postLink: "Post",
       rankingLink: "Ranking",
