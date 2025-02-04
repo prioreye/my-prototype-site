@@ -23,7 +23,7 @@
           <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
         </ul>
       </nav>
-      <!-- 言語切り替えセレクター -->
+      <!-- 言語切替セレクター -->
       <select id="headerLanguageSelect">
         <option value="ja">日本語</option>
         <option value="en">English</option>
@@ -76,8 +76,11 @@
         </div>
       </div>
 
-      <!-- 決定ボタン: ランキング表示 (モック) -->
-      <button id="btnShowRanking">決定</button>
+      <!-- 決定ボタン -->
+      <!-- ▼ ホームのボタンと同じデザインにするため class="btn-review" を付与 -->
+      <button id="btnShowRanking" class="btn-review" style="margin-top:20px;">
+        決定
+      </button>
 
       <!-- ランキング結果表示 (将来的に実装) -->
       <div id="rankingResult" style="margin-top:30px;"></div>
