@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What's Your No.1?</title>
-  <link rel="stylesheet" href="style.css">
+  <title>My Best Gourmet</title>
+  <link rel="stylesheet" href="style.css"> <!-- ← 修正後CSSを適用 -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- ヘッダー -->
   <header class="site-header">
     <div class="container">
-      <h1 class="site-title">What's Your No.1?</h1>
+      <h1 class="site-title">My Best Gourmet</h1>
       <nav class="navigation">
         <ul>
           <li><a href="home.html" id="homeLink">ホーム</a></li>
@@ -31,10 +31,9 @@
   <!-- メインコンテンツ -->
   <main class="site-main">
 
-    <!-- 上部セクション: 「ようこそ」+「名物グルメランキング」ボタン -->
+    <!-- 1) 「ようこそ」+「名物グルメランキング」 -->
     <section class="review-post container" style="text-align:center;">
       <h2 id="homeTitle" style="margin-bottom:30px;">ようこそ</h2>
-      <!-- 1) 名物グルメランキングはこちら ボタン -->
       <a href="ranking.html" class="btn-review" id="goToRankingButton" style="display:inline-block; margin-bottom:30px;">
         名物グルメランキングはこちら
       </a>
@@ -43,9 +42,8 @@
     <!-- 区切り線 -->
     <div class="section-divider"></div>
 
-    <!-- 中部セクション: 「レビュー投稿」ボタン -->
+    <!-- 2) 「レビュー投稿」ボタン -->
     <section class="go-post container" style="text-align:center; margin-top:30px;">
-      <!-- 2) レビュー投稿はこちら ボタン (btn-review) -->
       <a href="post.html" class="btn-review" id="goToPostButton">
         レビュー投稿はこちら
       </a>
@@ -54,12 +52,12 @@
     <!-- 区切り線 -->
     <div class="section-divider"></div>
 
-    <!-- 下部セクション: 「ログイン」「新規登録」ボタン -->
+    <!-- 3) 「ログイン」「新規登録」ボタン (btn-auth:小さめ) -->
     <section class="go-auth container" style="text-align:center; margin-top:30px;">
-      <a href="login.html" class="btn-review" id="goToLoginButton" style="margin-right:10px;">
+      <a href="login.html" class="btn-auth" id="goToLoginButton" style="margin-right:10px;">
         ログインはこちら
       </a>
-      <a href="signup.html" class="btn-review" id="goToSignupButton">
+      <a href="signup.html" class="btn-auth" id="goToSignupButton">
         新規登録はこちら
       </a>
     </section>
@@ -69,7 +67,10 @@
   <!-- フッター -->
   <footer class="site-footer">
     <div class="container">
-      <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
+      <p>
+        <a href="#" id="contactLink">お問い合わせ</a> |
+        <a href="#" id="aboutLink">サイトについて</a>
+      </p>
     </div>
   </footer>
 

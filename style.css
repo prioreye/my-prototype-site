@@ -375,3 +375,27 @@ body {
 }
 
 /* etc... */
+
+/* 新規追加: 小さめボタン (.btn-auth) */
+.btn-auth {
+  display: inline-block;
+  padding: 8px 16px; /* 既存の約2/3程度に */
+  font-size: 0.9rem; /* 文字サイズも少し下げる */
+  font-weight: bold;
+  color: #fff;
+  background-color: #0078d7;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-auth:hover {
+  background-color: #005a9e;
+}
+
+.btn-auth:active {
+  transform: scale(0.98);
+}
