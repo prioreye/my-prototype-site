@@ -19,8 +19,11 @@ function applyLanguageHome(language) {
       mypageLink: "My Page",
 
       homeTitle: "ようこそ",
-      goToPostButton: "レビュー投稿はこちら",
       goToRankingButton: "名物グルメランキングはこちら",
+      goToPostButton: "レビュー投稿はこちら",
+      goToLoginButton: "ログインはこちら",
+      goToSignupButton: "新規登録はこちら",
+
       contactLink: "お問い合わせ",
       aboutLink: "サイトについて"
     },
@@ -32,8 +35,11 @@ function applyLanguageHome(language) {
       mypageLink: "My Page",
 
       homeTitle: "Welcome",
-      goToPostButton: "Go to Review Post",
       goToRankingButton: "Go to Gourmet Ranking",
+      goToPostButton: "Go to Review Post",
+      goToLoginButton: "Go to Login",
+      goToSignupButton: "Go to Sign Up",
+
       contactLink: "Contact Us",
       aboutLink: "About Us"
     }
@@ -50,8 +56,10 @@ function applyLanguageHome(language) {
 
   // メイン文言
   document.getElementById("homeTitle").textContent = c.homeTitle;
-  document.getElementById("goToPostButton").textContent = c.goToPostButton;
   document.getElementById("goToRankingButton").textContent = c.goToRankingButton;
+  document.getElementById("goToPostButton").textContent = c.goToPostButton;
+  document.getElementById("goToLoginButton").textContent = c.goToLoginButton;
+  document.getElementById("goToSignupButton").textContent = c.goToSignupButton;
 
   // フッター
   document.getElementById("contactLink").textContent = c.contactLink;
