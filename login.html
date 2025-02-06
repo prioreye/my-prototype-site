@@ -2,8 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <!-- ▼ 追加: レスポンシブ対応の meta viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ログイン</title>
   <link rel="stylesheet" href="style.css" />
   <link
@@ -12,7 +11,7 @@
   />
 </head>
 <body>
-  <!-- ヘッダー (共通) -->
+  <!-- ヘッダー -->
   <header class="site-header">
     <div class="container">
       <h1 class="site-title">My Best Gourmet</h1>
@@ -24,39 +23,48 @@
           <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
         </ul>
       </nav>
+      <!-- 言語切替セレクター -->
+      <select id="headerLanguageSelect">
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+      </select>
     </div>
   </header>
 
   <!-- メイン -->
   <main class="site-main">
     <section class="post-section container">
+      <!-- タイトル: #loginTitle -->
       <h2 class="page-title" id="loginTitle" style="text-align:center;">ログイン</h2>
+
       <form id="loginForm" class="review-form" style="max-width:400px; margin:0 auto;">
         <div class="form-group">
-          <label for="emailInput">メールアドレス</label>
+          <label for="emailInput" id="emailLabel">メールアドレス</label>
           <input type="email" id="emailInput" required placeholder="example@test.com" />
         </div>
         <div class="form-group">
-          <label for="passwordInput">パスワード</label>
+          <label for="passwordInput" id="passwordLabel">パスワード</label>
           <input type="password" id="passwordInput" required placeholder="********" />
         </div>
+        <!-- ボタン: #loginButton -->
         <button type="submit" class="btn-submit" id="loginButton">ログイン</button>
       </form>
 
-      <p style="text-align:center; margin-top:20px;">
+      <p style="text-align:center; margin-top:20px;" id="signupLinkText">
         アカウントをお持ちでない方は
-        <a href="signup.html">新規登録はこちら</a>
+        <a href="signup.html" id="goToSignupLink">新規登録はこちら</a>
       </p>
     </section>
   </main>
 
-  <!-- フッター (共通) -->
+  <!-- フッター -->
   <footer class="site-footer">
     <div class="container">
-      <p><a href="#">お問い合わせ</a> | <a href="#">サイトについて</a></p>
+      <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
     </div>
   </footer>
 
+  <!-- ログイン用のJS -->
   <script src="login.js"></script>
 </body>
 </html>
