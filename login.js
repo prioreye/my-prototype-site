@@ -1,19 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ▼ 多言語初期化
+  // 多言語初期処理
   const savedLang = localStorage.getItem('selectedLanguage') || 'ja';
   applyLanguageLogin(savedLang);
 
   document.getElementById('headerLanguageSelect').addEventListener('change', function() {
-    const selLang = this.value;
-    localStorage.setItem('selectedLanguage', selLang);
-    applyLanguageLogin(selLang);
+    localStorage.setItem('selectedLanguage', this.value);
+    applyLanguageLogin(this.value);
   });
 
-  // ▼ フォーム送信(モック)
+  // フォーム送信(モック)
   const loginForm = document.getElementById('loginForm');
-  loginForm.addEventListener('submit', async (e) => {
+  loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const email = document.getElementById('emailInput').value.trim();
     const password = document.getElementById('passwordInput').value.trim();
 
@@ -21,27 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("メールアドレスとパスワードを入力してください");
       return;
     }
-
-    // TODO: fetch('/api/login', ...) でバックエンド連携 (将来)
     alert(`ログイン成功(モック)\nメール: ${email}\nパスワード: ${password}`);
-
-    // 仮トークン
     localStorage.setItem('authToken', 'dummy_token_12345');
-
-    // ログイン後、mypage.html へ
     window.location.href = 'mypage.html';
   });
 });
 
-// ▼ 多言語切り替え
-function applyLanguageLogin(language) {
+// ▼ 多言語
+function applyLanguageLogin(lang) {
   const translations = {
     ja: {
       siteTitle: "What's Your No.1?",
-      homeLink: "ホーム",
-      postLink: "投稿",
-      rankingLink: "ランキング",
-      mypageLink: "マイページ",
+      homeLink: "Home",
+      postLink: "Post",
+      rankingLink: "Ranking",
+      mypageLink: "My page",
 
       loginTitle: "ログイン",
       emailLabel: "メールアドレス",
@@ -65,33 +57,33 @@ function applyLanguageLogin(language) {
       passwordLabel: "Password",
       loginButton: "Login",
       signupLinkText: "Don't have an account?",
-      goToSignupLink: "Sign Up Here",
+      goToSignupLink: "Sign up here",
 
       contactLink: "Contact Us",
       aboutLink: "About Us"
     }
   };
 
-  const c = translations[language] || translations.ja;
+  const c = translations[lang] || translations.ja;
 
-  // ▼ ヘッダー
+  // ヘッダー
   document.querySelector('.site-title').textContent = c.siteTitle;
   document.getElementById('homeLink').textContent = c.homeLink;
   document.getElementById('postLink').textContent = c.postLink;
   document.getElementById('rankingLink').textContent = c.rankingLink;
   document.getElementById('mypageLink').textContent = c.mypageLink;
 
-  // ▼ メイン要素
+  // メイン
   document.getElementById('loginTitle').textContent = c.loginTitle;
   document.getElementById('emailLabel').textContent = c.emailLabel;
   document.getElementById('passwordLabel').textContent = c.passwordLabel;
   document.getElementById('loginButton').textContent = c.loginButton;
 
-  document.getElementById('signupLinkText').textContent = c.signupLinkText + " ";
-  const signupLink = document.getElementById('goToSignupLink');
-  signupLink.textContent = c.goToSignupLink;
+  // 分離したテキスト & リンク要素に別々に設定
+  document.getElementById('signupLinkText').textContent = c.signupLinkText;
+  document.getElementById('goToSignupLink').textContent = c.goToSignupLink;
 
-  // ▼ フッター
+  // フッター
   document.getElementById('contactLink').textContent = c.contactLink;
   document.getElementById('aboutLink').textContent = c.aboutLink;
 }

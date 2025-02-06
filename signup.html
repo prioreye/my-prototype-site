@@ -11,7 +11,6 @@
   />
 </head>
 <body>
-  <!-- ヘッダー -->
   <header class="site-header">
     <div class="container">
       <h1 class="site-title">My Best Gourmet</h1>
@@ -23,7 +22,6 @@
           <li><a href="mypage.html" id="mypageLink">マイページ</a></li>
         </ul>
       </nav>
-      <!-- 言語切替セレクター -->
       <select id="headerLanguageSelect">
         <option value="ja">日本語</option>
         <option value="en">English</option>
@@ -31,7 +29,6 @@
     </div>
   </header>
 
-  <!-- メイン -->
   <main class="site-main">
     <section class="post-section container">
       <h2 class="page-title" id="signupTitle" style="text-align:center;">新規登録</h2>
@@ -52,14 +49,14 @@
         <button type="submit" class="btn-submit" id="signupButton">新規登録</button>
       </form>
 
-      <p style="text-align:center; margin-top:20px;" id="loginLinkText">
-        既にアカウントをお持ちの方は
-        <a href="login.html" id="goToLoginLink">ログインはこちら</a>
+      <!-- 同じくリンクと文章を分割 -->
+      <p style="text-align:center; margin-top:20px;">
+        <span id="loginLinkText">既にアカウントをお持ちの方は</span>
+        <a href="login.html" id="goToLoginLink" style="margin-left:4px;">ログインはこちら</a>
       </p>
     </section>
   </main>
 
-  <!-- フッター -->
   <footer class="site-footer">
     <div class="container">
       <p><a href="#" id="contactLink">お問い合わせ</a> | <a href="#" id="aboutLink">サイトについて</a></p>
