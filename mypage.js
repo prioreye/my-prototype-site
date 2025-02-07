@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
+  // ▼ ログインチェック (必要なら)
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    alert("ログインが必要です");
+    window.location.href = "login.html";
+    return;
+  }
+
   // 初期の言語を反映
   const savedLang = localStorage.getItem("selectedLanguage") || "ja";
   applyLanguageForMypage(savedLang);
@@ -26,6 +34,14 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.getElementById("btnCancelPlan").addEventListener("click", function() {
     alert("サブスク解約UI(モック)");
+  });
+
+  // ▼ ログアウトボタン
+  document.getElementById("btnLogout").addEventListener("click", function() {
+    // ログアウト処理 (トークン破棄)
+    localStorage.removeItem("authToken");
+    alert("ログアウトしました");
+    window.location.href = "home.html";
   });
 });
 
@@ -61,6 +77,9 @@ function applyLanguageForMypage(language) {
 
       notificationTitle: "お知らせ",
 
+      // ▼ 追加: ログアウトボタン
+      btnLogout: "ログアウト",
+
       contactLink: "お問い合わせ",
       aboutLink: "サイトについて",
     },
@@ -93,6 +112,9 @@ function applyLanguageForMypage(language) {
 
       notificationTitle: "Notifications",
 
+      // ▼ 追加: ログアウトボタン
+      btnLogout: "Logout",
+
       contactLink: "Contact Us",
       aboutLink: "About Us",
     }
@@ -123,7 +145,7 @@ function applyLanguageForMypage(language) {
   document.getElementById("sortSelect").options[0].text = t.dateDesc;
   document.getElementById("sortSelect").options[1].text = t.dateAsc;
 
-  // UI上の "編集" "削除" ボタンを動的に変える場合:
+  // ボタン類
   const editButtons = document.querySelectorAll(".btn-edit");
   editButtons.forEach(btn => btn.textContent = t.btnEdit);
   const deleteButtons = document.querySelectorAll(".btn-delete");
@@ -140,6 +162,9 @@ function applyLanguageForMypage(language) {
 
   // 5) お知らせ
   document.getElementById("notificationTitle").textContent = t.notificationTitle;
+
+  // ▼ 追加: ログアウトボタン
+  document.getElementById("btnLogout").textContent = t.btnLogout;
 
   // フッター
   document.getElementById("contactLink").textContent = t.contactLink;

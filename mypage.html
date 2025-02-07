@@ -50,6 +50,11 @@
           <input type="password" id="passwordInput" placeholder="********" />
           <button id="btnUpdatePassword">更新</button>
         </div>
+
+        <!-- ▼ 追加: ログアウトボタン (ここが「ユーザー情報の下」) -->
+        <div class="logout-block" style="margin-top:20px;">
+          <button id="btnLogout" class="btn-submit">ログアウト</button>
+        </div>
       </div>
 
       <hr />
@@ -87,7 +92,6 @@
       <!-- 3) お気に入り (ブックマーク) -->
       <div class="mypage-block" id="favoriteBlock">
         <h3 id="favoriteTitle">お気に入り店舗</h3>
-        <!-- UIのみ: 例として静的に表示 -->
         <ul id="favoriteList">
           <li>渋谷のパフェ</li>
           <li>梅田のたこ焼き</li>
