@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 多言語初期処理
+  // ▼ 多言語初期処理
   const savedLang = localStorage.getItem('selectedLanguage') || 'ja';
   applyLanguageLogin(savedLang);
 
@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     applyLanguageLogin(this.value);
   });
 
-  // フォーム送信(モック)
+  // ▼ ログインフォーム送信
   const loginForm = document.getElementById('loginForm');
-  loginForm.addEventListener('submit', (e) => {
+  loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = document.getElementById('emailInput').value.trim();
     const password = document.getElementById('passwordInput').value.trim();
@@ -19,9 +19,40 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("メールアドレスとパスワードを入力してください");
       return;
     }
-    alert(`ログイン成功(モック)\nメール: ${email}\nパスワード: ${password}`);
-    localStorage.setItem('authToken', 'dummy_token_12345');
-    window.location.href = 'mypage.html';
+
+    try {
+      // サーバー側 /api/login にPOST
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        alert('ログイン失敗: ' + (errorData.error || 'Unknown error'));
+        return;
+      }
+
+      const data = await response.json();
+      // 例: data = { token: '...', userId: ... }
+
+      alert(`ログイン成功!\nメール: ${email}`);
+
+      // トークンを保存
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+      } else {
+        localStorage.setItem('authToken', 'dummy_token_12345');
+      }
+
+      // マイページへ遷移
+      window.location.href = 'mypage.html';
+
+    } catch (err) {
+      console.error(err);
+      alert('サーバーエラーが発生しました。');
+    }
   });
 });
 
@@ -79,7 +110,6 @@ function applyLanguageLogin(lang) {
   document.getElementById('passwordLabel').textContent = c.passwordLabel;
   document.getElementById('loginButton').textContent = c.loginButton;
 
-  // 分離したテキスト & リンク要素に別々に設定
   document.getElementById('signupLinkText').textContent = c.signupLinkText;
   document.getElementById('goToSignupLink').textContent = c.goToSignupLink;
 
