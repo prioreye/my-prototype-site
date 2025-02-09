@@ -5,7 +5,7 @@ const mysql = require('mysql2/promise');
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'YOUR_ROOT_PASSWORD',
+  password: 'Yui717higuchi@',
   database: 'gourmet_db',  // 先程作成したデータベース名
   waitForConnections: true,
   connectionLimit: 10,      // 同時接続数の上限
